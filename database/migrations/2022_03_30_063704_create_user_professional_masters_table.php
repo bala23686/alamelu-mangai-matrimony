@@ -18,12 +18,6 @@ class CreateUserProfessionalMastersTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('user_education_id')->nullable()->default(null);
             $table->string('user_education_details')->nullable()->default(null);
-            $table->string('tenth_marksheet')->nullable()->default(null);
-            $table->boolean('tenth_mark_sheet_uploaded')->default(0);
-            $table->string('twelth_marksheet')->nullable()->default(null);
-            $table->boolean('twelth_mark_sheet_uploaded')->default(0);
-            $table->string('clg_tc')->nullable()->default(null);
-            $table->boolean('clg_tc_is_uploaded')->default(0);
             $table->unsignedBigInteger('user_job_id')->nullable();
             $table->string('user_job_details')->nullable()->default(null);
             $table->unsignedBigInteger('user_job_country')->nullable();

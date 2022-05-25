@@ -23,9 +23,16 @@ class CreateUserBasicInfoMastersTable extends Migration
             $table->date('dob');
             $table->string('blood_group')->default(null)->nullable();
             $table->string('about', 255)->default(null)->nullable();
+            $table->string('user_address', 255)->default(null)->nullable();
             $table->integer('age')->nullable();
             $table->string('medical_certificate')->default(null)->nullable();
             $table->timestamp('medical_certificate_uploaded_on')->useCurrent();
+            $table->string('tenth_marksheet')->nullable()->default(null);
+            $table->boolean('tenth_mark_sheet_uploaded')->default(0);
+            $table->string('twelth_marksheet')->nullable()->default(null);
+            $table->boolean('twelth_mark_sheet_uploaded')->default(0);
+            $table->string('clg_tc')->nullable()->default(null);
+            $table->boolean('clg_tc_is_uploaded')->default(0);
             $table->unsignedBigInteger('gender_id')->nullable()->default(null);
             $table->foreign('gender_id')->references('id')->on('gender_masters');
             $table->unsignedBigInteger('user_height_id')->nullable()->default(null);

@@ -29,7 +29,7 @@ class ImageUploadHelper
 
     public static function storeImage($file, string $path): string
     {
-        $file = $file;
+
         $fileName = "dummy" . "" . round(time() / 9999) . "" . rand(10, 500) . "." . $file->getClientOriginalExtension();
         Storage::putFileAs($path, $file, $fileName);
         return $fileName;

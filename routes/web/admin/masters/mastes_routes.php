@@ -75,6 +75,7 @@ Route::group(['prefix'=>'masters','as'=>'admin.','middleware'=>'is_admin'],funct
         Route::get('star-list',[SubMastersGetController::class,'getStar'])->name('submaster.star.ssr');
         Route::get('rasi-list',[SubMastersGetController::class,'getRasi'])->name('submaster.rasi.ssr');
         Route::get('age-list',[SubMastersGetController::class,'getAge'])->name('submaster.age.ssr');
+        Route::get('blood-list',[SubMastersGetController::class,'getBlood'])->name('submaster.blood.ssr');
   });
 
 
