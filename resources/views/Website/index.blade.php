@@ -175,6 +175,29 @@
                                     </div>
 
                                     <div class="col-12 row">
+
+                                        <div class="col-9 p-0" style="text-align: center">
+                                            <label class="small" for="flexCheckDefault2">
+                                               Are you a Vegetarian ?
+                                            </label>
+                                        </div>
+                                        <div class="col-3 text-enter" style="text-align:right">
+                                            <input class="" type="checkbox" value="checked" id="veg" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 row">
+
+                                        <div class="col-9 p-0" style="text-align: center">
+                                            <label class="small" for="flexCheckDefault2">
+                                                Are you a Teetotaler ?
+                                            </label>
+                                        </div>
+                                        <div class="col-3 text-enter" style="text-align:right">
+                                            <input class="" type="checkbox" value="checked" id="teetotaler" >
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-12 row">
                                         <div class="col-3 text-enter" style="text-align:right">
                                             <input class="" type="checkbox" name="terms" id="terms">
                                         </div>

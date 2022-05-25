@@ -15,6 +15,8 @@ const dobEl = document.querySelector("#dob");
 const religionEl = document.querySelector("#religion");
 const casteEl = document.querySelector("#caste");
 const termsEl = document.querySelector("#terms");
+const vegEl = document.querySelector("#veg");
+const teetotalerEl = document.querySelector("#teetotaler");
 const userRegisterEl = document.querySelector("#userRegister");
 const registerFormEl = document.querySelector("#registerForm");
 // HOME-REGISTER FORM VALUES
@@ -191,6 +193,28 @@ const checkCaste = () => {
     }
     return valid;
 };
+const checkVeg = () => {
+    let valid = false;
+    const veg = vegEl.value;
+    if (!isRequired(veg == "checked")) {
+        showError(vegEl, "Required");
+    } else {
+        // showSuccess(vegEl);
+        valid = true;
+    }
+    return valid;
+};
+const checkTeetotaler = () => {
+    let valid = false;
+    const teetotaler = teetotalerEl.value;
+    if (!isRequired(teetotaler)) {
+        showError(teetotalerEl, "Required");
+    } else {
+        // showSuccess(teetotalerEl);
+        valid = true;
+    }
+    return valid;
+};
 
 const checkTouched = (event) => {
     let valid = false;
@@ -321,7 +345,9 @@ const validate = () => {
         isDobValid = checkDob(),
         isGenderValid = checkGender(),
         isReligionValid = checkReligion(),
-        isCasteValid = checkCaste();
+        isCasteValid = checkCaste(),
+        isVegetarian = checkVeg(),
+        isTeetotaler = checkTeetotaler();
     // isTouched = checkTouched();
 
     let isFormValid =
@@ -333,7 +359,9 @@ const validate = () => {
         isDobValid &&
         isGenderValid &&
         isReligionValid &&
-        isCasteValid;
+        isCasteValid &&
+        isVegetarian &&
+        isTeetotaler;
 
     // && isTouched;
     return isFormValid;

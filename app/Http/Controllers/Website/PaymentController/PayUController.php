@@ -24,12 +24,12 @@ class PayUController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id)
+    public function index()
     {
         $payment_infomation = PayUPaymentHelper::initialize();
 
-        $payment_infomation->toUser($id, $request->amount)
-            ->package($request->packageId)
+        $payment_infomation->toUser(auth()->id(), 1000)
+            ->package(1)
             ->sha512()
             ->get();
 
@@ -83,6 +83,9 @@ class PayUController extends Controller
                 : false;
 
 
+            //update payment status
+            $updateStatus = User::where('id', $user->id)->update(["is_paid" => 1]);
+            $updateStatus ? true : false;
 
             //getting the last transaction
             $transaction_info = UserTransaction::where('user_id', $user->id)
@@ -102,6 +105,7 @@ class PayUController extends Controller
                 (new InvocieMailAction($userInfo, (string)$invioce))
                 ->mailInvoice()
                 : 0;
+
 
             return redirect()
                 ->route('user.payments.payu.payusuccess', $user->id)
