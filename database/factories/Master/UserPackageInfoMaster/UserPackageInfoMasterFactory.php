@@ -18,7 +18,7 @@ class UserPackageInfoMasterFactory extends Factory
     {
         return [
             'user_views_remaining' => rand(1, 50),
-            'user_package_id' => rand(1, 4)
+            'user_package_id' =>1
         ];
     }
 }

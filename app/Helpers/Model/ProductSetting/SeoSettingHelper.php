@@ -18,7 +18,7 @@ class SeoSettingHelper
 
 
 
-    protected $fillable=[
+    protected $fillable = [
         'seo_tittle',
         'seo_meta_tittle',
         'seo_meta_description',
@@ -28,10 +28,11 @@ class SeoSettingHelper
 
     public function __construct()
     {
-        $productSettingList = ProductSetting::whereBetween('id',[27,30])->get();
+        if (env('APP_ENV') == 'local' || env('APP_ENV') == 'production') {
+            $productSettingList = ProductSetting::whereBetween('id', [27, 30])->get();
 
-        $this->assignProductSettingValues($productSettingList);
-
+            $this->assignProductSettingValues($productSettingList);
+        }
     }
 
 
@@ -40,19 +41,20 @@ class SeoSettingHelper
 
         foreach ($productSettingList as $value) {
 
-            switch($value->setting_name)
-            {
-                case 'seo_tittle': $this->seo_tittle=$value->value ; break ;
-                case 'seo_meta_tittle': $this->seo_meta_tittle=$value->value ; break ;
-                case 'seo_meta_description': $this->seo_meta_description=$value->value ; break ;
-                case 'seo_meta_keywords': $this->seo_meta_keywords=$value->value ; break ;
-
+            switch ($value->setting_name) {
+                case 'seo_tittle':
+                    $this->seo_tittle = $value->value;
+                    break;
+                case 'seo_meta_tittle':
+                    $this->seo_meta_tittle = $value->value;
+                    break;
+                case 'seo_meta_description':
+                    $this->seo_meta_description = $value->value;
+                    break;
+                case 'seo_meta_keywords':
+                    $this->seo_meta_keywords = $value->value;
+                    break;
             }
-
         }
-
     }
-
-
-
 }

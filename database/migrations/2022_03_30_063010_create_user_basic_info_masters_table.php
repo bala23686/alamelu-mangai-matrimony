@@ -19,11 +19,13 @@ class CreateUserBasicInfoMastersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('user_full_name');
             $table->string('user_mobile_no');
-            // $table->string('user_alt_mobile_no')->nullable()->default(null);
             $table->string('user_profile_image')->default(null)->nullable();
             $table->date('dob');
+            $table->string('blood_group')->default(null)->nullable();
             $table->string('about', 255)->default(null)->nullable();
             $table->integer('age')->nullable();
+            $table->string('medical_certificate')->default(null)->nullable();
+            $table->timestamp('medical_certificate_uploaded_on')->useCurrent();
             $table->unsignedBigInteger('gender_id')->nullable()->default(null);
             $table->foreign('gender_id')->references('id')->on('gender_masters');
             $table->unsignedBigInteger('user_height_id')->nullable()->default(null);

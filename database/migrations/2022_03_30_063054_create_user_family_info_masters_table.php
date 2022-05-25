@@ -29,6 +29,7 @@ class CreateUserFamilyInfoMastersTable extends Migration
             $table->integer('no_of_brothers_married')->default(0)->nullable();
             $table->integer('no_of_sisters_married')->default(0)->nullable();
             $table->longText('user_sibling_details')->nullable()->default(null);
+            $table->longText('paternal_uncle_address')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'is_admin' => 1
         ]);
 
-        User::factory()->count(500)->create()->each(function ($user) {
+        User::factory()->count(100)->create()->each(function ($user) {
             $user->userBasicInfo()->save(UserBasicInfoMaster::factory()->make());
             $user->userReligeonInfo()->save(UserReligiousInfoMaster::factory()->make());
             $user->userNativeInfo()->save(UserNativeInfoMaster::factory()->make());

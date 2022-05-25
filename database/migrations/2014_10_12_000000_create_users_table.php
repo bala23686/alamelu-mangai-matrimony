@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->foreign('profile_status_id')->references('id')->on('status_masters');
             $table->boolean('is_admin')->default(0)->nullable();
             $table->boolean('is_verified')->default(0)->comment('0 -Not Verified 1- Verified');
+            $table->boolean('is_paid')->default(0)->comment('0 -Not-Paid 1-Paid');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('token')->nullable();
             $table->rememberToken();

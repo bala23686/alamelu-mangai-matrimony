@@ -23,7 +23,9 @@ class UserFamilyInfoMaster extends Model
         'no_of_brothers_married',
         'no_of_sisters_married',
         'user_sibling_details',
-        'user_family_status'];
+        'paternal_uncle_address',
+        'user_family_status'
+    ];
 
 
 

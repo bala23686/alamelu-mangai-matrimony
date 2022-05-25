@@ -18,7 +18,7 @@ class UserTransactionFactory extends Factory
     {
         return [
             "tr_id"=>"TRID".rand(9999,99999),
-            "user_id"=>rand(2,499),
+            "user_id"=>rand(2,99),
             "tr_package_name"=>$this->faker->randomElement(['Simple Package','hero package','premium package']),
             "tr_package_price"=>$this->faker->randomElement(['1000','2000','5000']),
             "tr_amount_paid"=>$this->faker->randomElement(['1000','2000','5000']),

@@ -38,6 +38,7 @@ class User extends Authenticatable
         'profile_status_id',
         'is_admin',
         'is_verified',
+        'is_paid',
         'user_profile_id'
     ];
 
