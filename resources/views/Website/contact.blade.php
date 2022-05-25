@@ -13,11 +13,11 @@
             </div>
         </div>
     </div>
-    {{-- <section id="contact-us" class="contact-us section">
+    <section id="contact-us" class="contact-us section">
         <div class="container">
             <div class="contact-head wow fadeInUp" data-wow-delay=".4s">
                 <div class="row">
-                    <div class="col-lg-5 col-12">
+                    <div class="col-lg-4 col-12">
                         <div class="single-head">
                             <div class="contant-inner-title">
                                 <h2>Our Contacts & Location</h2>
@@ -33,14 +33,14 @@
                             <div class="single-info">
                                 <h3>Contact info</h3>
                                 <ul>
-                                    <li>77408 Satterfield Motorway Suite</li>
-                                    <li>469 New Antonetta, BC K3L6P6</li>
-                                    <li><a
-                                            href="https://demo.graygrids.com/cdn-cgi/l/email-protection#9df4f3fbf2dde4f2e8efeaf8ffeef4e9f8b3fef2f0"><span
-                                                class="__cf_email__"
-                                                data-cfemail="5f3a273e322f333a1f36313930713c3032">[email&#160;protected]</span></a>
-                                    </li>
-                                    <li><a href="tel:(617) 495-9400-326">(617) 495-9400-326</a></li>
+                                    <li class="mb-0"><i
+                                            class="lni lni-map-marker"></i> {{ $webInfo->company_address ?? '' }},
+                                        {{ $webInfo->company_city ?? '' }},
+                                        {{ $webInfo->company_state ?? '' }},
+                                        {{ $webInfo->company_country ?? '' }},
+                                        {{ $webInfo->company_pincode ?? '' }}.</li>
+                                    <li class="mb-2"><b>Tel:</b>
+                                        +91-{{ $webInfo->company_contact_number ?? '' }}.</li>
                                 </ul>
                             </div>
                             <div class="single-info contact-social">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-12">
+                    <div class="col-lg-8 col-12">
                         <div class="form-main">
                             <div class="form-title">
                                 <h2>Get in Touch</h2>
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
     {{-- <div class="map-section">
         <div class="map-container">
             <div class="mapouter">

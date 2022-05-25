@@ -203,43 +203,61 @@
         <!-- HERO SECTION END -->
 
         <!-- TRENDING SECTION START -->
-        <section class="items-tab pt-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="title">
-                            <h2 class="fw-light wow fadeInUp" data-wow-delay=".4s">Now On Trending !</h2>
+        @if (Auth()->check() && Auth()->user()->is_admin != 1 && Auth()->user()->is_paid)
+            <section class="items-tab pt-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="title">
+                                <h2 class="fw-light wow fadeInUp" data-wow-delay=".4s">Now On Trending !</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <nav>
-                            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-new-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-new" type="button" role="tab" aria-controls="nav-new"
-                                    aria-selected="true">New Profiles </button>
-                            </div>
-                        </nav>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <nav>
+                                <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-new-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-new" type="button" role="tab" aria-controls="nav-new"
+                                        aria-selected="true">New Profiles </button>
+                                </div>
+                            </nav>
 
-                        <div class="tab-content bg-white" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-new" role="tabpanel"
-                                aria-labelledby="nav-new-tab">
-                                <div class="categories">
-                                    <div class="container">
-                                        <div class="cat-inner shadow border-0">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="category-slider">
-                                                        @foreach ($new_user_info as $new_user)
-                                                            @php
-                                                                $image_src = ($new_user->userBasicInfos->gender_id == 1) ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
-                                                            @endphp
-                                                            @if (Auth()->check() && Auth()->user()->is_admin != 1)
-                                                                @if ($new_user->id != Auth()->user()->id)
+                            <div class="tab-content bg-white" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-new" role="tabpanel"
+                                    aria-labelledby="nav-new-tab">
+                                    <div class="categories">
+                                        <div class="container">
+                                            <div class="cat-inner shadow border-0">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="category-slider">
+                                                            @foreach ($new_user_info as $new_user)
+                                                                @php
+                                                                    $image_src = ($new_user->userBasicInfos->gender_id == 1) ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
+                                                                @endphp
+                                                                @if (Auth()->check() && Auth()->user()->is_admin != 1)
+                                                                    @if ($new_user->id != Auth()->user()->id)
 
-                                                                    <a href='{{ route('viewprofile.show', $new_user->id) }}'
-                                                                        target="_blank">
+                                                                        <a href='{{ route('viewprofile.show', $new_user->id) }}'
+                                                                            target="_blank">
+                                                                            <div class="single-item-grid">
+                                                                                <div class="image">
+                                                                                    <img class="rounded"
+                                                                                        src="{{ $new_user->userBasicInfos->user_profile_image ? $new_user->userBasicInfos->image_with_path : $image_src }}"
+                                                                                        alt="#" loading='eager'>
+                                                                                </div>
+                                                                                <div class="text-center">
+                                                                                    <h6 class="text-primary fw-normal">
+                                                                                        {{ $new_user->user_profile_id ?? '-' }}</h6>
+                                                                                        <p class="badge bg-primary fw-normal">VIEW</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    @endif
+                                                                @else
+                                                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                        href='javascript:void(0)'>
                                                                         <div class="single-item-grid">
                                                                             <div class="image">
                                                                                 <img class="rounded"
@@ -254,24 +272,8 @@
                                                                         </div>
                                                                     </a>
                                                                 @endif
-                                                            @else
-                                                                <a data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                                    href='javascript:void(0)'>
-                                                                    <div class="single-item-grid">
-                                                                        <div class="image">
-                                                                            <img class="rounded"
-                                                                                src="{{ $new_user->userBasicInfos->user_profile_image ? $new_user->userBasicInfos->image_with_path : $image_src }}"
-                                                                                alt="#" loading='eager'>
-                                                                        </div>
-                                                                        <div class="text-center">
-                                                                            <h6 class="text-primary fw-normal">
-                                                                                {{ $new_user->user_profile_id ?? '-' }}</h6>
-                                                                                <p class="badge bg-primary fw-normal">VIEW</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </a>
-                                                            @endif
-                                                        @endforeach
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -279,55 +281,11 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="tab-pane fade" id="nav-featured" role="tabpanel"
-                                aria-labelledby="nav-featured-tab">
-                                <div class="categories">
-                                    <div class="container">
-                                        <div class="cat-inner">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="category-slider-1">
-                                                        @foreach ($new_user_info as $new_user)
-                                                            <div class="single-item-grid">
-                                                                <div class="image">
-                                                                    <a href=""><img src="" alt="#"></a>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <ul class="info">
-                                                                        <li class="text-primary">
-                                                                            {{ $new_user->user_profile_id }}
-                                                                        </li>
-                                                                        <li class="like"><a
-                                                                                href="javascript:void(0)"><i
-                                                                                    class="lni lni-heart"></i></a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <h3 class="title">
-                                                                        <a href=""><i class="lni lni-map-marker">
-                                                                            </i>Ernakulam</a>
-                                                                    </h3>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-center pt-5 mb-5">
-                            {{-- <div class="button wow fadeInUp" data-wow-delay=".8s">
-                                <a href="javascript:void(0)" class="btn">View More</a>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
         <!-- TRENDING SECTION END -->
 
         <!-- ABOUT SECTION START -->
@@ -361,153 +319,157 @@
         </section>
         <!-- ABOUT SECTION END -->
 
+
+
         <!-- BASIC SEARCH SECTION START -->
-        <section class="mt-5">
-            <div class="container">
-                <div class="row ">
-                    <div class="col-md-12 col-12">
-                        <div class="content">
-                            <div class="text-center">
-                                <h3 class="wow fadeInUp fw-light" data-wow-delay=".4s">Are you Waiting For Your
-                                    Future Partner !!
-                                </h3>
-                                <p class="wow fadeInUp pt-2" data-wow-delay=".6s">Don't Wait. Let Search Profiles.</p>
-                            </div>
-                            <div class="mt-2">
-                                <h5 class="text-center pt-3 h5">Search By Profile ID</h5>
-                                <div class="col-md-4 offset-md-4">
-                                    <form id='profile_id_form'>
-                                        @csrf
-                                        <div class="input-group">
-                                            <input name="profile_id" id='profile_id' type="text" class="form-control"
-                                                placeholder="Enter Profile ID" required>
-                                            <button id="profileIdBtn" class="btn btn-primary" type="button">Search</button>
-                                        </div>
-                                    </form>
+        @if (Auth()->check() && Auth()->user()->is_admin != 1 && Auth()->user()->is_paid)
+            <section class="mt-5">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-md-12 col-12">
+                            <div class="content">
+                                <div class="text-center">
+                                    <h3 class="wow fadeInUp fw-light" data-wow-delay=".4s">Are you Waiting For Your
+                                        Future Partner !!
+                                    </h3>
+                                    <p class="wow fadeInUp pt-2" data-wow-delay=".6s">Don't Wait. Let Search Profiles.</p>
                                 </div>
-                                <div id='profileResult' class="mt-2">
-                                    <!-- HERE SHOW THE PROFILE RESULTS -->
+                                <div class="mt-2">
+                                    <h5 class="text-center pt-3 h5">Search By Profile ID</h5>
+                                    <div class="col-md-4 offset-md-4">
+                                        <form id='profile_id_form'>
+                                            @csrf
+                                            <div class="input-group">
+                                                <input name="profile_id" id='profile_id' type="text" class="form-control"
+                                                    placeholder="Enter Profile ID" required>
+                                                <button id="profileIdBtn" class="btn btn-primary" type="button">Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id='profileResult' class="mt-2">
+                                        <!-- HERE SHOW THE PROFILE RESULTS -->
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="items-tab mt-3 mb-4">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <nav>
-                                                <div class="nav nav-tabs mb-0" id="nav-tab" role="tablist">
-                                                    <button class="nav-link active" id="nav-basic-tab" data-bs-toggle="tab"
-                                                        data-bs-target="#nav-basic" type="button" role="tab"
-                                                        aria-controls="nav-basic" aria-selected="true">Basic Search</button>
-                                                </div>
-                                            </nav>
-                                            <div class="tab-content" id="nav-tabContent">
-                                                <div class="tab-pane fade show active wow fadeInUp" data-wow-delay=".7s"
-                                                    id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
-                                                    <div class="offset-2 col-md-8">
-                                                        <div class="search-form m-0">
-                                                            <form action="{{ route('basic.search') }}" method="POST">
-                                                                @csrf
-                                                                <div class="row mt-3">
+                                <div class="items-tab mt-3 mb-4">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <nav>
+                                                    <div class="nav nav-tabs mb-0" id="nav-tab" role="tablist">
+                                                        <button class="nav-link active" id="nav-basic-tab" data-bs-toggle="tab"
+                                                            data-bs-target="#nav-basic" type="button" role="tab"
+                                                            aria-controls="nav-basic" aria-selected="true">Basic Search</button>
+                                                    </div>
+                                                </nav>
+                                                <div class="tab-content" id="nav-tabContent">
+                                                    <div class="tab-pane fade show active wow fadeInUp" data-wow-delay=".7s"
+                                                        id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
+                                                        <div class="offset-2 col-md-8">
+                                                            <div class="search-form m-0">
+                                                                <form action="{{ route('basic.search') }}" method="POST">
+                                                                    @csrf
+                                                                    <div class="row mt-3">
 
-                                                                    @if (Auth()->check() && Auth()->user()->is_admin != 1)
-                                                                    {{-- <div class="col-md-4 search-input text-left">
-                                                                        <span class="">Looking For</span>
-                                                                        <input type="text" value='Male'>
-                                                                    </div> --}}
-                                                                    @else
-                                                                    <div class="col-md-4 search-input text-left mb-3">
-                                                                        <span class="">Looking For</span>
-                                                                        <select name="search_gender" required>
-                                                                            <option value="" selected hidden>Select Gender
-                                                                            </option>
-                                                                            @foreach ($gender as $row)
-                                                                                <option value="{{ $row->id }}">
-                                                                                    {{ $row->gender_name }}
+                                                                        @if (Auth()->check() && Auth()->user()->is_admin != 1)
+                                                                        {{-- <div class="col-md-4 search-input text-left">
+                                                                            <span class="">Looking For</span>
+                                                                            <input type="text" value='Male'>
+                                                                        </div> --}}
+                                                                        @else
+                                                                        <div class="col-md-4 search-input text-left mb-3">
+                                                                            <span class="">Looking For</span>
+                                                                            <select name="search_gender" required>
+                                                                                <option value="" selected hidden>Select Gender
                                                                                 </option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
-                                                                    @endif
+                                                                                @foreach ($gender as $row)
+                                                                                    <option value="{{ $row->id }}">
+                                                                                        {{ $row->gender_name }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        @endif
 
-                                                                    <div class="col-md-4 search-input mb-3">
-                                                                        <span>Religion</span>
-                                                                        <select name="search_religion"
-                                                                            id='home_search_religion' required>
-                                                                            <option value="" selected hidden>Select Religion
-                                                                            </option>
-                                                                            @foreach ($religion as $row)
-                                                                                <option value="{{ $row->id }}">
-                                                                                    {{ $row->religion_name }}
+                                                                        <div class="col-md-4 search-input mb-3">
+                                                                            <span>Religion</span>
+                                                                            <select name="search_religion"
+                                                                                id='home_search_religion' required>
+                                                                                <option value="" selected hidden>Select Religion
                                                                                 </option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-md-4 search-input mb-3">
-                                                                        <span>Caste <span
-                                                                                class="small text-primary">(Select
-                                                                                Religion)</span></span>
-                                                                        <select name="search_caste"
-                                                                            id='home_search_caste' disabled>
-                                                                            <option value="" selected hidden>Select Caste
-                                                                            </option>
-
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="col-md-4 search-input mb-3">
-                                                                        <span>Marital Status</span>
-                                                                        <select name="search_marital" required>
-                                                                            <option value="" selected hidden>Select Status
-                                                                            </option>
-                                                                            @foreach ($marital_status as $row)
-                                                                                <option value="{{ $row->id }}">
-                                                                                    {{ $row->martial_status_name }}
+                                                                                @foreach ($religion as $row)
+                                                                                    <option value="{{ $row->id }}">
+                                                                                        {{ $row->religion_name }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-4 search-input mb-3">
+                                                                            <span>Caste <span
+                                                                                    class="small text-primary">(Select
+                                                                                    Religion)</span></span>
+                                                                            <select name="search_caste"
+                                                                                id='home_search_caste' disabled>
+                                                                                <option value="" selected hidden>Select Caste
                                                                                 </option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
 
-                                                                    <div class="col-md-4 mb-3">
-                                                                        <span>Age</span>
-                                                                        <div class="wrapper">
-                                                                            <div class="values">
-                                                                                <span id="range1">
-                                                                                    0
-                                                                                </span>
-                                                                                <span> &dash; </span>
-                                                                                <span id="range2">
-                                                                                    60
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="range-container pt-2">
-                                                                                <div class="slider-track"></div>
-                                                                                <input type="range"
-                                                                                    name="search_from_age" min="0"
-                                                                                    max="60" value="18" id="slider-1"
-                                                                                    oninput="slideOne()">
-                                                                                <input type="range"
-                                                                                    name="search_to_age" min="0"
-                                                                                    max="60" value="30" id="slider-2"
-                                                                                    oninput="slideTwo()">
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 search-input mb-3">
+                                                                            <span>Marital Status</span>
+                                                                            <select name="search_marital" required>
+                                                                                <option value="" selected hidden>Select Status
+                                                                                </option>
+                                                                                @foreach ($marital_status as $row)
+                                                                                    <option value="{{ $row->id }}">
+                                                                                        {{ $row->martial_status_name }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 mb-3">
+                                                                            <span>Age</span>
+                                                                            <div class="wrapper">
+                                                                                <div class="values">
+                                                                                    <span id="range1">
+                                                                                        0
+                                                                                    </span>
+                                                                                    <span> &dash; </span>
+                                                                                    <span id="range2">
+                                                                                        60
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="range-container pt-2">
+                                                                                    <div class="slider-track"></div>
+                                                                                    <input type="range"
+                                                                                        name="search_from_age" min="0"
+                                                                                        max="60" value="18" id="slider-1"
+                                                                                        oninput="slideOne()">
+                                                                                    <input type="range"
+                                                                                        name="search_to_age" min="0"
+                                                                                        max="60" value="30" id="slider-2"
+                                                                                        oninput="slideTwo()">
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="col-md-4">
+                                                                        <div class="col-md-4">
+
+                                                                        </div>
 
                                                                     </div>
-
-                                                                </div>
-                                                                <div class="row mt-4 mb-4">
-                                                                    <div class="offset-md-3 col-md-6">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary shadow shake"><i
-                                                                                class="lni lni-search-alt"></i>
-                                                                            Search</button>
+                                                                    <div class="row mt-4 mb-4">
+                                                                        <div class="offset-md-3 col-md-6">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary shadow shake"><i
+                                                                                    class="lni lni-search-alt"></i>
+                                                                                Search</button>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </form>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -519,9 +481,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
         <!-- BASIC SEARCH SECTION END -->
+
 
         <!-- DYNAMIC ADS SECTION START -->
         {{-- <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">

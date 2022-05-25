@@ -40,12 +40,12 @@ $image_src = $user_info->gender_id == 1 ? asset('assets/Website/male.png') : ass
                     Dashboard</a>
             </li>
 
-            {{-- <li>
+            <li>
                 <a class="{{ Request::is('*/user-Profile/' . auth()->user()->id) ? 'active' : '' }}"
                     href="{{ route('user.profile.show', auth()->user()->id) }}"><i class="lni lni-eye"></i>
                     View My
                     Profile</a>
-            </li> --}}
+            </li>
 
             <li>
                 <a class="{{ Request::is('*/user-Profile/' . auth()->user()->id . '/edit') ? 'active' : '' }}"
@@ -85,12 +85,12 @@ $image_src = $user_info->gender_id == 1 ? asset('assets/Website/male.png') : ass
                     My Gallery</a>
             </li>
 
-            <li>
+            {{-- <li>
                 <a class="{{ Request::is('*/package/*') ? 'active' : '' }}"
                     href="{{ route('user.packageinfo', auth()->user()->id) }}"><i class="lni lni-rupee"></i>
                     Package
                     Details</a>
-            </li>
+            </li> --}}
 
             <li>
                 <a class="{{ Request::is('*/userTransaction/*') ? 'active' : '' }}"

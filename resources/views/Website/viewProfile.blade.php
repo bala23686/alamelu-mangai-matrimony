@@ -182,7 +182,7 @@
                                                     <ul>
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                @if (Auth::user()->id != $userInfo->id)
+                                                                {{-- @if (Auth::user()->id != $userInfo->id)
                                                                     @if (empty($view_contact) || ($view_contact = null))
                                                                         <div x-data='userShortList'>
                                                                             <li class="p-2 d-flex">
@@ -219,8 +219,14 @@
                                                                             </li>
                                                                         </div>
                                                                     @endif
-                                                                @endif
+                                                                @endif --}}
 
+                                                                <li class="p-2">
+                                                                    <span class="text-primary">
+                                                                        Address :
+                                                                    </span>
+                                                                    {{ $userBasicInfo->user_address ?? '-' }}
+                                                                </li>
                                                                 <li class="p-2">
                                                                     <span class="text-primary">
                                                                         Height :

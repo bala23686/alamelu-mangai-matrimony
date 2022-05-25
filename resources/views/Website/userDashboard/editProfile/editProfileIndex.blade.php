@@ -1,5 +1,5 @@
 @extends('Website.layouts.default')
-{{-- <style>
+<style>
     .range-slider {
         width: 100%;
         margin: 0 auto;
@@ -91,7 +91,7 @@
         border-top-color: var(--primary-color);
     }
 
-</style> --}}
+</style>
 @php
 $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
 @endphp
@@ -689,7 +689,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4 col-12">
+                                                        {{-- <div class="col-lg-4 col-12">
                                                             <div class="form-group">
                                                                 <label>Annual Income<span
                                                                         class="text-danger">*</span></label>
@@ -705,8 +705,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        {{-- <div class="col-8 mt-6 mb-3">
+                                                        </div> --}}
+                                                        <div class="col-8 mt-6 mb-3">
                                                             <div class="form-group">
                                                                 <label>Annual Income<span
                                                                         class="text-danger">*</span></label>
@@ -717,7 +717,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                         value="50000">
                                                                 </div>
                                                             </div>
-                                                        </div> --}}
+                                                        </div>
 
 
                                                         <div class="col-12 mt-3 mb-3 ">
@@ -1097,6 +1097,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                 });
 
             });
+
             $("#updatenativeinfodetails").click(function() {
                 const inputs = [undefined];
                 let valid = false;
@@ -1300,6 +1301,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                 event.preventDefault();
             });
             // *********************************************
+
             // USER RELIGIOUS INFO UPDATE
             let religiousDetail = $("#ReligiousInfoForm").prop('elements');
 
@@ -1602,8 +1604,94 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
             //         $('#user_star').empty();
             //     }
             // });
+
+            // ================= SELECT SIBLINGS FEATURE SCRIPTS =================
+
+            $('#bro_div,#sis_div,#marr_bro_div,#marr_sis_div').hide();
+
+            let no_of_sibling;
+            $("#no_of_sibling").change(function() {
+
+                no_of_sibling = parseInt($("#no_of_sibling").val());
+
+                if (no_of_sibling >= 1) {
+                    $("#bro_div,#sis_div").show();
+
+                    $('#no_of_bro').html('<option value="0" selected hidden>No. Of Brothers</option>');
+                    for (let i = 0; i < no_of_sibling; i++) {
+                        $('#no_of_bro').append(`<option value="${i+1}"> ${i+1} Brothers </option>`);
+                    }
+
+                    $('#no_of_sis').html('<option value="0" selected hidden>No. Of Sisters</option>');
+                    for (let i = 0; i < no_of_sibling; i++) {
+                        $('#no_of_sis').append(`<option value="${i+1}">  ${i+1} Sisters</option>`);
+                    }
+
+                } else {
+                    $("#bro_div,#sis_div,#marr_bro_div,#marr_sis_div").hide();
+                }
+            });
+
+            $("#no_of_bro").change(function() {
+                let no_of_bro = parseInt($(this).val())
+                let bal_sis = no_of_sibling - no_of_bro;
+
+                if (bal_sis == 0) {
+                    $('#sis_div').hide();
+                } else {
+                    $('#sis_div').show();
+
+                    $('#no_of_sis').html('<option value="" selected hidden>No. Of Sisters</option>');
+                    for (let i = 0; i < bal_sis; i++) {
+                        $('#no_of_sis').append(`<option value="${i+1}">  ${i+1} Sisters</option>`);
+                    }
+                }
+
+                if (no_of_bro == 0) {
+                    $('#marr_bro_div').hide();
+
+                } else {
+                    $('#marr_bro_div').show();
+                    $('#married_bro').html('<option value="0" selected hidden>Married Brothers</option>');
+                    for (let i = 0; i < no_of_bro; i++) {
+                        $('#married_bro').append(
+                            `<option value="${i+1}">  ${i+1} Married Brothers</option>`);
+                    }
+
+                }
+            })
+
+            $("#no_of_sis").change(function() {
+
+                let no_of_sis = no_of_sibling - parseInt($(this).val());
+
+                let bal_bro = no_of_sibling - no_of_sis;
+
+                // if (bal_bro == 0) {
+                //     $('#bro_div').hide();
+                // } else {
+                //     $('#bro_div').show();
+                //     $('#no_of_bro').html('<option value="" selected hidden>No. Of Brothers</option>');
+                //     for (let i = 0; i < bal_bro; i++) {
+                //         $('#no_of_bro').append(`<option value="${i+1}">  ${i+1} Brothers</option>`);
+                //     }
+                // }
+
+                if (no_of_sis == 0) {
+                    $('#marr_sis_div').hide();
+
+                } else {
+                    $('#marr_sis_div').show();
+                    $('#married_sis').html('<option value="0" selected hidden>Married Sisters</option>');
+                    for (let i = 0; i < no_of_sis; i++) {
+                        $('#married_sis').append(
+                            `<option value="${i+1}">  ${i+1} Married Sisters</option>`);
+                    }
+                }
+            })
         });
-        //
+
+        // SALARY RANGE SLIDER
         const
             range = document.getElementById('range'),
             tooltip = document.getElementById('tooltip'),
@@ -1617,89 +1705,5 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
             };
         document.addEventListener("DOMContentLoaded", setValue);
         range.addEventListener('input', setValue);
-
-        // ================= SELECT SIBLINGS FEATURE SCRIPTS =================
-
-        $("#bro_div,#sis_div,#marr_bro_div,#marr_sis_div").hide();
-
-        let no_of_sibling;
-
-        $("#no_of_sibling").change(function() {
-            no_of_sibling = parseInt($("#no_of_sibling").val());
-
-            if (no_of_sibling >= 1) {
-                $("#bro_div,#sis_div").show();
-
-                $('#no_of_bro').html('<option value="0" selected hidden>No. Of Brothers</option>');
-                for (let i = 0; i < no_of_sibling; i++) {
-                    $('#no_of_bro').append(`<option value="${i+1}"> ${i+1} Brothers </option>`);
-                }
-
-                $('#no_of_sis').html('<option value="0" selected hidden>No. Of Sisters</option>');
-                for (let i = 0; i < no_of_sibling; i++) {
-                    $('#no_of_sis').append(`<option value="${i+1}">  ${i+1} Sisters</option>`);
-                }
-
-            } else {
-                $("#bro_div,#sis_div,#marr_bro_div,#marr_sis_div").hide();
-            }
-        });
-
-        $("#no_of_bro").change(function() {
-            let no_of_bro = parseInt($(this).val())
-            let bal_sis = no_of_sibling - no_of_bro;
-
-            if (bal_sis == 0) {
-                $('#sis_div').hide();
-            } else {
-                $('#sis_div').show();
-
-                $('#no_of_sis').html('<option value="" selected hidden>No. Of Sisters</option>');
-                for (let i = 0; i < bal_sis; i++) {
-                    $('#no_of_sis').append(`<option value="${i+1}">  ${i+1} Sisters</option>`);
-                }
-            }
-
-            if (no_of_bro == 0) {
-                $('#marr_bro_div').hide();
-
-            } else {
-                $('#marr_bro_div').show();
-                $('#married_bro').html('<option value="0" selected hidden>Married Brothers</option>');
-                for (let i = 0; i < no_of_bro; i++) {
-                    $('#married_bro').append(`<option value="${i+1}">  ${i+1} Married Brothers</option>`);
-                }
-
-            }
-        })
-
-        $("#no_of_sis").change(function() {
-
-            let no_of_sis = no_of_sibling - parseInt($(this).val());
-
-            let bal_bro = no_of_sibling - no_of_sis;
-
-            // if (bal_bro == 0) {
-            //     $('#bro_div').hide();
-            // } else {
-            //     $('#bro_div').show();
-            //     $('#no_of_bro').html('<option value="" selected hidden>No. Of Brothers</option>');
-            //     for (let i = 0; i < bal_bro; i++) {
-            //         $('#no_of_bro').append(`<option value="${i+1}">  ${i+1} Brothers</option>`);
-            //     }
-            // }
-
-            if (no_of_sis == 0) {
-                $('#marr_sis_div').hide();
-
-            } else {
-                $('#marr_sis_div').show();
-                $('#married_sis').html('<option value="0" selected hidden>Married Sisters</option>');
-                for (let i = 0; i < no_of_sis; i++) {
-                    $('#married_sis').append(`<option value="${i+1}">  ${i+1} Married Sisters</option>`);
-                }
-
-            }
-        })
     </script>
 @endsection

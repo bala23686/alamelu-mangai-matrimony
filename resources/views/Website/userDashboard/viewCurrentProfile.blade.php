@@ -1,4 +1,7 @@
 @extends('Website.Layouts.default')
+@php
+$image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
+@endphp
 <style>
     body {
         background: #EFCDA4;
@@ -96,14 +99,14 @@
                                                     <img class='rounded' id='profileImg'
                                                         @if ($userBasicInfo->image_with_path) src="{{ $userBasicInfo->image_with_path }}"
                                                                 @else
-                                                                    src="{{ asset('assets/Website/avatar.png') }}" @endif
+                                                                    src="{{ $image_src ?? '' }}" @endif
                                                         alt="Preview">
                                                 </div>
                                                 <div class="images">
                                                     <img class='rounded'
                                                         @if ($user_image_with_path) src="{{ $user_image_with_path }}"
                                                                 @else
-                                                                    src="{{ asset('assets/Website/avatar.png') }}" @endif
+                                                                    src="{{ $image_src ?? '' }}" @endif
                                                         alt="Preview">
 
                                                     @foreach ($user_photos as $photos)
@@ -135,9 +138,12 @@
                                                         <li class="location m-0"><i class="lni lni-envelope"></i>
                                                             {{ $userInfo->email }}
                                                         </li>
+
+                                                        <li class="location m-0"><i class="lni lni-map-marker"></i>
+                                                            {{ $$userBasicInfo->user_address ?? '-' }}
+                                                        </li>
                                                     </ul>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -150,9 +156,9 @@
                                             <h3 class="float-start">More Information</h3>
                                             <div class="float-end">
                                                 <div x-data='userShortList'>
-                                                    <button id='getPdf' class="btn btn-warning btn-sm" target="_blank"><i
-                                                            class="lni lni-download"></i>
-                                                        Download PDF</button>
+                                                    <a class="btn btn-warning btn-sm"
+                                                        href="{{ route('generate-pdf', AUTH()->user()->id) }}"
+                                                        target="_blank"><i class="lni lni-download"></i> Get PDF</a>
                                                 </div>
                                             </div>
 
@@ -180,23 +186,6 @@
                                                                                     </span>{{ $userInfo->userBasicInfos->user_mobile_no }}
                                                                                 </li>
                                                                             </div>
-
-                                                                            {{-- <div x-data='userShortList'>
-                                                                                <li class="p-2 d-flex">
-                                                                                    <span class="text-primary fw-bold">
-                                                                                        Mobile No :</span>
-                                                                                    <span x-text="viewMobNum"
-                                                                                        class="view-num-1">**********</span
-                                                                                        x-data="userShortList">
-                                                                                    <a x-on:click='viewNumber' href="javascript:void(0)"
-                                                                                        class="btn btn-success btn-sm">show</a>
-                                                                                </li>
-                                                                                <li class="p-2">
-                                                                                    <span class="text-primary fw-bold">
-                                                                                        Alt. Mobile No :
-                                                                                    </span><span x-text="viewAltNum">**********</span>
-                                                                                </li>
-                                                                            </div> --}}
 
                                                                             <li class="p-2">
                                                                                 <span class="text-primary fw-bold">

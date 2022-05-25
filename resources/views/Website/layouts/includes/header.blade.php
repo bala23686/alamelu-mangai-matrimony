@@ -23,25 +23,26 @@
                                     <a class="{{ Request::is('/') ? 'active' : '' }}" href="{{ route('Home') }}"
                                         aria-label="Toggle navigation">Home</a>
                                 </li>
-                                @if (Auth()->check() && Auth()->user()->is_admin != 1)
-                                <li class="nav-item">
-                                    <a class="{{ Request::is('/user/profiles') ? 'active' : '' }}" href="{{ route('profile') }}"
-                                        aria-label="Toggle navigation">Profiles</a>
-                                </li>
-                            @endif
+                                @if (Auth()->check() && Auth()->user()->is_admin != 1 && Auth()->user()->is_paid)
+                                    <li class="nav-item">
+                                        <a class="{{ Request::is('/user/profiles') ? 'active' : '' }}"
+                                            href="{{ route('profile') }}" aria-label="Toggle navigation">Profiles</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="{{ Request::is('search') ? 'active' : '' }}"
+                                            href="{{ route('Search') }}" aria-label="Toggle navigation">Search</a>
+                                    </li>
+                                @endif
 
                                 <li class="nav-item">
                                     <a class="{{ Request::is('about') ? 'active' : '' }}"
                                         href="{{ route('About') }}" aria-label="Toggle navigation">About</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="{{ Request::is('search') ? 'active' : '' }}"
-                                        href="{{ route('Search') }}" aria-label="Toggle navigation">Search</a>
-                                </li>
-                                <li class="nav-item">
+
+                                {{-- <li class="nav-item">
                                     <a class="{{ Request::is('packages') ? 'active' : '' }}"
                                         href="{{ route('Package') }}" aria-label="Toggle navigation">Packages</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a class="{{ Request::is('contact') ? 'active' : '' }}"
                                         href="{{ route('Contact') }}" aria-label="Toggle navigation">Contact Us</a>

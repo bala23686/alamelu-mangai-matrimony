@@ -33,13 +33,13 @@
                        <div class="single-footer f-link">
                            <h3>Quick Links</h3>
                            <ul>
-                               @if (Auth()->check() && Auth()->user()->is_admin != 1)
+                               @if (Auth()->check() && Auth()->user()->is_admin != 1 && Auth()->user()->is_paid)
                                    <li><a href="{{ route('user.dashboard') }}">My Profile</a></li>
+                                   <li><a href="{{ route('Search') }}">Search</a></li>
                                @endif
-                               <li><a href="about">About Us</a></li>
-                               <li><a href="about">Search</a></li>
-                               <li><a href="about">Contact us</a></li>
-                               <li><a href="about">Enquiry</a></li>
+                               <li><a href="{{ route('About') }}">About Us</a></li>
+                               <li><a href="{{ route('Contact') }}">Contact us</a></li>
+                               {{-- <li><a href="about">Enquiry</a></li> --}}
                            </ul>
                        </div>
                    </div>
@@ -48,16 +48,16 @@
                        <div class="single-footer f-contact">
                            <h3>Contact</h3>
                            <ul>
-                               <li class="mb-0">{{ $webInfo->company_address ?? '' }},
+                               <li class="mb-0"><i class="lni lni-map-marker"></i> {{ $webInfo->company_address ?? '' }},
                                </li>
                                <li class="mb-2">{{ $webInfo->company_city ?? '' }},
                                    {{ $webInfo->company_state ?? '' }},
                                    {{ $webInfo->company_country ?? '' }},
                                    {{ $webInfo->company_pincode ?? '' }}.</li>
                                <li class="mb-2">Tel: +91-{{ $webInfo->company_contact_number ?? '' }}.</li>
-                               <li>Mail: <a href="https://exciteon.com/" class="__cf_email__"
+                               {{-- <li>Mail: <a href="https://exciteon.com/" class="__cf_email__"
                                        data-cfemail="7d0e080d0d120f093d1e111c0e0e141a0f14190e531e1210">{{ $webInfo->company_email ?? '' }}</a>
-                               </li>
+                               </li> --}}
                            </ul>
                        </div>
                    </div>

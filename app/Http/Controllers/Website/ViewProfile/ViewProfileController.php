@@ -153,8 +153,6 @@ class ViewProfileController extends Controller
 
         $view_page_data['packageInfo'] = UserPackageInfoMaster::where('user_id', auth()->user()->id)->get();
 
-        // dd($view_page_data);
-
         return view('Website.viewProfile', $view_page_data);
     }
 

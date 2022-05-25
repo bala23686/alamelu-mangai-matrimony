@@ -30,8 +30,11 @@ class UserRegistrationService
     public function  HandleUserRegistration(Request $request)
     {
 
+        // ID GENERATE FOR MALE => RAMA & FEMALE => SITA
+        $prefix = ($request->gender == 1) ? 'RAMA' : 'SITA';
+
         $user = new User;
-        $user_profile_id = Helper::IDGenerator(new User, 'id', 6, 'TM');
+        $user_profile_id = Helper::IDGenerator(new User, 'id', 4, $prefix);
         $user->username = $request->username;
         $user->phonenumber = $request->phonenumber;
         $user->email = $request->email;
