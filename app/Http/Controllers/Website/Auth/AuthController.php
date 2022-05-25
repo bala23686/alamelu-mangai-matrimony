@@ -16,6 +16,10 @@ use App\Models\Master\UserPackageInfoMaster\UserPackageInfoMaster;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        //
+    }
 
     /**
      * Display a listing of the resource.
@@ -48,11 +52,11 @@ class AuthController extends Controller
         }
 
         $service = new  UserRegistrationService;
-        $service->HandleUserRegistration($request);
 
+        $service->HandleUserRegistration($request);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             toastr()->success('Account Created Successfully');
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.payments.payU', auth()->id());
         } else {
             toastr()->error('Something Went Wrong');
             return back();

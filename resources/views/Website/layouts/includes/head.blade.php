@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="{{ asset('web/css/tiny-slider.css') }}" />
     <link rel="stylesheet" href="{{ asset('web/css/glightbox.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('web/css/main.css') }}" />
-    <link rel="stylesheet" href="{{ asset('web/css/custom.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('web/css/custom.css') }}" /> --}}
 
     @toastr_css
     {{-- select2 --}}

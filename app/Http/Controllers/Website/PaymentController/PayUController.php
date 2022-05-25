@@ -24,12 +24,12 @@ class PayUController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id)
+    public function index()
     {
         $payment_infomation = PayUPaymentHelper::initialize();
 
-        $payment_infomation->toUser($id, $request->amount)
-            ->package($request->packageId)
+        $payment_infomation->toUser(auth()->id(), 1000)
+            ->package(1)
             ->sha512()
             ->get();
 

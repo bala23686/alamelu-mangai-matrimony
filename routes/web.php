@@ -64,7 +64,7 @@ Route::post('login', [AuthController::class, 'login'])->name('sign.in');
 Route::get('/logout', [AuthController::class, 'logout'])->name('user.logout');
 
 // AUTH ROUTES => USER DASHBOARD
-Route::group(['middleware' => 'is_member', 'prefix' => 'user-panel'], function () {
+Route::group(['middleware' => ['is_paid', 'is_member'], 'prefix' => 'user-panel'], function () {
 
 
     Route::get('user/profiles', [MemberController::class, 'index'])->name('profile');
@@ -205,5 +205,6 @@ Route::group(['prefix' => 'user', 'as' => 'user.payments.'], function () {
 
 /* ===================== END ROUTES FOR PAYMENT ========================== */
 
-
-
+Route::get('/loginPage', function () {
+    return view('Website.Auth.login');
+});

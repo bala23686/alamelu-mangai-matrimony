@@ -31,7 +31,7 @@ class ContentServiceProvider extends ServiceProvider
     {
         view()->share([
             'webInfo' => CompanySettingHelper::all(),
-            'themeInfo'=> ThemeSettingHelper::all()
+            'themeInfo' => ThemeSettingHelper::all()
         ]);
     }
 }
