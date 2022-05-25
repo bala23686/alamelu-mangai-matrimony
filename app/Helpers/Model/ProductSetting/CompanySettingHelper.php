@@ -13,8 +13,8 @@ class CompanySettingHelper
     use SettingHelperTrait;
 
 
-    public const LOGO_IMAGE_PATH='/logo/';
-    public const WATER_MARK_IMAGE_PATH='/watermark/';
+    public const LOGO_IMAGE_PATH = '/logo/';
+    public const WATER_MARK_IMAGE_PATH = '/watermark/';
 
     public $company_name;
     public $company_slogan;
@@ -57,42 +57,45 @@ class CompanySettingHelper
 
     public function __construct()
     {
-        $comapany_setting = Cache::rememberForever('companySetting', function () {
-            return  ProductSetting::whereBetween('id', [2, 17])->get();
-        });
 
-        $this->assignCompanyValues($comapany_setting);
+        if (env('APP_ENV') == 'local' || env('APP_ENV') == 'production') {
+            $comapany_setting = Cache::rememberForever('companySetting', function () {
+                return  ProductSetting::whereBetween('id', [2, 17])->get();
+            });
+
+            $this->assignCompanyValues($comapany_setting);
+        }
     }
 
 
     public static function loadLogo()
     {
 
-      $logo=Cache::rememberForever('companyLogo',function (){
-        return ProductSetting::where('setting_name','company_logo')->first()->value;
-      });
+        $logo = Cache::rememberForever('companyLogo', function () {
+            return ProductSetting::where('setting_name', 'company_logo')->first()->value;
+        });
 
-      return $logo;
+        return $logo;
     }
 
     public static function loadLogoFile()
     {
 
-      $logo=Cache::rememberForever('companyFile',function (){
-        return ProductSetting::where('setting_name','company_logo_image')->first()->value;
-      });
+        $logo = Cache::rememberForever('companyFile', function () {
+            return ProductSetting::where('setting_name', 'company_logo_image')->first()->value;
+        });
 
-      return $logo;
+        return $logo;
     }
 
     public static function loadWaterMark()
     {
 
-      $waterMark=Cache::rememberForever('companyWaterMark',function (){
-        return ProductSetting::where('setting_name','company_water_mark')->first()->value;
-      });
+        $waterMark = Cache::rememberForever('companyWaterMark', function () {
+            return ProductSetting::where('setting_name', 'company_water_mark')->first()->value;
+        });
 
-      return $waterMark;
+        return $waterMark;
     }
 
     private function assignCompanyValues($productSettingList)
@@ -137,13 +140,19 @@ class CompanySettingHelper
                 case 'company_fb_link':
                     $this->company_fb_link = $value->value;
                     break;
-                case 'company_youtube_link':$this->company_youtube_link = $value->value;break;
-                case 'company_logo':$this->company_logo = $value->value;break;
-                case 'company_water_mark':$this->company_water_mark = $value->value;break;
-                case 'company_logo_image':$this->company_logo_image = $value->value;break;
+                case 'company_youtube_link':
+                    $this->company_youtube_link = $value->value;
+                    break;
+                case 'company_logo':
+                    $this->company_logo = $value->value;
+                    break;
+                case 'company_water_mark':
+                    $this->company_water_mark = $value->value;
+                    break;
+                case 'company_logo_image':
+                    $this->company_logo_image = $value->value;
+                    break;
             }
         }
     }
-
-
 }

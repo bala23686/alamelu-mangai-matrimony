@@ -22,11 +22,17 @@ class PackageSettingHelper
 
     public function __construct()
     {
-        $productSettingList = ProductSetting::all();
+
+
+        if (env('APP_ENV') == 'local' || env('APP_ENV') == 'production')
+        {
+             $productSettingList = ProductSetting::all();
 
 
 
         $this->assignProductSettingValues($productSettingList);
+        }
+
 
     }
 

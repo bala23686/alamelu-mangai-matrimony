@@ -25,9 +25,16 @@ class PrivacySettingHelper
 
     public function __construct()
     {
-        $productSettingList = ProductSetting::whereBetween('id',[18,19])->get();
+
+        if (env('APP_ENV') == 'local' || env('APP_ENV') == 'production')
+        {
+
+            $productSettingList = ProductSetting::whereBetween('id',[18,19])->get();
 
         $this->assignProductSettingValues($productSettingList);
+
+        }
+
 
     }
 

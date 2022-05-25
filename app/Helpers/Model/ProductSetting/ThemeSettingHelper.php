@@ -21,7 +21,7 @@ class ThemeSettingHelper
     public $admin_nav_color;
 
 
-    protected $fillable=[
+    protected $fillable = [
         'primary_color',
         'primary_color_dark',
         'primary_color_light',
@@ -34,23 +34,24 @@ class ThemeSettingHelper
 
     public function __construct()
     {
-        $productSettingList = Cache::rememberForever('themeSettings',function()
-        {
-            return ProductSetting::whereBetween('id',[20,26])->get();
-        });
 
-        $this->assignProductSettingValues($productSettingList);
+        if (env('APP_ENV') == 'local' || env('APP_ENV') == 'production') {
+            $productSettingList = Cache::rememberForever('themeSettings', function () {
+                return ProductSetting::whereBetween('id', [20, 26])->get();
+            });
 
+            $this->assignProductSettingValues($productSettingList);
+        }
     }
 
     public static function getThemeColor()
     {
 
-      $themeColor=Cache::rememberForever('themeColor',function (){
-        return ProductSetting::where('setting_name','admin_nav_color')->first()->value;
-      });
+        $themeColor = Cache::rememberForever('themeColor', function () {
+            return ProductSetting::where('setting_name', 'admin_nav_color')->first()->value;
+        });
 
-      return $themeColor;
+        return $themeColor;
     }
 
     private  function assignProductSettingValues($productSettingList)
@@ -58,22 +59,29 @@ class ThemeSettingHelper
 
         foreach ($productSettingList as $value) {
 
-            switch($value->setting_name)
-            {
-                case 'primary_color': $this->primary_color=$value->value ; break ;
-                case 'primary_color_dark': $this->primary_color_dark=$value->value ; break ;
-                case 'primary_color_light': $this->primary_color_light=$value->value ; break ;
-                case 'secondary_color': $this->secondary_color=$value->value ; break ;
-                case 'secondary_color_dark': $this->secondary_color_dark=$value->value ; break ;
-                case 'secondary_color_light': $this->secondary_color_light=$value->value ; break ;
-                case 'admin_nav_color': $this->admin_nav_color=$value->value ; break ;
-
+            switch ($value->setting_name) {
+                case 'primary_color':
+                    $this->primary_color = $value->value;
+                    break;
+                case 'primary_color_dark':
+                    $this->primary_color_dark = $value->value;
+                    break;
+                case 'primary_color_light':
+                    $this->primary_color_light = $value->value;
+                    break;
+                case 'secondary_color':
+                    $this->secondary_color = $value->value;
+                    break;
+                case 'secondary_color_dark':
+                    $this->secondary_color_dark = $value->value;
+                    break;
+                case 'secondary_color_light':
+                    $this->secondary_color_light = $value->value;
+                    break;
+                case 'admin_nav_color':
+                    $this->admin_nav_color = $value->value;
+                    break;
             }
-
         }
-
     }
-
-
-
 }
