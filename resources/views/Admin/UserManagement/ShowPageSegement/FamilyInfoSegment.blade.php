@@ -11,7 +11,9 @@
     isLoadingFamilyStatus: true,
     isLoadingProcessing: true,
     isSiblingsReached: false,
-
+    errors:{
+        user_family_status:''
+    },
     SingleUserFamilyInfo: {
 
         user_father_name: '{{ $singleUserInfo->userBasicInfos->profile_fam_info_status == 1 ? $singleUserInfo->userFamilyInfos->user_father_name : 'Mr.' }}',
@@ -25,6 +27,7 @@
         no_of_brothers_married: {{ $singleUserInfo->userBasicInfos->profile_fam_info_status == 1 ? $singleUserInfo->userFamilyInfos->no_of_brothers_married : '0' }},
         no_of_sisters_married: {{ $singleUserInfo->userBasicInfos->profile_fam_info_status == 1 ? $singleUserInfo->userFamilyInfos->no_of_sisters_married : '0' }},
         user_sibling_details: '{{ $singleUserInfo->userBasicInfos->profile_fam_info_status == 1 ? $singleUserInfo->userFamilyInfos->user_sibling_details : 'Details About Siblings' }}',
+        paternal_uncle_address: '{{ $singleUserInfo->userBasicInfos->profile_fam_info_status == 1 ? $singleUserInfo->userFamilyInfos->paternal_uncle_address : 'Paternal Uncle Address' }}',
 
     },
     balanceSiblings:0,
@@ -62,6 +65,7 @@
             no_of_brothers_married: this.SingleUserFamilyInfo.no_of_brothers_married,
             no_of_sisters_married: this.SingleUserFamilyInfo.no_of_sisters_married,
             user_sibling_details: this.SingleUserFamilyInfo.user_sibling_details,
+            paternal_uncle_address: this.SingleUserFamilyInfo.paternal_uncle_address,
         }
 
         axios.put('{{ route('admin.profile.updateUserFamilyInformation', $singleUserInfo->id) }}', data)
@@ -69,6 +73,8 @@
 
                 if (e.status == 201) {
 
+                    this.errors.user_family_status=''
+                    console.log('from sucees then',e)
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -82,17 +88,19 @@
                     })
                 }
 
-            })
-            .catch((e)=>{
+            }).catch((e)=>{
+
 
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Checkout all Fields are Filled',
+                    title: `Checkout All The Fields`,
                     showConfirmButton: false,
                     toast: true,
                     timer: 1500
                 })
+
+                this.errors.user_family_status=e.errors.user_family_status[0]
 
             })
 
@@ -162,7 +170,7 @@
         <div class="row" x-show="!isLoadingFamilyStatus">
             <div class="col-md-5">
                 <div class="mb-3 px-1">
-                    <label class="form-label">Family Status</label>
+                    <label class="form-label">Family Status {{''}} <span x-text="errors.user_family_status"></span></label>
                     <div class="row g-2">
                         <div class="col-12" x-if="(!isLoadingFamilyStatus)">
                             <select class="form-select" x-model="SingleUserFamilyInfo.user_family_status"
@@ -296,6 +304,19 @@
                             .length > 100) ? ' is-invalid is-invalid-lite' : ''"
                         name="example-textarea-input" rows="3" placeholder="Content..">
 
+                        </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row" x-show="!isLoadingFamilyStatus">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Paternal Uncle Adress <span class="form-label-description"
+                            x-text="SingleUserFamilyInfo.paternal_uncle_address.length+'/100'"></span></label>
+                    <textarea class="form-control" x-model="SingleUserFamilyInfo.paternal_uncle_address"
+                        x-bind:class="(SingleUserFamilyInfo.paternal_uncle_address == '' || SingleUserFamilyInfo.paternal_uncle_address
+                            .length > 100) ? ' is-invalid is-invalid-lite' : ''"
+                        name="example-textarea-input" rows="3" placeholder="Content..">
                         </textarea>
                 </div>
             </div>

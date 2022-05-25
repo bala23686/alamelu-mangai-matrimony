@@ -25,6 +25,7 @@ class FamilyDetailsUpdateServices
             "no_of_brothers_married" => $request->no_of_brothers_married,
             "no_of_sisters_married" => $request->no_of_sisters_married,
             "user_sibling_details" => $request->user_sibling_details,
+            "paternal_uncle_address" => $request->paternal_uncle_address,
         ];
 
         $is_saved = User::find($id)

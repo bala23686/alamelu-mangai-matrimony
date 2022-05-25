@@ -28,13 +28,14 @@ class FamilyDetailsRequest extends FormRequest
             'user_father_job_details' => 'required',
             'user_mother_name' => 'required',
             'user_mother_job_details' => 'required',
-            'user_family_status' => 'required',
+            'user_family_status' => ['required','exists:family_status_sub_masters,id'],
             'no_of_sibling' => ['required', 'numeric'],
             'no_of_brothers' => ['required_if:no_of_sibling,gt:0', 'lte:no_of_sibling'],
             'no_of_sisters' => ['required_if:no_of_sibling,gt:0', 'lte:no_of_sibling'],
             'no_of_brothers_married' => ['required_if:no_of_sibling,gt:0', 'lte:no_of_brothers'],
             'no_of_sisters_married' => ['required_if:no_of_sibling,gt:0', 'lte:no_of_sisters'],
-            'user_sibling_details' => ''
+            'user_sibling_details' => '',
+            'paternal_uncle_address' => ''
         ];
     }
 }

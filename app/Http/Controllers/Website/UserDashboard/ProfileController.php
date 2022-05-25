@@ -118,49 +118,79 @@ class ProfileController extends Controller
             'userInfo' => User::with('userBasicInfos')->where('id', $id)->first(),
         ];
 
-        $userBasicInfo = UserBasicInfoMaster::with([
-            'Gender', 'MartialStatus', 'MotherTongue', 'Height', 'EatingHabit', 'Complex'
-        ])->where('user_id', $id)->first();
+        $userInfo =  User::find($id)->load('userBasicInfos');
 
-        $view_page_data['userBasicInfo'] = $userBasicInfo;
+        if ($userInfo->userBasicInfos->profile_basic_status == 1) {
+            $view_page_data['userBasicInfo'] = UserBasicInfoMaster::with([
+                'Gender',
+                'MartialStatus',
+                'MotherTongue',
+                'Height',
+                'EatingHabit',
+                'Complex'
+            ])
+                ->where('user_id', $id)
+                ->first();
 
-        $view_page_data['userPlaceInfo'] = UserNativeInfoMaster::with([
-            "userCountry",
-            "userState",
-            "userCity"
-        ])->where('user_id', $id)->first();
-
-        if ($userBasicInfo->profile_pro_info_status == 1) {
-            $view_page_data['UserProfessionInfo'] = UserProfessionalMaster::with([
-                "Education", "Job", "JobCountry", "JobState", "JobCity", "AnnualIncome",
-            ])->where('user_id', $id)->first();
+            $view_page_data['user_image_with_path'] =  UserBasicInfoMaster::where('user_id', $id)
+                ->first()
+                ->imageWithPath;
         }
 
-        if ($userBasicInfo->profile_religion_status == 1) {
+        if ($userInfo->userBasicInfos->profile_religion_status == 1) {
             $view_page_data['userReligiousInfo'] = UserReligiousInfoMaster::with([
-                "Religion", "Caste", "Star", "Rasi",
-            ])->where('user_id', $id)->first();
+                "Religion",
+                "Caste",
+                "Star",
+                "Rasi",
+            ])
+                ->where('user_id', $id)
+                ->first();
         }
 
-        if ($userBasicInfo->profile_fam_info_status == 1) {
-            $view_page_data['UserFamilyInfo'] = UserFamilyInfoMaster::with(['FamilyStatusSubMaster'])->where('user_id', $id)->first();
+        if ($userInfo->userBasicInfos->profile_pro_info_status == 1) {
+            $view_page_data['UserProfessionInfo'] = UserProfessionalMaster::find($id)->load(['Job', 'JobCountry', 'JobState', 'JobCity']);
         }
 
+        if ($userInfo->userBasicInfos->profile_location_status == 1) {
+            $view_page_data['userPlaceInfo'] = UserNativeInfoMaster::with([
+                "userCountry",
+                "userState",
+                "userCity"
+            ])
+                ->where('user_id', $id)
+                ->first();
+        }
 
-        if ($userBasicInfo->profile_pref_info_status  == 1) {
+        if ($userInfo->userBasicInfos->profile_fam_info_status == 1) {
+            $view_page_data['UserFamilyInfo'] = UserFamilyInfoMaster::with(['FamilyStatusSubMaster'])
+                ->where('user_id', $id)
+                ->first();
+        }
+
+        if ($userInfo->userBasicInfos->profile_jakt_info_status   == 1) {
+            $view_page_data['UserHoroscopeInfo'] = UserHoroscopeInfoMaster::where('user_id', $id)
+                ->first();
+        }
+
+        if ($userInfo->userBasicInfos->profile_pref_info_status  == 1) {
             $view_page_data['UserPreferenceInfo'] = UserPreferenceInfo::with([
-                "HeightTo", "HeightFrom", "MartialStatus",
-                "Religion", "Caste", "Star",
-            ])->where('user_id', $id)->first();
-        }
-
-        if ($userBasicInfo->profile_jakt_info_status   == 1) {
-            $view_page_data['UserHoroscopeInfo'] = UserHoroscopeInfoMaster::where('user_id', $id)->first();
+                "HeightTo",
+                "HeightFrom",
+                "MartialStatus",
+                "Salary",
+                "Religion",
+                "Caste",
+                "Star",
+            ])
+                ->where('user_id', $id)
+                ->first();
         }
 
         $view_page_data['shortList'] = UserShortListInfoMaster::where(['user_id' => $id, 'shortlisted_by' => auth()->user()->id])->first();
-        $view_page_data['user_image_with_path'] =  UserBasicInfoMaster::where('user_id', $id)->first()->imageWithPath;
+
         $view_page_data['user_photos'] = UserPhotoMaster::where('user_id', $id)->get();
+
         $view_page_data['packageInfo'] = UserPackageInfoMaster::where('user_id', auth()->user()->id)->get();
 
         // dd($view_page_data);
