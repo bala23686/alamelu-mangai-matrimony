@@ -1,0 +1,9 @@
+1) 10th,12th College TC upload
+2) Family Photo Upload
+3) Medical Certificate
+4)Family Details -> Siblings Name & Relation Details
+5)1000 / Registration - Without Limitation views
+6)Job Company Details with Address
+7)video profile(need to be discuss)
+8)Drinks Restricted
+9)Address Only Shown
