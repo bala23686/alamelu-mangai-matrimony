@@ -47,5 +47,6 @@ use Illuminate\Support\Facades\Route;
         Route::get('rasi-list',[SubMastersGetController::class,'getRasi']);
         Route::get('star/star-by-rasi/{id}',[NakshathiraMasterController::class,'nakshathiraByRasi']);
         Route::get('age-list',[SubMastersGetController::class,'getAge']);
+        Route::get('blood-list',[SubMastersGetController::class,'getBlood']);
 
   });

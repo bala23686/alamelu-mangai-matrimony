@@ -23,6 +23,10 @@ class UserBasicInfoMaster extends Model
     use HasFactory;
 
     const USER_PROFILE_IMAGE_PATH = "Users/ProfileImage/";
+    const USER_MEDICAL_CERIFICATE_IMAGE_PATH = "Users/MedicalCertificate/";
+    const USER_TENTH_CERIFICATE_IMAGE_PATH = "Users/TenthCertificate/";
+    const USER_TWELTH_CERIFICATE_IMAGE_PATH = "Users/TwelthCertificate/";
+    const USER_CLG_TC_IMAGE_PATH = "Users/ClgTc/";
 
     protected $table = "user_basic_info_masters";
 
@@ -45,7 +49,14 @@ class UserBasicInfoMaster extends Model
         'age',
         'medical_certificate',
         'medical_certificate_uploaded_on',
+        'tenth_marksheet',
+        'tenth_mark_sheet_uploaded',
+        'twelth_marksheet',
+        'twelth_mark_sheet_uploaded',
+        'clg_tc',
+        'clg_tc_is_uploaded',
         'about',
+        'user_address',
         'gender_id',
         'user_height_id',
         'user_mother_tongue',
@@ -67,6 +78,26 @@ class UserBasicInfoMaster extends Model
     public function getImageWithPathAttribute()
     {
         return ($this->user_profile_image) ? Url('/') . "/" . self::USER_PROFILE_IMAGE_PATH . "{$this->user_profile_image}" : null;
+    }
+
+    public function getMedicalCertificateWithPathAttribute()
+    {
+        return ($this->medical_certificate_uploaded_on) ? Url('/') . "/" . self::USER_MEDICAL_CERIFICATE_IMAGE_PATH . "{$this->medical_certificate}" : null;
+    }
+
+    public function getTenthCertificateWithPathAttribute()
+    {
+        return ($this->tenth_mark_sheet_uploaded) ? Url('/') . "/" . self::USER_TENTH_CERIFICATE_IMAGE_PATH . "{$this->tenth_marksheet}" : null;
+    }
+
+    public function getTwelthCertificateWithPathAttribute()
+    {
+        return ($this->twelth_mark_sheet_uploaded) ? Url('/') . "/" . self::USER_TENTH_CERIFICATE_IMAGE_PATH . "{$this->twelth_marksheet}" : null;
+    }
+
+    public function getCollegeTcWithPathAttribute()
+    {
+        return ($this->clg_tc_is_uploaded) ? Url('/') . "/" . self::USER_CLG_TC_IMAGE_PATH . "{$this->clg_tc}" : null;
     }
     /**
      * Get the user associated with the UserBasicInfoMaster
