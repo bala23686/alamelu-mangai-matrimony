@@ -32,7 +32,6 @@
         .pl-cust-6 {
             padding-left: 6rem;
         }
-
     </style>
 
     <div class="breadcrumbs">
@@ -158,8 +157,8 @@
                                     {{-- // --}}
                                     {{-- @if (empty($view_contact) || ($view_contact = null))
                                     @else --}}
-                                    <a class="btn btn-warning btn-sm" href="{{ route('generate-pdf', $userInfo->id) }}"
-                                        target="_blank"><i class="lni lni-download"></i> Get PDF</a>
+                                    {{-- <a class="btn btn-warning btn-sm" href="{{ route('generate-pdf', $userInfo->id) }}"
+                                        target="_blank"><i class="lni lni-download"></i> Get PDF</a> --}}
                                     {{-- @endif --}}
                                 </div>
                             </div>
@@ -247,12 +246,12 @@
                                                                     </span>
                                                                     {{ $userBasicInfo->MotherTongue->language_name }}
                                                                 </li>
-                                                                <li class="p-2">
+                                                                {{-- <li class="p-2">
                                                                     <span class="text-primary">
                                                                         Marital Status :
                                                                     </span>
                                                                     {{ $userBasicInfo->MartialStatus->martial_status_name }}
-                                                                </li>
+                                                                </li> --}}
                                                                 <li class="p-2">
                                                                     <span class="text-primary">
                                                                         Eating Habit :
@@ -384,7 +383,7 @@
                                                             <div class="col-md-6">
                                                                 <li class="p-2"><span
                                                                         class="text-primary">Annual Income :</span>
-                                                                    {{ $UserProfessionInfo->user_annual_income }}
+                                                                        ₹ {{ $UserProfessionInfo->user_annual_income }}
                                                                 </li>
                                                                 <li class="p-2"><span
                                                                         class="text-primary">Job
@@ -435,8 +434,6 @@
                                                                     :</span>
                                                                 {{ $UserFamilyInfo->user_father_job_details }}
                                                             </li>
-                                                        </div>
-                                                        <div class="col-md-4">
                                                             <li class="p-2"><span class="text-primary">Mother
                                                                     Name :</span>
                                                                 {{ $UserFamilyInfo->user_mother_name }}
@@ -448,17 +445,44 @@
                                                                 {{ $UserFamilyInfo->user_mother_job_details }}
                                                             </li>
                                                         </div>
-
                                                         <div class="col-md-4">
                                                             <li class="p-2"><span class="text-primary">Family
                                                                     Status :</span>
                                                                 {{ $UserFamilyInfo->FamilyStatusSubMaster->family_type_name }}
                                                             </li>
+                                                            <li class="p-2"><span class="text-primary">No. Of
+                                                                    Siblings
+                                                                    :</span>
+                                                                {{ $UserFamilyInfo->no_of_sibling ?? '-' }}
+                                                            </li>
+                                                            <li class="p-2"><span class="text-primary">No. Of
+                                                                    Brothers
+                                                                    :</span>
+                                                                {{ $UserFamilyInfo->no_of_brothers ?? '-' }}
+                                                            </li>
+                                                            <li class="p-2"><span class="text-primary">No. Of
+                                                                    Sisters
+                                                                    :</span>
+                                                                {{ $UserFamilyInfo->no_of_sisters ?? '-' }}
+                                                            </li>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <li class="p-2"><span class="text-primary">No. Of
+                                                                    Brothers Married
+                                                                    :</span>
+                                                                {{ $UserFamilyInfo->no_of_brothers_married ?? '-' }}
+                                                            </li>
+                                                            <li class="p-2"><span class="text-primary">No. Of
+                                                                    Sisters Married
+                                                                    :</span>
+                                                                {{ $UserFamilyInfo->no_of_sisters_married ?? '-' }}
+                                                            </li>
                                                             <li class="p-2"><span
                                                                     class="text-primary">Siblings
                                                                     Details
                                                                     :</span>
-                                                                {{ $UserFamilyInfo->user_sibling_details }}
+                                                                {{ $UserFamilyInfo->user_sibling_details ?? '-' }}
                                                             </li>
                                                         </div>
                                                     </div>
@@ -758,12 +782,6 @@
         </div>
     </section>
 
-    {{-- ============================================================================= --}}
-    {{-- PDF SECTION START --}}
-
-    {{-- PDF SECTION END --}}
-
-
     <script>
         document.addEventListener('alpine:init', () => {
             let isShortListed = '{{ !empty($shortList) }}' ? true : false;
@@ -846,29 +864,6 @@
         });
         // SWAP IMAGES
 
-        $("#getPdf").click(function() {
-            const doc = document.getElementById('pdf-content');
-            console.log(doc);
-            console.log(window);
-            var opt = {
-                margin: 0.3,
-                filename: 'myfile.pdf',
-                image: {
-                    type: 'jpeg',
-                    quality: 1
-                },
-                html2canvas: {
-                    scale: 5
-                },
-                jsPDF: {
-                    unit: 'in',
-                    format: 'letter',
-                    orientation: 'portrait'
-                }
-            };
-            html2pdf().from(doc).set(opt).save(
-                "{{ $userBasicInfo->user_full_name . '-' . $userInfo->user_profile_id }}.pdf");
-        })
     </script>
 
 @stop

@@ -62,9 +62,6 @@ class ViewProfileController extends Controller
      */
     public function show($id)
     {
-
-
-
         $view_page_data = [
             'userInfo' => User::with('userBasicInfos')->where('id', $id)->first(),
         ];
@@ -130,18 +127,10 @@ class ViewProfileController extends Controller
                 "HeightTo",
                 "HeightFrom",
                 "MartialStatus",
-                // "Complexion",
-                // "Language",
-                // "Job",
-                // "Education",
                 "Salary",
                 "Religion",
                 "Caste",
                 "Star",
-                // "Rasi",
-                // "Country",
-                // "State",
-                // "City"
             ])
                 ->where('user_id', $id)
                 ->first();
