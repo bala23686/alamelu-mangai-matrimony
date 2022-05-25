@@ -182,7 +182,7 @@
                                             </label>
                                         </div>
                                         <div class="col-3 text-enter" style="text-align:right">
-                                            <input class="" type="checkbox"  id="veg" >
+                                            <input class="" type="checkbox" value="checked" id="veg" >
                                         </div>
                                     </div>
                                     <div class="col-12 row">
@@ -193,7 +193,7 @@
                                             </label>
                                         </div>
                                         <div class="col-3 text-enter" style="text-align:right">
-                                            <input class="" type="checkbox"  id="teetotaler" >
+                                            <input class="" type="checkbox" value="checked" id="teetotaler" >
                                         </div>
                                     </div>
                                     <br>
