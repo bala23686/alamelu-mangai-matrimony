@@ -1,97 +1,5 @@
 @extends('Website.layouts.default')
-<style>
-    .range-slider {
-        width: 100%;
-        margin: 0 auto;
-        position: relative;
-        margin-top: 2.5rem;
-        margin-bottom: 2rem;
-    }
 
-    #range {
-        -webkit-appearance: none;
-        width: 100%;
-    }
-
-    #range:focus {
-        outline: none;
-    }
-
-    #range::before,
-    #range::after {
-        position: absolute;
-        top: 2rem;
-        color: #333;
-        font-size: 14px;
-        line-height: 1;
-        padding: 3px 5px;
-        background-color: rgba(0, 0, 0, .1);
-        border-radius: 4px;
-    }
-
-    #range::before {
-        left: 0;
-        content: attr(data-min);
-    }
-
-    #range::after {
-        right: 0;
-        content: attr(data-max);
-    }
-
-    #range::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 1rem;
-        cursor: pointer;
-        animate: 0.2s;
-        background: linear-gradient(90deg, var(--primary-color) var(--range-progress), #dee4ec var(--range-progress));
-        border-radius: 1rem;
-    }
-
-    #range::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        border: 0.25rem solid var(--primary-color);
-        box-shadow: 0 1px 3px rgba(0, 0, 255, .3);
-        border-radius: 50%;
-        background: #fff;
-        cursor: pointer;
-        height: 32px;
-        width: 32px;
-        transform: translateY(calc(-50% + 8px));
-    }
-
-    #tooltip {
-        position: absolute;
-        top: -2.25rem;
-    }
-
-    #tooltip span {
-        position: absolute;
-        text-align: center;
-        display: block;
-        line-height: 1;
-        padding: 0.125rem 0.25rem;
-        color: #fff;
-        border-radius: 2rem;
-        background: var(--primary-color);
-        font-size: 1.2rem;
-        left: 50%;
-        transform: translate(-50%, 0);
-    }
-
-    #tooltip span:before {
-        position: absolute;
-        content: "";
-        left: 50%;
-        bottom: -8px;
-        transform: translateX(-50%);
-        width: 0;
-        height: 0;
-        border: 4px solid transparent;
-        border-top-color: var(--primary-color);
-    }
-
-</style>
 @php
 $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
 @endphp
@@ -567,7 +475,6 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                     </div>
                                 </div>
 
-
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingThree">
                                         <button class="accordion-button collapsed fw-normal" type="button"
@@ -689,6 +596,23 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                 </select>
                                                             </div>
                                                         </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <div class="d-flex">
+                                                                    <label>Annual Income<span
+                                                                            class="text-danger">*</span></label>&nbsp;&nbsp;&nbsp;<span
+                                                                        class="text-primary fw-bold" id='salaryText'>₹
+                                                                        {{ $user_data['user_prof_info']->user_annual_income ?? '50000' }}</span>
+                                                                </div>
+
+                                                                <input name="user_annual_income" type="range"
+                                                                    class="form-range position-relative" id="customRange1"
+                                                                    value="{{ $user_data['user_prof_info']->user_annual_income ?? '50000' }}"
+                                                                    min="50000" max="10000000" step="25000"
+                                                                    oninput="salaryText.innerText = this.value">
+                                                            </div>
+                                                        </div>
                                                         {{-- <div class="col-lg-4 col-12">
                                                             <div class="form-group">
                                                                 <label>Annual Income<span
@@ -706,20 +630,6 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                 </select>
                                                             </div>
                                                         </div> --}}
-                                                        <div class="col-8 mt-6 mb-3">
-                                                            <div class="form-group">
-                                                                <label>Annual Income<span
-                                                                        class="text-danger">*</span></label>
-                                                                <div class="range-slider">
-                                                                    <div id="tooltip"></div>
-                                                                    <input name="user_annual_income" id="range" type="range"
-                                                                        min="50000" max="10000000" step="25000"
-                                                                        value="50000">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
                                                         <div class="col-12 mt-3 mb-3 ">
                                                             <button id="updateprofdetails" type="button"
                                                                 class="btn btn-primary btn-sm float-end">Update
@@ -1657,13 +1567,12 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                         $('#married_bro').append(
                             `<option value="${i+1}">  ${i+1} Married Brothers</option>`);
                     }
-
                 }
             })
 
             $("#no_of_sis").change(function() {
 
-                let no_of_sis = no_of_sibling - parseInt($(this).val());
+                let no_of_sis = parseInt($(this).val());
 
                 let bal_bro = no_of_sibling - no_of_sis;
 
@@ -1676,6 +1585,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                 //         $('#no_of_bro').append(`<option value="${i+1}">  ${i+1} Brothers</option>`);
                 //     }
                 // }
+
+                console.log(no_of_sis);
 
                 if (no_of_sis == 0) {
                     $('#marr_sis_div').hide();
@@ -1690,20 +1601,5 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                 }
             })
         });
-
-        // SALARY RANGE SLIDER
-        const
-            range = document.getElementById('range'),
-            tooltip = document.getElementById('tooltip'),
-            setValue = () => {
-                const
-                    newValue = Number((range.value - range.min) * 100 / (range.max - range.min)),
-                    newPosition = 16 - (newValue * 0.32);
-                tooltip.innerHTML = `<span>${range.value}</span>`;
-                tooltip.style.left = `calc(${newValue}% + (${newPosition}px))`;
-                document.documentElement.style.setProperty("--range-progress", `calc(${newValue}% + (${newPosition}px))`);
-            };
-        document.addEventListener("DOMContentLoaded", setValue);
-        range.addEventListener('input', setValue);
     </script>
 @endsection
