@@ -34,7 +34,7 @@ class PayUPaymentHelper
         $this->checkoutUrl = $gateWay_info->checkout_url;
         $this->salt = $gateWay_info->salt;
 
-        if (Auth::user()->is_admin == 1) {
+        if (Auth::user() && Auth::user()->is_admin == 1) {
             $this->surl = route('admin.payments.payu.success');
             $this->furl = route('admin.payments.payu.failure');
         } else {
@@ -77,9 +77,9 @@ class PayUPaymentHelper
 
     public function sha512(): self
     {
-        $this->transactionId = InvoiceNumberHelper::GenerateInvoiceNumber();
+        // $this->transactionId = InvoiceNumberHelper::GenerateInvoiceNumber();
         //testing
-        // $this->transactionId = 'TRID76556';
+        $this->transactionId = 'TRID36556';
 
         $data = $this->key .
             "|" . $this->transactionId .
