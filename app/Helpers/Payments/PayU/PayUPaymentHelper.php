@@ -79,7 +79,7 @@ class PayUPaymentHelper
     {
         // $this->transactionId = InvoiceNumberHelper::GenerateInvoiceNumber();
         //testing
-        $this->transactionId = 'TRID36556';
+        $this->transactionId = 'TRID76556';
 
         $data = $this->key .
             "|" . $this->transactionId .
