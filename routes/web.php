@@ -189,16 +189,16 @@ Route::get('get-cities', [CountryStateCityController::class, 'getCities'])->name
 Route::group(['prefix' => 'user', 'as' => 'user.payments.'], function () {
 
     //routes section of pay-u money
-    Route::get('pay-u-money/{id}/checkout', [PayUController::class, 'index'])->name('payU');
+    Route::get('payU-money/{id}/checkout', [PayUController::class, 'index'])->name('payU');
 
-    Route::get('pay-u-money/paid-success', [PayUPaymentController::class, 'payusuccess'])->name('payU.payusuccess');
+    Route::get('payU-money/paid-success', [PayUController::class, 'payusuccess'])->name('payU.paymentDone');
     //url for success response
-    Route::post('pay-u-money/success', [PayUPaymentController::class, 'success'])
-        ->name('payu.success')
+    Route::post('payU-money/success', [PayUController::class, 'success'])
+        ->name('payU.paymentSuccess')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
     //url for success failed response
-    Route::post('pay-u-money/failed', [PayUPaymentController::class, 'failed'])
-        ->name('payu.failure')
+    Route::post('payU-money/failed', [PayUController::class, 'failed'])
+        ->name('payU.paymentFailure')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
     //routes end section of pay-u money
 });

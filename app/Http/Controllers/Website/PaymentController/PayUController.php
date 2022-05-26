@@ -83,7 +83,6 @@ class PayUController extends Controller
                 : false;
 
 
-            //update payment status
             $updateStatus = User::where('id', $user->id)->update(["is_paid" => 1]);
             $updateStatus ? true : false;
 
@@ -92,7 +91,7 @@ class PayUController extends Controller
                 ->orderBy('tr_id', 'DESC')->first();
 
             //section to generating invoice & mailing to party
-            $invioce = (new InvoiceAction($transaction_info->tr_id))
+            $invoice = (new InvoiceAction($transaction_info->tr_id))
                 ->generateInvoice();
 
 
@@ -100,16 +99,17 @@ class PayUController extends Controller
 
 
             //section to send a mail to user if the they have a mail id
-            $invioce != null ?
+            // $invoice != null ?
 
-                (new InvocieMailAction($userInfo, (string)$invioce))
-                ->mailInvoice()
-                : 0;
+            //     (new InvocieMailAction($userInfo, (string)$invoice))
+            //     ->mailInvoice()
+            //     : 0;
+            //update payment status
 
 
             return redirect()
-                ->route('user.payments.payu.payusuccess', $user->id)
-                ->with('pay-u-payment-success', $invioce);
+                ->route('user.payments.payU.paymentDone', $user->id)
+                ->with('pay-u-payment-success', $invoice);
         }
     }
     public function payusuccess()
