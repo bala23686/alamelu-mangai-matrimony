@@ -8,6 +8,7 @@ use App\Models\Payment\PaymentGateWay;
 use App\Models\User;
 use Dotenv\Util\Str;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
 class PayUPaymentHelper
 {
@@ -32,12 +33,16 @@ class PayUPaymentHelper
         $this->key = $gateWay_info->key;
         $this->checkoutUrl = $gateWay_info->checkout_url;
         $this->salt = $gateWay_info->salt;
-        // $this->surl = route('admin.payments.payu.success');
-        // $this->furl = route('admin.payments.payu.failure');
 
-        //for website
-        $this->surl = route('user.payments.payU.paymentSuccess');
-        $this->furl = route('user.payments.payU.paymentFailure');
+        if (Auth::user()->is_admin == 1) {
+            $this->surl = route('admin.payments.payu.success');
+            $this->furl = route('admin.payments.payu.failure');
+        } else {
+
+            //for website
+            $this->surl = route('user.payments.payU.paymentSuccess');
+            $this->furl = route('user.payments.payU.paymentFailure');
+        }
     }
 
     public static function initialize(): self

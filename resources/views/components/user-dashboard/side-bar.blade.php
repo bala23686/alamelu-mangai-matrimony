@@ -61,6 +61,11 @@ $image_src = $user_info->gender_id == 1 ? asset('assets/Website/male.png') : ass
                     Preferences</a>
             </li>
             <li>
+                <a class="{{ Request::is('*/document-Upload/*') ? 'active' : '' }}"
+                    href="{{ route('document.upload.show', auth()->user()->id) }}"><i class="lni lni-add-files"></i>
+                    Upload Documents</a>
+            </li>
+            <li>
                 <a class="{{ Request::is('*/match') ? 'active' : '' }}" href="{{ route('user.matches') }}"><i
                         class="lni lni-magnet"></i>Matches <sup class="text-danger h6"></sup> </a>
             </li>
