@@ -84,10 +84,10 @@
                        <div class="col-12">
                            <div class="content">
                                <ul class="footer-bottom-links">
-                                   <li><a href="javascript:void(0)">Terms of use</a></li>
-                                   <li><a href="javascript:void(0)">Privacy Policy</a></li>
-                                   <li><a href="javascript:void(0)">Refund & Cancellation Policy</a></li>
-                                   <li><a href="javascript:void(0)">More Information</a></li>
+                                   <li><a href="{{route('Privacy.Policy')}}">Privacy Policy</a></li>
+                                   <li><a href="{{route('Terms.Condition')}}">Terms of use</a></li>
+                                   <li><a href="{{route('Refund.Policy')}}">Refund & Cancellation Policy</a></li>
+                                   {{-- <li><a href="javascript:void(0)">More Information</a></li> --}}
                                </ul>
                                <p class="copyright-text mb-3">Designed and Developed by <a href="https://exciteon.com/"
                                        rel="nofollow" target="_blank">Exciteon</a>

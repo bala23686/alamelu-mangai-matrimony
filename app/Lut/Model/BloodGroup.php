@@ -4,13 +4,7 @@ namespace App\Lut\Model;
 
 class BloodGroup
 {
-
-
-
-
-
     const bloodGroupList =[
-
         ['id'=>'A+','blood'=>'A+'],
         ['id'=>'A-','blood'=>'A-'],
         ['id'=>'B+','blood'=>'B+'],
@@ -19,8 +13,6 @@ class BloodGroup
         ['id'=>'AB-','blood'=>'AB-'],
         ['id'=>'O+','blood'=>'O+'],
         ['id'=>'O-','blood'=>'O-'],
-
-
     ];
 
 

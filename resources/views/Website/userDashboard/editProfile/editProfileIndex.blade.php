@@ -80,19 +80,10 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                         placeholder="Enter Your Last Name">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4">
-                                                                <div class="form-group">
-                                                                    <label>Mobile<span class="small text-secondary">
-                                                                            &nbsp;(Alternative)</span></label>
-                                                                    <input type="tel" id="phone" maxlength="10"
-                                                                        name="mobile" placeholder="+91"
-                                                                        value="{{ $user_data['user_info']->user_mobile_no }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4">
+                                                            <div class="col-lg-4 ">
                                                                 <div class="form-group">
                                                                     <label>Date of Birth<span
-                                                                            class="text-danger">*</span></label>
+                                                                            class="text-danger">*</label>
                                                                     <input name="dob" type="date" class="bg-muted"
                                                                         onclick="this.max=`${(new Date().getFullYear()) - 18}-12-31`"
                                                                         value="{{ $user_data['user_info']->dob }}">
@@ -101,10 +92,11 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label>Age<span class="text-danger">*</span></label>
-                                                                    <input name="age" id='age' type="text"
+                                                                    <input name="age" id='userAge' type="text"
                                                                         class="form-input bg-muted" readonly>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-4">
                                                                 <div class="">
                                                                     <label>Gender<span
@@ -121,6 +113,18 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     </select>
                                                                 </div>
                                                             </div>
+
+                                                            <div class="col-lg-4">
+                                                                <div class="form-group">
+                                                                    <label>Mobile<span class="small text-secondary">
+                                                                            &nbsp;(Alternative)</span></label>
+                                                                    <input type="tel" id="phone" maxlength="10"
+                                                                        name="mobile" placeholder="+91"
+                                                                        value="{{ $user_data['user_info']->user_mobile_no }}">
+                                                                </div>
+                                                            </div>
+
+
                                                             <div class="col-lg-4 col-12">
                                                                 <div class="form-group">
                                                                     <label>Height<span
@@ -137,6 +141,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     </select>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-lg-4">
                                                                 <div class="form-group">
                                                                     <label>Martial Status<span
@@ -206,6 +211,27 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="col-lg-4 col-12">
+                                                                <div class="form-group">
+                                                                    <label>Blood Group<span
+                                                                            class="text-danger">*</span></label>
+                                                                    <select class="form-control form-select"
+                                                                        name="blood_group" id="bloodGroup">
+                                                                        <option hidden selected
+                                                                            value="{{ $user_data['user_info']->blood_group ?? '' }}">
+                                                                            {{ $user_data['user_info']->blood_group ?? 'Select' }}
+                                                                        </option>
+                                                                        <option value="A+">A+</option>
+                                                                        <option value="B+">B+</option>
+                                                                        <option value="AB+">AB+</option>
+                                                                        <option value="O+">O+</option>
+                                                                        <option value="A-">A-</option>
+                                                                        <option value="B-">B-</option>
+                                                                        <option value="AB-">AB-</option>
+                                                                        <option value="O-">O-</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
 
                                                             <div class="col-lg-4 col-12">
                                                                 <div class="form-group">
@@ -225,16 +251,26 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12">
+                                                            <div class="col-6">
+                                                                <div class="">
+                                                                    <label for="user_address" class="text-dark">Address
+                                                                        <span class="small text-danger">*
+                                                                        </span></label>
+                                                                    <textarea style="text-align: left" class="form-control text-justify" name='user_address' id="userAddress" rows="1"
+                                                                        value="{{ $user_data['user_info']->user_address }}">{{ $user_data['user_info']->user_address }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
                                                                 <div class="">
                                                                     <label for="exampleFormControlTextarea1"
                                                                         class="text-dark">About
                                                                         You<span class="small text-secondary">
                                                                             &nbsp;(Optional)</span></label>
-                                                                    <textarea class="form-control" name="about" id="about" rows="2"
+                                                                    <textarea style="text-align: left" class="form-control text-left" name="about" id="about" rows="1"
                                                                         value="{{ $user_data['user_info']->about }}"></textarea>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-12 mt-3 mb-3">
                                                                 <button id="updateBasicDetails" type="button"
                                                                     class="btn btn-primary btn-sm float-end">Update
@@ -790,8 +826,6 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                     </div>
                                 </div>
 
-
-
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFour">
                                         <button class="accordion-button collapsed fw-normal" type="button"
@@ -916,7 +950,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
             if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
                 age--;
             }
-            $('#age').val(age);
+            $('#userAge').val(age);
 
             // *********************************************
             // UPDATE BASIC USER DETAILS

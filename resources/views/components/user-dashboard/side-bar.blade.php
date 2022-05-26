@@ -40,12 +40,14 @@ $image_src = $user_info->gender_id == 1 ? asset('assets/Website/male.png') : ass
                     Dashboard</a>
             </li>
 
-            <li>
-                <a class="{{ Request::is('*/user-Profile/' . auth()->user()->id) ? 'active' : '' }}"
-                    href="{{ route('user.profile.show', auth()->user()->id) }}"><i class="lni lni-eye"></i>
-                    View My
-                    Profile</a>
-            </li>
+            @if ($user_info->profile_basic_status == 1)
+                <li>
+                    <a class="{{ Request::is('*/user-Profile/' . auth()->user()->id) ? 'active' : '' }}"
+                        href="{{ route('user.profile.show', auth()->user()->id) }}"><i class="lni lni-eye"></i>
+                        View My
+                        Profile</a>
+                </li>
+            @endif
 
             <li>
                 <a class="{{ Request::is('*/user-Profile/' . auth()->user()->id . '/edit') ? 'active' : '' }}"
