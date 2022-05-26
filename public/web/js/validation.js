@@ -195,23 +195,20 @@ const checkCaste = () => {
 };
 const checkVeg = () => {
     let valid = false;
-    const veg = vegEl.value;
-    if (!isRequired(veg == "checked")) {
-        showError(vegEl, "Required");
-    } else {
-        // showSuccess(vegEl);
+    if (vegEl.checked) {
         valid = true;
+    } else {
+        valid = false;
     }
     return valid;
 };
 const checkTeetotaler = () => {
     let valid = false;
-    const teetotaler = teetotalerEl.value;
-    if (!isRequired(teetotaler)) {
-        showError(teetotalerEl, "Required");
-    } else {
-        // showSuccess(teetotalerEl);
+
+    if (teetotalerEl.checked) {
         valid = true;
+    } else {
+        valid = false;
     }
     return valid;
 };
@@ -245,6 +242,12 @@ const checkTouched = (event) => {
             break;
         case "caste":
             checkCaste();
+            break;
+        case "veg":
+            checkVeg();
+            break;
+        case "teetotaler":
+            checkTeetotaler();
             break;
         default:
     }
@@ -326,6 +329,12 @@ registerFormEl &&
                 case "caste":
                     checkCaste();
                     break;
+                case "veg":
+                    checkVeg();
+                    break;
+                case "teetotaler":
+                    checkTeetotaler();
+                    break;
                 default:
             }
         })
@@ -349,6 +358,8 @@ const validate = () => {
         isVegetarian = checkVeg(),
         isTeetotaler = checkTeetotaler();
     // isTouched = checkTouched();
+    console.log(isVegetarian);
+    console.log(isTeetotaler);
 
     let isFormValid =
         isUsernameValid &&
@@ -379,6 +390,16 @@ termsEl &&
                 : userRegisterEl.setAttribute("disabled", true);
         }
     });
+
+document.addEventListener("click", function (e) {
+    if (e.target.id == "veg" || e.target.id == "teetotaler") {
+        if (vegEl.checked && teetotalerEl.checked) {
+            userRegisterEl.removeAttribute("disabled", true);
+        } else {
+            userRegisterEl.setAttribute("disabled", true);
+        }
+    }
+});
 
 function formSubmit() {
     console.log(formValid);

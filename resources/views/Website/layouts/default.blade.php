@@ -10,14 +10,14 @@
         root.style.setProperty('--bs-primary', '{{ $themeInfo->primary_color }}');
     </script>
 
-    <div class="preloader" id='preloader'>
+    {{-- <div class="preloader" id='preloader'>
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div>
         @include('Website.layouts.includes.header')

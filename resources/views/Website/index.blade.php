@@ -174,34 +174,30 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 row">
-
-                                        <div class="col-9 p-0" style="text-align: center">
-                                            <label class="small" for="flexCheckDefault2">
-                                               Are you a Vegetarian ?
-                                            </label>
+                                    <div class="col-12 row mt-2">
+                                        <div class="col-3 search-input">
+                                            <label for="">Must Be</label>
                                         </div>
-                                        <div class="col-3 text-enter" style="text-align:right">
-                                            <input class="" type="checkbox" value="checked" id="veg" >
-                                        </div>
-                                    </div>
-                                    <div class="col-12 row">
-
-                                        <div class="col-9 p-0" style="text-align: center">
-                                            <label class="small" for="flexCheckDefault2">
-                                                Are you a Teetotaler ?
-                                            </label>
-                                        </div>
-                                        <div class="col-3 text-enter" style="text-align:right">
-                                            <input class="" type="checkbox" value="checked" id="teetotaler" >
+                                        <div class="col-9 p-0 d-flex justify-content-start">
+                                            <div>
+                                                <input type="checkbox" id="veg" name="veg" checked> <label class="" for="veg">
+                                                    Vegetarian
+                                                 </label>
+                                            </div>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                            <div>
+                                                <input type="checkbox" id="teetotaler" name="teetotaler" checked> <label class="" for="teetotaler">
+                                                    Teetotaler
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <br>
+                                    <hr>
+
                                     <div class="col-12 row">
                                         <div class="col-3 text-enter" style="text-align:right">
                                             <input class="" type="checkbox" name="terms" id="terms">
                                         </div>
-                                        <div class="col-9 p-0" style="text-align: left">
+                                        <div class="col-9" style="text-align: left">
                                             <label class="small" for="flexCheckDefault2">
                                                 I accept the <a href="#" rel="noopener noreferrer">Terms of Use
                                                     & Privacy Policy</a>
