@@ -32,8 +32,12 @@ class PayUPaymentHelper
         $this->key = $gateWay_info->key;
         $this->checkoutUrl = $gateWay_info->checkout_url;
         $this->salt = $gateWay_info->salt;
-        $this->surl = route('admin.payments.payu.success');
-        $this->furl = route('admin.payments.payu.failure');
+        // $this->surl = route('admin.payments.payu.success');
+        // $this->furl = route('admin.payments.payu.failure');
+
+        //for website
+        $this->surl = route('user.payments.payU.paymentSuccess');
+        $this->furl = route('user.payments.payU.paymentFailure');
     }
 
     public static function initialize(): self
@@ -69,7 +73,8 @@ class PayUPaymentHelper
     public function sha512(): self
     {
         $this->transactionId = InvoiceNumberHelper::GenerateInvoiceNumber();
-        // $this->transactionId = 'TRID81636'; testing
+        //testing
+        // $this->transactionId = 'TRID76556';
 
         $data = $this->key .
             "|" . $this->transactionId .

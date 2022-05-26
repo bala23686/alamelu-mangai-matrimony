@@ -70,7 +70,7 @@
                 </div>
                 <div class="content">
                     <h1>Payment Failed !</h1>
-                    <a href="#">Go to Home</a>
+                    <a href="{{ route('Home') }}">Go to Home</a>
                 </div>
 
             </div>
