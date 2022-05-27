@@ -36,10 +36,10 @@ use App\Http\Controllers\Website\Profile\ProfessionalDetails\ProfessionalDetails
 use App\Http\Controllers\Website\PartnerPreference\BasicPreference\BasicPreferenceController;
 use App\Http\Controllers\Website\PartnerPreference\ReligiousPreference\ReligiousPreferenceController;
 use App\Http\Controllers\Website\PartnerPreference\ProfessionalPreference\ProfessionalPreferenceController;
-use App\Http\Controllers\Website\UserDashBoard\DocumentUpload\DocumentUploadController;
 use App\Http\Controllers\Website\PrivacyPolicy\PrivacyPolicyController;
 use App\Http\Controllers\Website\RefundPolicy\RefundPolicyController;
 use App\Http\Controllers\Website\TermsAndConditions\TermsController;
+use App\Http\Controllers\Website\UserDashBoard\DocumentUpload\DocumentUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ Route::get('/refund-policy', [RefundPolicyController::class, 'index'])->name('Re
 
 // USER REGISTRATION
 Route::post('/register', [AuthController::class, 'store'])->name('register');
-Route::get('/login',  [AuthController::class, 'index'])->name('login');
+Route::get('/login',  [AuthController::class, 'index'])->name('user.login');
 Route::post('login', [AuthController::class, 'login'])->name('sign.in');
 Route::get('/logout', [AuthController::class, 'logout'])->name('user.logout');
 
@@ -164,6 +164,7 @@ Route::group(['middleware' => ['is_paid', 'is_member'], 'prefix' => 'user-panel'
 
     // VIEW PROFILE
     Route::resource('viewProfile', ViewProfileController::class, ['names' => 'viewprofile']);
+
     //Document Upload Section
     Route::resource('/upload-Document', DocumentUploadController::class, ['names' => 'document.upload']);
     Route::post('/upload-Medical-Certificate/{id}', [DocumentUploadController::class, 'uploadMedicalCertificate'])->name('medical.certificate');
