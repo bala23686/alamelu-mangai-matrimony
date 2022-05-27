@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(TelescopeServiceProvider::class);
         }
 
-         /*this macro is added by saravana sai
+        /*this macro is added by saravana sai
         */
         Http::macro('payumoney', function () {
             return Http::withHeaders([
