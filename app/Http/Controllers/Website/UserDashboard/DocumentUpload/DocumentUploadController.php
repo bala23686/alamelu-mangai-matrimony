@@ -17,7 +17,7 @@ class DocumentUploadController extends Controller
      */
     public function index()
     {
-        //
+        return view('Website.userDashboard.documentUpload')->with('user', auth()->user());
     }
 
     /**
@@ -49,7 +49,6 @@ class DocumentUploadController extends Controller
      */
     public function show($id)
     {
-        return view('Website.userDashboard.documentUpload')->with('user', auth()->user());
     }
 
     /**

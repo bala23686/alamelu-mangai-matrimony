@@ -71,7 +71,7 @@
                 <div class="content">
                     <h1>Payment Success !</h1>
                     <h3>Login and Access Dashboard</h3>
-                    <a href="{{ route('Home') }}">Go to Home</a>
+                    <a href="{{ route('user.login') }}">Login</a>
                 </div>
 
             </div>
