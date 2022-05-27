@@ -423,6 +423,16 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                         value="{{ $user_data['user_family_info']->user_sibling_details }}">
                                                                 </div>
                                                             </div>
+                                                            <div class="col-lg-8 col-12">
+                                                                <div class="form-group">
+                                                                    <label for="sibling_details">Relative Address<span
+                                                                            class="small text-secondary">
+                                                                            &nbsp;(Paternal)</span></label>
+                                                                    <input name="paternal_uncle_address" type="text"
+                                                                        placeholder="Enter Paternal Relative Address Clearly"
+                                                                        value="{{ $user_data['user_family_info']->paternal_uncle_address }}">
+                                                                </div>
+                                                            </div>
                                                             <div class="col-12 mt-3 mb-3">
                                                                 <button id="updatefamilyinfo" type="button"
                                                                     class="btn btn-primary btn-sm float-end">Update

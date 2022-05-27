@@ -38,19 +38,15 @@
                                 <h4 class="p-2 fw-light"><span class="fw-bolder text-primary">அலமேலு மங்கை</span> திருமண தகவல் மையம்</h4>
                                 {{-- <h5 class="text-center fw-normal">(சைவ பிள்ளை மட்டும்)</h5> --}}
                                 <hr>
-                                <p class="small text-danger fw-bold">குறிப்பு :</p>
-
-                                <ul class="list-group list-group-flush text-dark">
-                                    <li class="list-group-item">1. நுழைவு கட்டணம் ₹ 1000 + 18% GST.</li>
-                                    <li class="list-group-item">2. <span class="text-danger">இந்து</span> சைவபிள்ளை, பிள்ளைமார், கார்காத்தார், பிராமணர்கள், ஐயர், ஐயங்கார், சைவ செட்டியார் (மட்டும்). (OC Candidates only).</li>
-                                    <li class="list-group-item">3. நுழைவு கட்டணம் எக்காரணம் கொண்டும் திருப்பி தரப்படமாட்டாது.</li>
-                                    <li class="list-group-item">4. தரகர்கள் அனுமதி இல்லை.</li>
-                                    <li class="list-group-item">5. மணமகள் / மணமகள் குடும்ப்புகைப்படம் தேவை.</li>
-                                    <li class="list-group-item">6. மணமகன் / மணமகள் தாய்மாமன் குடும்ப புகைப்படம் தேவை.</li>
-                                    <li class="list-group-item">7. மணமகள் / மணமகள் தெளிவான விலாசம் மற்றும் அவர்களது தாய்மாமன் விலாசம் தேவை.</li>
-                                    <li class="list-group-item">8. மணமகன் / மணமகள் குடும்ப விலாசம் மட்டுமே தரப்படும்.</li>
-                                    <li class="list-group-item">9. தொலைப்பேசி எண் தரப்படமாட்டாது.</li>
-                                    <li class="list-group-item">10. நிர்வாக தொலைப்பேசி எண் <span class="text-primary fw-bold lead">9092756325</span> (4PM - 9PM).</li>
+                            
+                                <ul class="text-dark p-0 m-0">
+                                    <li class="small text-danger fw-bold">குறிப்பு :</li>
+                                    <li>1. நுழைவு கட்டணம் ₹ 1000 + 18% GST.</li>
+                                    <li>2. <span class="text-danger">இந்து</span> சைவபிள்ளை, பிள்ளைமார், கார்காத்தார், பிராமணர்கள், ஐயர், ஐயங்கார், சைவ செட்டியார் (மட்டும்). (OC Candidates only).</li>
+                                    <li>3. நுழைவு கட்டணம் எக்காரணம் கொண்டும் திருப்பி தரப்படமாட்டாது.</li>
+                                    <li>4. தரகர்கள் அனுமதி இல்லை.</li>
+                                    <li>5. தொலைப்பேசி எண் தரப்படமாட்டாது.</li>
+                                    <li>6. நிர்வாக தொலைப்பேசி எண் <span class="text-primary fw-bold lead">9092756325</span> (4PM - 9PM).</li>
                                 </ul>
                             </div>
                         </div>
