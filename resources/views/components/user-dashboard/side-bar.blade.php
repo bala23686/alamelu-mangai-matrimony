@@ -63,7 +63,7 @@ $image_src = $user_info->gender_id == 1 ? asset('assets/Website/male.png') : ass
                     Preferences</a>
             </li>
             <li>
-                <a class="{{ Request::is('*/document-Upload/*') ? 'active' : '' }}"
+                <a class="{{ Request::is('*/upload-Document/*') ? 'active' : '' }}"
                     href="{{ route('document.upload.show', auth()->user()->id) }}"><i class="lni lni-add-files"></i>
                     Upload Documents</a>
             </li>

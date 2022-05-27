@@ -165,11 +165,11 @@ Route::group(['middleware' => ['is_paid', 'is_member'], 'prefix' => 'user-panel'
     // VIEW PROFILE
     Route::resource('viewProfile', ViewProfileController::class, ['names' => 'viewprofile']);
     //Document Upload Section
-    Route::resource('upload-Document', DocumentUploadController::class, ['names' => 'document.upload']);
-    Route::post('upload-Medical-Certificate/{id}', [DocumentUploadController::class, 'uploadMedicalCertificate'])->name('medical.certificate');
-    Route::post('upload-Tenth-Certificate/{id}', [DocumentUploadController::class, 'uploadTenthCertificate'])->name('tenth.certificate');
-    Route::post('upload-Twelth-Certificate/{id}', [DocumentUploadController::class, 'uploadTwelthCertificate'])->name('twelth.certificate');
-    Route::post('upload-TC-Certificate/{id}', [DocumentUploadController::class, 'uploadCollegeTc'])->name('tc.certificate');
+    Route::resource('/upload-Document', DocumentUploadController::class, ['names' => 'document.upload']);
+    Route::post('/upload-Medical-Certificate/{id}', [DocumentUploadController::class, 'uploadMedicalCertificate'])->name('medical.certificate');
+    Route::post('/upload-Tenth-Certificate/{id}', [DocumentUploadController::class, 'uploadTenthCertificate'])->name('tenth.certificate');
+    Route::post('/upload-Twelth-Certificate/{id}', [DocumentUploadController::class, 'uploadTwelthCertificate'])->name('twelth.certificate');
+    Route::post('/upload-TC-Certificate/{id}', [DocumentUploadController::class, 'uploadCollegeTc'])->name('tc.certificate');
 });
 
 // FORGET PASSWORD ROUTES
@@ -202,15 +202,15 @@ Route::get('get-cities', [CountryStateCityController::class, 'getCities'])->name
 Route::group(['prefix' => 'user', 'as' => 'user.payments.'], function () {
 
     //routes section of pay-u money
-    Route::get('payU-money/{id}/checkout', [PayUController::class, 'index'])->name('payU');
-
-    Route::get('payU-money/paid-success', [PayUController::class, 'payusuccess'])->name('payU.paymentDone');
+    Route::get('/payU-money/{id}/checkout', [PayUController::class, 'index'])->name('payU-Checkout');
+    Route::get('/payNow', [PayUController::class, 'payNow'])->name('pay-Now');
+    Route::get('/payU-money/paid-success', [PayUController::class, 'payusuccess'])->name('payU.paymentDone');
     //url for success response
-    Route::post('payU-money/success', [PayUController::class, 'success'])
+    Route::post('/payU-money/success', [PayUController::class, 'success'])
         ->name('payU.paymentSuccess')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
     //url for success failed response
-    Route::post('payU-money/failed', [PayUController::class, 'failed'])
+    Route::post('/payU-money/failed', [PayUController::class, 'failed'])
         ->name('payU.paymentFailure')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
     //routes end section of pay-u money

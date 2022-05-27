@@ -56,7 +56,7 @@ class AuthController extends Controller
         $service->HandleUserRegistration($request);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             toastr()->success('Account Created Successfully');
-            return redirect()->route('user.payments.payU', auth()->id());
+            return redirect()->route('user.payments.pay-Now', auth()->id());
         } else {
             toastr()->error('Something Went Wrong');
             return back();
