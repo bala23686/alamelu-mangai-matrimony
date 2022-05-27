@@ -179,10 +179,7 @@ return [
         App\Providers\TelescopeServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        // Barryvdh\DomPDF\ServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        Barryvdh\Snappy\ServiceProvider::class,
-
 
 
     ],
@@ -242,11 +239,8 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'ImageIntervention' => Intervention\Image\Facades\Image::class,
         'UserBasicInfoMaster' => app\Models\Master\UserBasicInfoMaster\UserBasicInfoMaster::class,
-        // 'PDF' => Barryvdh\DomPDF\Facade::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'PackageHelper' => app\Helpers\Utility\PackageHelper::class,
-        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
-        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
     ],
 
 ];
