@@ -114,7 +114,7 @@ class ProductSettingController extends Controller
 
        $file_name= ImageUploadHelper::storeImage($request->company_logo,CompanySettingHelper::LOGO_IMAGE_PATH);
 
-       $image_with_url=Url('/') .CompanySettingHelper::LOGO_IMAGE_PATH . "{$file_name}";
+       $image_with_url=Url('/') .'/uploads'.CompanySettingHelper::LOGO_IMAGE_PATH . "{$file_name}";
 
         $company_setting=new CompanySettingHelper();
 
@@ -138,7 +138,7 @@ class ProductSettingController extends Controller
 
        $file_name= ImageUploadHelper::storeImage($request->company_water_mark,CompanySettingHelper::WATER_MARK_IMAGE_PATH);
 
-       $image_with_url=Url('/') .CompanySettingHelper::WATER_MARK_IMAGE_PATH . "{$file_name}";
+       $image_with_url=Url('/').'/uploads'.CompanySettingHelper::WATER_MARK_IMAGE_PATH . "{$file_name}";
 
         $company_setting=new CompanySettingHelper();
 
