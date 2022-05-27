@@ -1,98 +1,34 @@
-<link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<style type="text/css">
-    :root {
-        --primary-color: #6a46e3;
-        --primary-color-dark: #421dc0;
-        --primary-color-light: #efebfc9f;
-        /* --primary-color: "";
-  --secondary-color: "";
-  --primary-color: "";
-  --primary-color: ""; */
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    body {
-        background: #f2f2f2;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Payment Confirmation</title>
+    <link rel="stylesheet" href="{{ asset('web/css/bootstrap.min.css') }}" />
+</head>
 
-    .payment {
-        border: 1px solid #f2f2f2;
-        height: 280px;
-        border-radius: 20px;
-        background: #fff;
-    }
-
-    .payment_header {
-        background: var(--primary-color);
-        padding: 20px;
-        border-radius: 20px 20px 0px 0px;
-
-    }
-
-    .check {
-        margin: 0px auto;
-        width: 50px;
-        height: 50px;
-        border-radius: 100%;
-        background: #fff;
-        text-align: center;
-    }
-
-    .check i {
-        vertical-align: middle;
-        line-height: 50px;
-        font-size: 30px;
-    }
-
-    .content {
-        text-align: center;
-    }
-
-    .content h1 {
-        font-size: 25px;
-        padding-top: 25px;
-    }
-
-    .content a {
-        width: 200px;
-        height: 35px;
-        color: #fff;
-        border-radius: 30px;
-        padding: 5px 10px;
-        background: var(--primary-color);
-        transition: all ease-in-out 0.3s;
-    }
-
-    .content a:hover {
-        text-decoration: none;
-        background: #000;
-    }
-
-</style>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 mx-auto mt-5">
-            <div class="payment">
-                <div class="payment_header">
-                    <div class="check"><i class="fa-fa-money" aria-hidden="true"></i></div>
+<body>
+    <section>
+        <div class="container">
+            <div class="row" style="height:100vh">
+                <div class="card text-center" style="align-self: center">
+                    <div class="card-header">
+                        Featured
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="{{ route('user.payments.payU-Checkout', $user->id) }}?amount=1000&&packageId=1"
+                            class="btn btn-primary">Complete
+                            Your Payment</a>
+                    </div>
                 </div>
-                <div class="content">
-                    <h1>Welcome</h1>
-                    <h3></h3>
-                    @csrf
-                    <a href="{{ route('user.payments.payU-Checkout', $user->id) }}?amount=1000&&packageId=1">Complete
-                        Your Payment</a>
-                </div>
-
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</body>
 
-{{-- @if (session()->has('pay-u-payment-success'))
-    <script>
-        window.open('{{ Url('/') }}' + '/storage/invoice/' + {{ session('pay-u-payment-success') }});
-    </script>
-@endif --}}
+</html>
