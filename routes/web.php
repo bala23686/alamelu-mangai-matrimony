@@ -159,11 +159,11 @@ Route::group(['middleware' => ['is_paid', 'is_member'], 'prefix' => 'user-panel'
     // VIEW PROFILE
     Route::resource('viewProfile', ViewProfileController::class, ['names' => 'viewprofile']);
     //Document Upload Section
-    Route::resource('upload-Document', DocumentUploadController::class, ['names' => 'document.upload']);
-    Route::post('upload-Medical-Certificate/{id}', [DocumentUploadController::class, 'uploadMedicalCertificate'])->name('medical.certificate');
-    Route::post('upload-Tenth-Certificate/{id}', [DocumentUploadController::class, 'uploadTenthCertificate'])->name('tenth.certificate');
-    Route::post('upload-Twelth-Certificate/{id}', [DocumentUploadController::class, 'uploadTwelthCertificate'])->name('twelth.certificate');
-    Route::post('upload-TC-Certificate/{id}', [DocumentUploadController::class, 'uploadCollegeTc'])->name('tc.certificate');
+    Route::resource('/upload-Document', DocumentUploadController::class, ['names' => 'document.upload']);
+    Route::post('/upload-Medical-Certificate/{id}', [DocumentUploadController::class, 'uploadMedicalCertificate'])->name('medical.certificate');
+    Route::post('/upload-Tenth-Certificate/{id}', [DocumentUploadController::class, 'uploadTenthCertificate'])->name('tenth.certificate');
+    Route::post('/upload-Twelth-Certificate/{id}', [DocumentUploadController::class, 'uploadTwelthCertificate'])->name('twelth.certificate');
+    Route::post('/upload-TC-Certificate/{id}', [DocumentUploadController::class, 'uploadCollegeTc'])->name('tc.certificate');
 });
 
 // FORGET PASSWORD ROUTES

@@ -7,7 +7,7 @@
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="{{ route('user.dashboard') }}">Home</a></li>
-                        <li>Partner Preference</li>
+                        <li>Upload Documents</li>
                     </ul>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <div class="main-content">
 
                         <div class="dashboard-block mt-0">
-                            <h3 class="block-title">Post Ad</h3>
+                            <h3 class="block-title">Upload Your Mandatory</h3>
                             <div class="inner-block">
                                 <div class="container">
                                     <div class="row">
@@ -60,7 +60,6 @@
                                             </form>
                                         </div>
                                     </div>
-
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -96,7 +95,6 @@
                                             </form>
                                         </div>
                                     </div>
-
                                     <hr>
                                     <div class="col-md-6">
                                         <form method="post" action="#" id="familyPicUploadForm">
