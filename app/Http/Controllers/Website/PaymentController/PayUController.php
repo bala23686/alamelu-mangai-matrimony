@@ -18,18 +18,20 @@ class PayUController extends Controller
     public function __construct()
     {
         $this->middleware('is_member')->only(['index']);
+        $this->middleware('is_member')->only(['payNow']);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $id)
     {
+        // dd($request->amount);
         $payment_infomation = PayUPaymentHelper::initialize();
 
-        $payment_infomation->toUser(auth()->id(), 1000)
-            ->package(1)
+        $payment_infomation->toUser($id, $request->amount)
+            ->package($request->packageId)
             ->sha512()
             ->get();
 
@@ -121,5 +123,9 @@ class PayUController extends Controller
     {
 
         return redirect()->route('Home');
+    }
+    public function payNow()
+    {
+        return view('Website.Payment.payNow')->with('user', auth()->user());
     }
 }

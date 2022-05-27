@@ -69,6 +69,7 @@
                                         <div class="col-md-7 col-lg-8">
                                             <form class="" action="{{ $payment_infomation->checkoutUrl }}"
                                                 target="_blank" method="POST">
+                                                @csrf
                                                 <div class="row g-3">
                                                     <div class="col-6">
                                                         <input type="text" class="form-control" id="firstname"

@@ -22,6 +22,6 @@ class isPaidMiddleware
             return $next($request);
         }
         toastr()->info('Complete Your Payment!');
-        return redirect()->route('user.payments.payU', auth()->id());
+        return redirect()->route('user.payments.pay-Now');
     }
 }
