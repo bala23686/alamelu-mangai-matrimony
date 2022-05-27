@@ -19,44 +19,32 @@
 
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="{{ asset('assets/Website/Banner Images/banner-1.jpg') }}" class="d-block w-100" alt="...">
+                                    <img src="https://images.pexels.com/photos/1911580/pexels-photo-1911580.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="..." loading='eager'>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="{{ asset('assets/Website/Banner Images/banner-2.jpg') }}"
-                                        class="d-block w-100" alt="...">
+                                    <img src="https://images.pexels.com/photos/1456669/pexels-photo-1456669.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                        class="d-block w-100" alt="..." loading='eager'>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="{{ asset('assets/Website/Banner Images/banner-3.jpg') }}" class="d-block w-100" alt="...">
+                                    <img src="https://images.pexels.com/photos/12200847/pexels-photo-12200847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-7 col-md-12 col-12">
-                        @if (Auth()->check() && Auth()->user()->is_admin != 1)
-                            <div class="card shadow">
-                                <div class="card-body">
-                                    <h3 class="p-2 rounded fw-light">Welcome to our wedding website! We can't wait to
-                                        share our
-                                        special
-                                        day with you. </h3>
-
-                                    <div class="text-center mt-3">
-                                        <a class="btn btn-primary btn-sm rounded-pill"
-                                            href="{{ route('user.dashboard') }}"><i class="lni lni-user"></i> User Panel </a>
-                                        <a class="btn btn-secondary btn-sm rounded-pill" href="{{ route('About') }}"><i
-                                                class="lni lni-exit"></i> About
-                                            Us </a>
-                                    </div>
-                                </div>
+                    <div class="col-lg-5 col-md-12 col-12 col-sm-12 mb-4">
+                        <div class="card shadow border-0">
+                            <div class="card-body">
+                                <h4 class="p-2 fw-light"><span class="fw-bolder text-primary">அலமேலு மங்கை</span> திருமண தகவல் மையம்</h4>
+                                <h5 class="text-center fw-normal">(சைவ பிள்ளை மட்டும்)</h5>
                             </div>
-                        @endif
+                        </div>
                     </div>
 
-                    <div class="col-lg-5 col-md-12 col-12">
+                    <div class="col-lg-5 offset-lg-2 col-md-12 col-12 col-sm-12">
                         <div class="search-form style2 wow fadeInRight mt-0 pt-3 pb-4 shadow  @if (Auth()->check() && Auth()->user()->is_admin != 1) invisible @endif"
                             data-wow-delay=".5s">
-                            <h3 class="text-center fw-light">Register Free</h3>
+                            <h3 class="text-center fw-light">Register Here !!!</h3>
                             <div class="row pt-4">
                                 <!-- REGISTER FORM START -->
                                 <form class="" id="registerForm" action="{{route('register')}}" method="POST">
@@ -600,8 +588,8 @@
                     <div class="col-lg-4 col-md-4 col-12">
 
                         <div class="single-work wow fadeInUp" data-wow-delay=".4s">
-                            <span class="serial"><i class="lni lni-emoji-cool"></i></span>
-                            <h3 class="fw-light">Connect</h3>
+                            <span class="serial"><i class="lni lni-money-location"></i></span>
+                            <h3 class="fw-light">Payment</h3>
                             <p>Lorem ipsum dolor sit amet constur adipisicing sed do eiusmod tempor incididunt labore.</p>
                         </div>
 

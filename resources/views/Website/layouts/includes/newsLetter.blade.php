@@ -10,8 +10,8 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="form float-end ">
-                        <h4 class="text-light fw-light"><i class="lni lni-whatsapp"></i>
+                    <div class="form float-end">
+                        <h2 class="text-light fw-light"><i class="lni lni-whatsapp"></i>
                             +91-{{ $webInfo->company_whatsapp_number ?? '' }}</h1>
                     </div>
                 </div>

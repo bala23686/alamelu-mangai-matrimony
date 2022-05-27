@@ -100,7 +100,7 @@ $image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') :
                                                         </li>
 
                                                         <li class="location m-0"><i class="lni lni-map-marker"></i>
-                                                            {{ $$userBasicInfo->user_address ?? '-' }}
+                                                            {{ $userBasicInfo->user_address ?? '-' }}
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -181,9 +181,9 @@ $image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') :
 
                                                                                 <li class="p-2">
                                                                                     <span class="text-primary">
-                                                                                        Address :
+                                                                                        Blood Group :
                                                                                     </span>
-                                                                                    {{ $userBasicInfo->user_address ?? '-' }}
+                                                                                    {{ $userBasicInfo->blood_group ?? '-' }}
                                                                                 </li>
                                                                                 <li class="p-2">
                                                                                     <span class="text-primary">

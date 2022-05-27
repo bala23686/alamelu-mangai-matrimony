@@ -36,7 +36,8 @@ class BasicDetailsRequest extends FormRequest
             'mother_tongue' => 'required',
             'eating_habit' => 'required',
             'disability' => 'required',
-
+            'blood_group' => 'required',
+            'user_address'=>'required',
         ];
     }
 }

@@ -4,9 +4,10 @@
         <div class="row align-items-center">
             <div class="col-lg-12">
                 <div class="nav-inner">
-                    <nav class="navbar navbar-expand-lg">
+                    <nav class="navbar navbar-expand-lg text-sm-center">
 
-                        <img class="shadow" width="60px" src="{{ $webInfo->company_logo ?? '' }}">
+                        {{-- <img class="shadow" width="60px" src="{{ $webInfo->company_logo ?? '' }}"> --}}
+                        <h4 class="text-primary">Alamelu Mangai Matrimony.Com</h4>
 
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

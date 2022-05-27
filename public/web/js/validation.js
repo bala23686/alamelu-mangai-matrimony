@@ -393,7 +393,7 @@ termsEl &&
 
 document.addEventListener("click", function (e) {
     if (e.target.id == "veg" || e.target.id == "teetotaler") {
-        if (vegEl.checked && teetotalerEl.checked) {
+        if (vegEl.checked && teetotalerEl.checked && termsEl.checked) {
             userRegisterEl.removeAttribute("disabled", true);
         } else {
             userRegisterEl.setAttribute("disabled", true);

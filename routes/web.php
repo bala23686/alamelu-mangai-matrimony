@@ -37,6 +37,9 @@ use App\Http\Controllers\Website\PartnerPreference\BasicPreference\BasicPreferen
 use App\Http\Controllers\Website\PartnerPreference\ReligiousPreference\ReligiousPreferenceController;
 use App\Http\Controllers\Website\PartnerPreference\ProfessionalPreference\ProfessionalPreferenceController;
 use App\Http\Controllers\Website\UserDashBoard\DocumentUpload\DocumentUploadController;
+use App\Http\Controllers\Website\PrivacyPolicy\PrivacyPolicyController;
+use App\Http\Controllers\Website\RefundPolicy\RefundPolicyController;
+use App\Http\Controllers\Website\TermsAndConditions\TermsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +60,9 @@ Route::get('/search', [SearchController::class, 'index'])->name('Search');
 Route::get('/packages', [PackageController::class, 'index'])->name('Package');
 Route::get('/contact', [ContactController::class, 'index'])->name('Contact');
 Route::get('/enquiry', [EnquiryController::class, 'index'])->name('Enquiry');
+Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('Privacy.Policy');
+Route::get('/terms-and-conditions', [TermsController::class, 'index'])->name('Terms.Condition');
+Route::get('/refund-policy', [RefundPolicyController::class, 'index'])->name('Refund.Policy');
 
 // USER REGISTRATION
 Route::post('/register', [AuthController::class, 'store'])->name('register');
