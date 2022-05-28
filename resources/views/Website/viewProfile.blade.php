@@ -32,6 +32,7 @@
         .pl-cust-6 {
             padding-left: 6rem;
         }
+
     </style>
 
     <div class="breadcrumbs">
@@ -383,7 +384,7 @@
                                                             <div class="col-md-6">
                                                                 <li class="p-2"><span
                                                                         class="text-primary">Annual Income :</span>
-                                                                        ₹ {{ $UserProfessionInfo->user_annual_income }}
+                                                                    ₹ {{ $UserProfessionInfo->user_annual_income }}
                                                                 </li>
                                                                 <li class="p-2"><span
                                                                         class="text-primary">Job
@@ -509,18 +510,19 @@
                                                         <div class="col-md-4">
                                                             <li class="p-2"><span
                                                                     class="text-primary">Partner's Age :</span>
-                                                                {{ $UserPreferenceInfo->partner_age_from }} to
-                                                                {{ $UserPreferenceInfo->partner_age_to }}
+                                                                {{ $UserPreferenceInfo->partner_age_from ?? '-' }} to
+                                                                {{ $UserPreferenceInfo->partner_age_to ?? '-' }}
                                                             </li>
                                                             <li class="p-2"><span
                                                                     class="text-primary">Partner's Height :</span>
-                                                                {{ $UserPreferenceInfo->HeightFrom->height_feet_cm }} to
-                                                                {{ $UserPreferenceInfo->HeightTo->height_feet_cm }}
+                                                                {{ $UserPreferenceInfo->HeightFrom->height_feet_cm ?? '-' }}
+                                                                to
+                                                                {{ $UserPreferenceInfo->HeightTo->height_feet_cm ?? '-' }}
                                                             </li>
                                                             <li class="p-2"><span
                                                                     class="text-primary">Marital
                                                                     Status :</span>
-                                                                {{ $UserPreferenceInfo->MartialStatus->martial_status_name }}
+                                                                {{ $UserPreferenceInfo->MartialStatus->martial_status_name ?? '-' }}
                                                             </li>
                                                             <li class="p-2"><span
                                                                     class="text-primary">Complexion :</span>
@@ -543,7 +545,7 @@
                                                             </li>
                                                             <li class="p-2"><span
                                                                     class="text-primary">Partner's Salary :</span>
-                                                                {{ $UserPreferenceInfo->partner_salary }}
+                                                                {{ $UserPreferenceInfo->partner_salary ?? '-' }}
                                                             </li>
                                                             <li class="p-2"><span
                                                                     class="text-primary">Partner's Location
@@ -576,15 +578,15 @@
                                                             </li>
                                                             <li class="p-2"><span class="text-primary">Prefer
                                                                     Details :</span>
-                                                                {{ $UserPreferenceInfo->partner_education_details }}
+                                                                {{ $UserPreferenceInfo->partner_education_details ?? '-' }}
                                                             </li>
                                                             <li class="p-2"><span
                                                                     class="text-primary">Partner Religion :</span>
-                                                                {{ $UserPreferenceInfo->Religion->religion_name }}
+                                                                {{ $UserPreferenceInfo->Religion->religion_name ?? '-' }}
                                                             </li>
                                                             <li class="p-2"><span
                                                                     class="text-primary">Partner Caste :</span>
-                                                                {{ $UserPreferenceInfo->Caste->caste_name }}
+                                                                {{ $UserPreferenceInfo->Caste->caste_name ?? '-' }}
                                                             </li>
                                                         </div>
                                                     </div>
@@ -863,7 +865,6 @@
             $('.main-img').html(img).show();
         });
         // SWAP IMAGES
-
     </script>
 
 @stop

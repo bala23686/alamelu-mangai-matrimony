@@ -2,551 +2,568 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabcart</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: "Dejavu Sans";
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 2rem;
+            margin-right: 2rem;
+            background-color: rgb(248, 248, 248);
+            line-height: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .col-4 {
+            float: left;
+            width: 33%;
+        }
+
+        .col-6 {
+            float: left;
+            width: 50%;
+        }
+
+
+        hr {
+            margin: 10px 0;
+            border: 0.5px groove dimgrey;
+        }
+
+        .logo-section {
+            padding: 1rem 0;
+        }
+
+        .box {
+            margin: 0 30px;
+        }
+
+        .box-body {
+            margin: 0 30px;
+        }
+
+        .box h4 {
+            color: royalblue;
+        }
+
+        ul span {
+
+            color: royalblue;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table td {
+            width: 3rem;
+            height: 3rem;
+            border: 0.5px solid dimgrey;
+            text-align: center;
         }
 
     </style>
-    <title>Document</title>
-    <!-- CSS only -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css"
-        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
-        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
-    </script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-4 align-middle col-xs-offset-2">
 
-                    {{-- {{public_path('uploads/Users/ProfileImage').'/'.$userBasicInfo->user_profile_image}} --}}
+    <div class="logo-section">
+        <center>
+            <img width="25%" src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c51f.png" alt="">
+        </center>
+    </div>
 
-                    @if ($userBasicInfo->image_with_path!=null)
-                    <img width="75%"
+    <div class="row">
+        <div class="col-6">
+            <img width="75%" {{-- @if (!empty($userBasicInfo->image_with_path)) src="{{ $userBasicInfo->image_with_path }}"
+                                            @else --}}
+                src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png"
+                {{-- @endif --}} alt="Preview">
+        </div>
+        <div class="col-6" style="margin-top: 1rem">
+            <h3>{{ $userInfo->user_profile_id }}</h3>
+            <h4><span class="text-dark">I'm</span>
+                {{ $userBasicInfo->user_full_name }}</h4>
 
+            <hr style="width: 50%">
 
-                    src="{{asset('uploads/Users/ProfileImage').'/'.$userBasicInfo->user_profile_image}}"
+            <ul style="margin-left: 1rem">
+                @if (!empty($userBasicInfo))
+                    <li>
+                        {{ $userBasicInfo->age }}
+                        Yrs</li>
+                    <li>
+                        {{ $userBasicInfo->MartialStatus->martial_status_name }}
+                    </li>
+                @endif
 
-                    alt="Preview">
-                    @else
-                    <img width="75%"
+                @if (!empty($userReligiousInfo))
+                    <li>
+                        {{ $userReligiousInfo->Religion->religion_name ?? '-' }},
+                        {{ $userReligiousInfo->Caste->caste_name ?? '-' }}</li>
+                @endif
 
+                @if (!empty($userPlaceInfo))
+                    <li>
+                        {{ $userPlaceInfo->userCity->city_name ?? '-' }}
+                        ,{{ $userPlaceInfo->userState->state_name ?? '-' }}
+                        ,{{ $userPlaceInfo->userCountry->country_name ?? '-' }}
+                    </li>
+                @endif
 
-                    src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png"
+                @if (!empty($UserProfessionInfo))
+                    <li>
+                        @forelse ($UserProfessionInfo->user_education_id as $education)
+                            {{ $education->education_name }},
+                        @empty
+                            <span>-</span>
+                        @endforelse
+                    </li>
+                @endif
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="box">
+        <h4 style="color: royalblue">Basic Information</h4>
+        <ul class="box-body">
+            <div class="row">
+                <div class="col-6">
+                    <li>
+                        <span>
+                            Mobile No
+                            : </span>{{ $userInfo->phonenumber }}
+                    </li>
+                    <li>
+                        <span>
+                            Alt. Mobile No :
+                        </span>{{ $userInfo->userBasicInfos->user_mobile_no }}
+                    </li>
 
-                    alt="Preview">
-                    @endif
+                    <li>
+                        <span>
+                            Height :
+                        </span>
+                        {{ $userBasicInfo->Height->height_feet_cm ?? '-' }}
+                    </li>
+                    <li>
+                        <span>
+                            Complexion :
+                        </span>
+                        {{ $userBasicInfo->Complex->complexion_name }}
+                    </li>
+                </div>
 
+                <div class="col-6" style="margin-left: 1rem">
+                    <li>
+                        <span>
+                            Mother Tongue :
+                        </span>
+                        {{ $userBasicInfo->MotherTongue->language_name }}
+                    </li>
+                    <li>
+                        <span>
+                            Marital Status :
+                        </span>
+                        {{ $userBasicInfo->MartialStatus->martial_status_name }}
+                    </li>
+                    <li>
+                        <span>
+                            Eating Habit :
+                        </span>
+                        {{ $userBasicInfo->EatingHabit->habit_type_name }}
+                    </li>
+                    <li>
+                        <span>
+                            Disability :
+                        </span>
+                        {{ ($userBasicInfo->is_disable = 1) ? 'Yes' : 'No' }}
+                    </li>
+                </div>
             </div>
+        </ul>
+    </div>
 
-            <div class="col-xs-6">
-                <h3 class="">{{ $userInfo->user_profile_id }}</h3>
-                <h4><span class="text-dark">I'm</span>
-                    {{ $userBasicInfo->user_full_name }}</h4>
-
-                <ul class="text list-unstyled">
-                    @if (!empty($userBasicInfo))
-                        <li class="mt-2"><i class="fa-regular fa-calendar-check"></i>
-                            &nbsp;{{ $userBasicInfo->age }}
-                            Yrs</li>
-                        <li class="mt-2"><i class="fa-solid fa-chess-queen"></i>
-                            &nbsp;{{ $userBasicInfo->MartialStatus->martial_status_name }}
+    @if (!empty($UserFamilyInfo))
+        <div class="box">
+            <hr>
+            <h4>Family Information</h4>
+            <ul class="box-body">
+                <div class="row">
+                    <div class="col-6">
+                        <li><span>Father
+                                Name :</span>
+                            {{ $UserFamilyInfo->user_father_name }}
                         </li>
-                    @endif
-
-                    @if (!empty($userReligiousInfo))
-                        <li class="mt-2"><i class="fa-brands fa-canadian-maple-leaf"></i>
-                            &nbsp;{{ $userReligiousInfo->Religion->religion_name ?? '-' }},
-                            {{ $userReligiousInfo->Caste->caste_name ?? '-' }}</li>
-                    @endif
-
-                    @if (!empty($userPlaceInfo))
-                        <li class="mt-2"><i class="fa-solid fa-street-view"></i>
-                            &nbsp;{{ $userPlaceInfo->userCity->city_name ?? '-' }}
-                            ,{{ $userPlaceInfo->userState->state_name ?? '-' }}
-                            ,{{ $userPlaceInfo->userCountry->country_name ?? '-' }}
+                        <li><span>Father's
+                                Occupation
+                                :</span>
+                            {{ $UserFamilyInfo->user_father_job_details }}
                         </li>
-                    @endif
+                        <li><span>Mother
+                                Name :</span>
+                            {{ $UserFamilyInfo->user_mother_name }}
+                        </li>
+                    </div>
+                    <div class="col-6" style="margin-left: 1rem">
+                        <li><span>Mother's
+                                Occupation
+                                :</span>
+                            {{ $UserFamilyInfo->user_mother_job_details }}
+                        </li>
 
-                    @if (!empty($UserProfessionInfo))
+                        <li><span>Family
+                                Status :</span>
+                            {{ $UserFamilyInfo->FamilyStatusSubMaster->family_type_name }}
+                        </li>
+                        <li><span>Siblings
+                                Details
+                                :</span>
+                            {{ $UserFamilyInfo->user_sibling_details }}
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    @endif
 
-                        <li class="mt-2"><i class="fa-solid fa-graduation-cap"></i>&nbsp;
+
+    @if (!empty($UserProfessionInfo))
+        <div class="box">
+            <hr>
+            <h4>Professional Information</h4>
+            <ul class="box-body">
+                <div class="row">
+                    <div class="col-6">
+                        <li><span>Education
+                                :</span>
                             @forelse ($UserProfessionInfo->user_education_id as $education)
                                 {{ $education->education_name }},
                             @empty
                                 <span>-</span>
                             @endforelse
                         </li>
+                        <li><span>Education
+                                Detials
+                                :</span>
+                            {{ $UserProfessionInfo->user_education_details }}
+                        </li>
+                        <li><span>Job
+                                :</span>
+                            {{ $UserProfessionInfo->Job->job_name }}
+                        </li>
+                        <li><span>Job
+                                Details :</span>
+                            {{ $UserProfessionInfo->user_job_details }}
+                        </li>
+                    </div>
+                    <div class="col-6" style="margin-left: 1rem">
+                        <li><span>Annual
+                                Income :</span>
+                            Rs. {{ $UserProfessionInfo->user_annual_income }}
+                        </li>
+                        <li><span>Job
+                                Country :</span>
+                            {{ $UserProfessionInfo->JobCountry->country_name }}
+                        </li>
+                        <li><span>Job
+                                State :</span>
+                            {{ $UserProfessionInfo->JobState->state_name }}
+                        </li>
+                        <li><span>Job
+                                City :</span>
+                            {{ $UserProfessionInfo->JobCity->city_name }}
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    @endif
+
+    @if (!empty($userReligiousInfo))
+        <div class="box">
+            <hr>
+            <h4>Religious Information</h4>
+            <ul class="box-body">
+                <div class="row">
+                    <div class="col-6">
+                        <li>
+                            <span>
+                                Religion :
+                            </span>
+                            {{ $userReligiousInfo->Religion->religion_name }}
+                        </li>
+                        <li>
+                            <span>
+                                Caste :
+                            </span>
+                            {{ $userReligiousInfo->Caste->caste_name }}
+                        </li>
+                        <li>
+                            <span>Sub-Caste :
+                            </span>
+                            {{ $userReligiousInfo->sub_caste }}
+                        </li>
+                        <li><span>Rasi
+                                :</span>
+                            {{ $userReligiousInfo->Rasi->rasi_name }}</li>
+                    </div>
+                    <div class="col-6" style="margin-left: 1rem">
+                        <li><span>Star
+                                :</span>
+                            {{ $userReligiousInfo->Star->star_name }}
+                        </li>
+                        <li><span>Dhosam
+                                :</span>
+                            {{ ($userReligiousInfo->dhosam = 1) ? 'Yes' : 'No' }}
+                        </li>
+                        <li><span>Birth
+                                Time :</span>
+                            {{ $userReligiousInfo->user_birth_time }}
+                        </li>
+                        <li><span>Birth
+                                Place :</span>
+                            {{ $userReligiousInfo->user_birth_place }}
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    @endif
+
+    @if (!empty($UserPreferenceInfo))
+        <div class="box">
+            <hr>
+            <h4>Partner Preference </h4>
+            <ul class="box-body">
+                <div class="row">
+                    <div class="col-4">
+                        <li><span>Partner's Age :</span>
+                            {{ $UserPreferenceInfo->partner_age_from ?? '-' }} to
+                            {{ $UserPreferenceInfo->partner_age_to ?? '-' }}
+                        </li>
+                        <li><span>Partner's Height :</span>
+                            {{ $UserPreferenceInfo->HeightFrom->height_feet_cm ?? '-' }} to
+                            {{ $UserPreferenceInfo->HeightTo->height_feet_cm ?? '-' }}
+                        </li>
+                        <li><span>Marital
+                                Status :</span>
+                            {{ $UserPreferenceInfo->MartialStatus->martial_status_name ?? '-' }}
+                        </li>
+                        <li><span>Complexion :</span>
+                            @forelse ($UserPreferenceInfo->partner_complexion as $partner_complexion)
+                                {{ $partner_complexion->complexion_name }},
+                            @empty
+                                <span>-</span>
+                            @endforelse
+                        </li>
+                    </div>
+
+                    <div class="col-4" style="margin-left: 1rem;">
+                        <li><span>Mother
+                                Tongue :</span>
+                            @forelse ($UserPreferenceInfo->partner_mother_tongue as $partner_tongue)
+                                {{ $partner_tongue->language_name }},
+                            @empty
+                                <span>-</span>
+                            @endforelse
+                        </li>
+                        <li><span>Partner's Salary :</span>
+                            {{ $UserPreferenceInfo->partner_salary ?? '-' }}
+                        </li>
+                        <li><span>Partner's Location
+                                :</span>
+                            @forelse ($UserPreferenceInfo->partner_country as $partner_country)
+                                {{ $partner_country->country_name }},
+                            @empty
+                                <span>-</span>
+                            @endforelse
+                        </li>
+                        <li><span>Job
+                                Location :</span>
+                            @forelse ($UserPreferenceInfo->partner_job_country as $part_job_country)
+                                {{ $part_job_country->country_name }},
+                            @empty
+                                <span>-</span>
+                            @endforelse
+                        </li>
+                    </div>
+
+                    <div class="col-4" style="margin-left: 1rem;">
+                        <li><span>Partner's Education
+                                :</span>
+                            @forelse ($UserPreferenceInfo->partner_education as $partner_education)
+                                {{ $partner_education->education_name }},
+                            @empty
+                                <span>-</span>
+                            @endforelse
+                        </li>
+                        <li><span>Prefer
+                                Details :</span>
+                            {{ $UserPreferenceInfo->partner_education_details ?? '-' }}
+                        </li>
+                        <li><span>Partner Religion :</span>
+                            {{ $UserPreferenceInfo->Religion->religion_name ?? '-' }}
+                        </li>
+                        <li><span>Partner Caste :</span>
+                            {{ $UserPreferenceInfo->Caste->caste_name ?? '-' }}
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        </div>
+    @endif
+
+    @if (!empty($UserHoroscopeInfo))
+        <div class="box">
+            <hr>
+            <h4 class="panel-title">Horoscope Information</h4>
+            <div class="box-body">
+                <div class="row">
+                    @if ($UserHoroscopeInfo->user_jathakam_rasi_katam_is_filled == 1)
+                        <div class="col-6">
+                            <h5>Jathaka
+                                Katam (RASI)</h5>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_1_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_1_col_2->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_1_col_3->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_1_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_2_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td colspan="2">
+                                            <h5>RASI</h5>
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_2_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_3_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+
+                                        </td>
+                                        <td colspan="2">
+                                            <h5>CHART</h5>
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_3_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_4_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_4_col_2->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_4_col_3->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->rasi_katam_row_4_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     @endif
-                </ul>
-            </div>
-        </div>
-        <hr>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">Basic Information</h2>
-            </div>
-            <div class="panel-body">
-                <ul class="">
-                    <div class="row">
-                        <div class="col-xs-4 col-xs-offset-1">
-                            <li>
-                                <span class="text-primary">
-                                    Mobile No
-                                    : </span>{{ $userInfo->phonenumber }}
-                            </li>
-                            <li>
-                                <span class="text-primary">
-                                    Alt. Mobile No :
-                                </span>{{ $userInfo->userBasicInfos->user_mobile_no }}
-                            </li>
-
-                            <li>
-                                <span class="text-primary">
-                                    Height :
-                                </span>
-                                {{ $userBasicInfo->Height->height_feet_cm ?? '-' }}
-                            </li>
-                            <li>
-                                <span class="text-primary">
-                                    Complexion :
-                                </span>
-                                {{ $userBasicInfo->Complex->complexion_name }}
-                            </li>
+                    @if ($UserHoroscopeInfo->user_jathakam_navamsam_katam_is_filled == 1)
+                        <div class="col-6">
+                            <h5>Jathaka
+                                Katam (NAVAASAM)</h5>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_1_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_1_col_2->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_1_col_3->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_1_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_2_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td colspan="2">
+                                            <h5>NAVAMSAM</h5>
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_2_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_3_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td colspan="2">
+                                            <h5>CHART</h5>
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_3_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_4_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_4_col_2->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_4_col_3->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                        <td>
+                                            {{ $UserHoroscopeInfo->navam_katam_row_4_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-                        <div class="col-xs-6 col-xs-offset-1">
-                            <li>
-                                <span class="text-primary">
-                                    Mother Tongue :
-                                </span>
-                                {{ $userBasicInfo->MotherTongue->language_name }}
-                            </li>
-                            <li>
-                                <span class="text-primary">
-                                    Marital Status :
-                                </span>
-                                {{ $userBasicInfo->MartialStatus->martial_status_name }}
-                            </li>
-                            <li>
-                                <span class="text-primary">
-                                    Eating Habit :
-                                </span>
-                                {{ $userBasicInfo->EatingHabit->habit_type_name }}
-                            </li>
-                            <li>
-                                <span class="text-primary">
-                                    Disability :
-                                </span>
-                                {{ ($userBasicInfo->is_disable = 1) ? 'Yes' : 'No' }}
-                            </li>
-                        </div>
-                    </div>
-                </ul>
-            </div>
-        </div>
-
-        @if (!empty($UserFamilyInfo))
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Family Information</h3>
-                </div>
-                <div class="panel-body">
-                    <ul>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <li class="p-2"><span class="text-primary">Father
-                                        Name :</span>
-                                    {{ $UserFamilyInfo->user_father_name }}
-                                </li>
-                                <li class="p-2"><span class="text-primary">Father's
-                                        Occupation
-                                        :</span>
-                                    {{ $UserFamilyInfo->user_father_job_details }}
-                                </li>
-                            </div>
-                            <div class="col-md-4">
-                                <li class="p-2"><span class="text-primary">Mother
-                                        Name :</span>
-                                    {{ $UserFamilyInfo->user_mother_name }}
-                                </li>
-                                <li class="p-2"><span class="text-primary">Mother's
-                                        Occupation
-                                        :</span>
-                                    {{ $UserFamilyInfo->user_mother_job_details }}
-                                </li>
-                            </div>
-
-                            <div class="col-md-4">
-                                <li class="p-2"><span class="text-primary">Family
-                                        Status :</span>
-                                    {{ $UserFamilyInfo->FamilyStatusSubMaster->family_type_name }}
-                                </li>
-                                <li class="p-2"><span class="text-primary">Siblings
-                                        Details
-                                        :</span>
-                                    {{ $UserFamilyInfo->user_sibling_details }}
-                                </li>
-                            </div>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        @endif
-
-        @if (!empty($UserProfessionInfo))
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Professional Information</h3>
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <ul>
-                            <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
-                                    <li><span class="text-primary">Education
-                                            :</span>
-                                        @forelse ($UserProfessionInfo->user_education_id as $education)
-                                            {{ $education->education_name }},
-                                        @empty
-                                            <span>-</span>
-                                        @endforelse
-                                    </li>
-                                    <li><span class="text-primary">Education
-                                            Detials
-                                            :</span>
-                                        {{ $UserProfessionInfo->user_education_details }}
-                                    </li>
-                                    <li><span class="text-primary">Job
-                                            :</span>
-                                        {{ $UserProfessionInfo->Job->job_name }}
-                                    </li>
-                                    <li><span class="text-primary">Job
-                                            Details :</span>
-                                        {{ $UserProfessionInfo->user_job_details }}
-                                    </li>
-                                </div>
-                                <div class="col-xs-6 col-xs-offset-1">
-                                    <li><span class="text-primary">Annual
-                                            Income :</span>
-                                        {{ $UserProfessionInfo->user_annual_income }}
-                                    </li>
-                                    <li><span class="text-primary">Job
-                                            Country :</span>
-                                        {{ $UserProfessionInfo->JobCountry->country_name }}
-                                    </li>
-                                    <li><span class="text-primary">Job
-                                            State :</span>
-                                        {{ $UserProfessionInfo->JobState->state_name }}
-                                    </li>
-                                    <li><span class="text-primary">Job
-                                            City :</span>
-                                        {{ $UserProfessionInfo->JobCity->city_name }}
-                                    </li>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        @endif
-
-        @if (!empty($userReligiousInfo))
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Religious Information</h3>
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <ul>
-                            <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
-                                    <li>
-                                        <span class="text-primary">
-                                            Religion :
-                                        </span>
-                                        {{ $userReligiousInfo->Religion->religion_name }}
-                                    </li>
-                                    <li>
-                                        <span class="text-primary">
-                                            Caste :
-                                        </span>
-                                        {{ $userReligiousInfo->Caste->caste_name }}
-                                    </li>
-                                    <li>
-                                        <span class="text-primary">Sub-Caste :
-                                        </span>
-                                        {{ $userReligiousInfo->sub_caste }}
-                                    </li>
-                                    <li><span class="text-primary">Rasi
-                                            :</span>
-                                        {{ $userReligiousInfo->Rasi->rasi_name }}</li>
-                                </div>
-                                <div class="col-xs-6 col-xs-offset-1">
-                                    <li><span class="text-primary">Star
-                                            :</span>
-                                        {{ $userReligiousInfo->Star->star_name }}
-                                    </li>
-                                    <li><span class="text-primary">Dhosam
-                                            :</span>
-                                        {{ ($userReligiousInfo->dhosam = 1) ? 'Yes' : 'No' }}
-                                    </li>
-                                    <li><span class="text-primary">Birth
-                                            Time :</span>
-                                        {{ $userReligiousInfo->user_birth_time }}
-                                    </li>
-                                    <li><span class="text-primary">Birth
-                                            Place :</span>
-                                        {{ $userReligiousInfo->user_birth_place }}
-                                    </li>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        @endif
-
-
-        @if (!empty($UserPreferenceInfo))
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Partner Preference </h3>
-                </div>
-                <div class="panel-body">
-                    <ul>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <li><span class="text-primary">Partner's Age :</span>
-                                    {{ $UserPreferenceInfo->partner_age_from }} to
-                                    {{ $UserPreferenceInfo->partner_age_to }}
-                                </li>
-                                <li><span class="text-primary">Partner's Height :</span>
-                                    {{ $UserPreferenceInfo->HeightFrom->height_feet_cm }} to
-                                    {{ $UserPreferenceInfo->HeightTo->height_feet_cm }}
-                                </li>
-                                <li><span class="text-primary">Marital
-                                        Status :</span>
-                                    {{ $UserPreferenceInfo->MartialStatus->martial_status_name }}
-                                </li>
-                                <li><span class="text-primary">Complexion :</span>
-                                    @forelse ($UserPreferenceInfo->partner_complexion as $partner_complexion)
-                                        {{ $partner_complexion->complexion_name }},
-                                    @empty
-                                        <span>-</span>
-                                    @endforelse
-                                </li>
-                            </div>
-
-                            <div class="col-xs-4">
-                                <li><span class="text-primary">Mother
-                                        Tongue :</span>
-                                    @forelse ($UserPreferenceInfo->partner_mother_tongue as $partner_tongue)
-                                        {{ $partner_tongue->language_name }},
-                                    @empty
-                                        <span>-</span>
-                                    @endforelse
-                                </li>
-                                <li><span class="text-primary">Partner's Salary :</span>
-                                    {{ $UserPreferenceInfo->partner_salary }}
-                                </li>
-                                <li><span class="text-primary">Partner's Location
-                                        :</span>
-                                    @forelse ($UserPreferenceInfo->partner_country as $partner_country)
-                                        {{ $partner_country->country_name }},
-                                    @empty
-                                        <span>-</span>
-                                    @endforelse
-                                </li>
-                                <li><span class="text-primary">Job
-                                        Location :</span>
-                                    @forelse ($UserPreferenceInfo->partner_job_country as $part_job_country)
-                                        {{ $part_job_country->country_name }},
-                                    @empty
-                                        <span>-</span>
-                                    @endforelse
-                                </li>
-                            </div>
-
-                            <div class="col-xs-4">
-                                <li><span class="text-primary">Partner's Education
-                                        :</span>
-                                    @forelse ($UserPreferenceInfo->partner_education as $partner_education)
-                                        {{ $partner_education->education_name }},
-                                    @empty
-                                        <span>-</span>
-                                    @endforelse
-                                </li>
-                                <li><span class="text-primary">Prefer
-                                        Details :</span>
-                                    {{ $UserPreferenceInfo->partner_education_details }}
-                                </li>
-                                <li><span class="text-primary">Partner Religion :</span>
-                                    {{ $UserPreferenceInfo->Religion->religion_name }}
-                                </li>
-                                <li><span class="text-primary">Partner Caste :</span>
-                                    {{ $UserPreferenceInfo->Caste->caste_name }}
-                                </li>
-                            </div>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        @endif
-
-        @if (!empty($UserHoroscopeInfo))
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Horoscope Information</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        @if ($UserHoroscopeInfo->user_jathakam_rasi_katam_is_filled == 1)
-                            <div class="col-xs-6">
-                                <h5 class="fw-normal text-center">Jathaka
-                                    Katam (RASI)</h5>
-                                <table class="table table-bordered mt-4">
-                                    <tbody>
-                                        <tr>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_1_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_1_col_2->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-
-                                            </td>
-                                            <td class="jathakatam  small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_1_col_3->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_1_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_2_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td colspan="2" class="bg-dark-lt align-middle">
-                                                <h5 class="fw-light text-center">RASI</h5>
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_2_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_3_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-
-                                            </td>
-                                            <td colspan="2" class="bg-dark-lt align-middle">
-                                                <h5 class="fw-light text-center">CHART</h5>
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_3_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_4_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_4_col_2->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_4_col_3->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->rasi_katam_row_4_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        @endif
-
-                        @if ($UserHoroscopeInfo->user_jathakam_navamsam_katam_is_filled == 1)
-                            <div class="col-xs-6">
-                                <h5 class="fw-normal text-center">Jathaka
-                                    Katam (NAVAASAM)</h5>
-                                <table class="table table-bordered mt-4">
-                                    <tbody>
-                                        <tr>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_1_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_1_col_2->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_1_col_3->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_1_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_2_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td colspan="2" class="bg-dark-lt align-middle">
-                                                <h5 class="fw-light text-center">NAVAMSAM</h5>
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_2_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_3_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td colspan="2" class="bg-dark-lt align-middle">
-                                                <h5 class="fw-light text-center">CHART</h5>
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_3_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_4_col_1->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_4_col_2->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_4_col_3->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                            <td class="jathakatam small text-center align-middle">
-                                                {{ $UserHoroscopeInfo->navam_katam_row_4_col_4->flatten()->pluck('horoscope_name')[0] ?? '-' }}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        @endif
-                        {{-- @if ($UserHoroscopeInfo->user_jathakam_image_is_uploaded == 1)
+                    @endif
+                    {{-- @if ($UserHoroscopeInfo->user_jathakam_image_is_uploaded == 1)
                                         <div class="col-md-6 text-center">
                                             <a href="{{ $UserHoroscopeInfo->user_jathakam_image }}" target="_blank"
                                                 rel="noopener noreferrer">
@@ -555,11 +572,11 @@
                                             </a>
                                         </div>
                                     @endif --}}
-                    </div>
                 </div>
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
+
 </body>
 
 </html>
