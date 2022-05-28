@@ -12,6 +12,8 @@ use App\Actions\Package\PackageAction;
 use App\Models\UserTransaction\UserTransaction;
 use App\Actions\Invoice\InvoiceAction;
 use App\Actions\Invoice\InvocieMailAction;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PayUController extends Controller
 {
@@ -83,14 +85,13 @@ class PayUController extends Controller
                 ->purchaseNewPackAge()
                 : false;
 
-
-            $updateStatus = User::where('id', $user->id)->update(["is_paid" => 1]);
-            $updateStatus ? true : false;
+            //updating user payment status
+            $is_processed ? User::where('id', $user->id)->update(["is_paid" => 1]) : false;
 
             //getting the last transaction
             $transaction_info = UserTransaction::where('user_id', $user->id)
                 ->orderBy('tr_id', 'DESC')->first();
-
+            dd($transaction_info);
             //section to generating invoice & mailing to party
             $invoice = (new InvoiceAction($transaction_info->tr_id))
                 ->generateInvoice();
@@ -110,12 +111,11 @@ class PayUController extends Controller
 
             return redirect()
                 ->route('user.payments.payU.paymentDone', $user->id)
-                ->with('pay-u-payment-success', $invoice, $transaction_info);
+                ->with('pay-u-payment-success', $invoice)->with('transactions', $transaction_info);
         }
     }
-    public function payusuccess()
+    public function payusuccess(Request $request)
     {
-
         return view('Website.Payment.success');
     }
     public function failed(Request $request)
