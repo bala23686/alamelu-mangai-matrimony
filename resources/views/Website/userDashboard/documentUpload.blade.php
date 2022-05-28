@@ -17,11 +17,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
+
                     @php
                     $user=App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
                     [$performance,$bgColor]=App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
                 @endphp
                 <x-user-dashboard.side-bar  :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
+
                 </div>
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="main-content">
@@ -100,7 +102,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <form method="post" action="#" id="familyPicUploadForm">
                                             @csrf
                                             <div class="form-group files color">
@@ -114,7 +116,7 @@
                                                         class="lni lni-add-files"></i> Upload</button>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -129,7 +131,17 @@
 
             //upload Medical Certificate
             $('#medicUpload').on('click', (e) => {
-                e.preventDefault();
+                let valid = false;
+
+
+                if ($('#medicUpload')[0].files.length === 0) {
+                    alert("Attachment Required");
+                    $('#upload').focus();
+
+                    valid = true;
+                } else {
+                    valid = false;
+                }
                 var ofile = document.getElementById('medicInput').files[0];
                 var imgData = new FormData();
                 imgData.append("medical_certificate", ofile);
@@ -138,19 +150,22 @@
                 $.each(medicUploadForm, function(i, field) {
                     imgData.append(field.name, field.value);
                 });
-                $.ajax({
-                    url: URL,
-                    type: "POST",
-                    data: imgData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data, textStatus, jqXHR) {
-                        toastr.success(data.message);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        toastr.error(errorThrown);
-                    }
-                });
+                if (valid) {
+                    $.ajax({
+                        url: URL,
+                        type: "POST",
+                        data: imgData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data, textStatus, jqXHR) {
+                            toastr.success(data.message);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            toastr.error(errorThrown);
+                        }
+                    });
+                }
+                e.preventDefault();
             });
             //upload 10th  Certificate
             $('#tenthUpload').on('click', (e) => {

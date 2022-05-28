@@ -1,9 +1,11 @@
 <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+
 <style type="text/css">
     body {
+        position: relative;
+        margin-top: 60px;
         background: #f2f2f2;
     }
 
@@ -15,7 +17,7 @@
     }
 
     .payment_header {
-        background: rgb(39, 231, 0);
+        background: rgb(16, 216, 16);
         padding: 20px;
         border-radius: 20px 20px 0px 0px;
 
@@ -51,7 +53,7 @@
         color: #fff;
         border-radius: 30px;
         padding: 5px 10px;
-        background: rgb(39, 231, 0);
+        background: rgb(16, 216, 16);
         transition: all ease-in-out 0.3s;
     }
 
@@ -61,16 +63,17 @@
     }
 
 </style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto mt-5">
             <div class="payment">
                 <div class="payment_header">
-                    <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    <div class="check"><i class="lni lni-checkmark" aria-hidden="true"></i></div>
                 </div>
                 <div class="content">
-                    <h1>Payment Success !</h1>
-                    <h3>Login and Access Dashboard</h3>
+                    <h1>Payment Successfully Completed !</h1>
+
                     <a href="{{ route('user.login') }}">Login</a>
                 </div>
 
@@ -79,8 +82,8 @@
     </div>
 </div>
 
-{{-- @if (session()->has('pay-u-payment-success'))
+@if (session()->has('pay-u-payment-success'))
     <script>
         window.open('{{ Url('/') }}' + '/storage/invoice/' + {{ session('pay-u-payment-success') }});
     </script>
-@endif --}}
+@endif

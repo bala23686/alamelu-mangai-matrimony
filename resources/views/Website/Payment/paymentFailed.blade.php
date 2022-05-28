@@ -4,6 +4,8 @@
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <style type="text/css">
     body {
+        position: relative;
+        margin-top: 60px;
         background: #f2f2f2;
     }
 
@@ -66,7 +68,7 @@
         <div class="col-md-6 mx-auto mt-5">
             <div class="payment">
                 <div class="payment_header">
-                    <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    <div class="check"><i class="lni lni-cross-circle" aria-hidden="true"></i></div>
                 </div>
                 <div class="content">
                     <h1>Payment Failed !</h1>

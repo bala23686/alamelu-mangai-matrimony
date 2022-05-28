@@ -16,6 +16,7 @@
 
 </style>
 @section('content')
+
     <div class="breadcrumbs">
         <div class="container">
             <div class="row">
@@ -54,8 +55,14 @@
                                                         </h6>
                                                         <small class="text-muted"></small>
                                                     </div>
-                                                    <span
-                                                        class="text-muted">&#8377;{{ $payment_infomation->amount }}</span>
+                                                    <span class="text-muted">&#8377;{{ $price }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                                    <div>
+                                                        <h6 class="my-0">GST</h6>
+                                                        <small class="text-muted">18%</small>
+                                                    </div>
+                                                    <span class="text-muted">&#8377;{{ $gst }}</span>
                                                 </li>
 
                                                 <li class="list-group-item d-flex justify-content-between">
@@ -70,17 +77,20 @@
                                                 @csrf
                                                 <div class="row g-3">
                                                     <div class="col-6">
+                                                        <label for="">Name</label>
                                                         <input type="text" class="form-control" id="firstname"
                                                             name="firstname" placeholder="firstname" readonly
                                                             value="{{ $payment_infomation->firstName }}" required>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="email" class="form-control" id="email" name="email"
+                                                        <label for="">Reference ID</label>
+                                                        <input type="email" class="form-control" id="email"
                                                             placeholder="firstname" readonly
-                                                            value="{{ $payment_infomation->email }}" required>
+                                                            value="{{ $payment_infomation->transactionId }}" required>
                                                     </div>
 
                                                     <div class="col-sm-6">
+                                                        <label for="">Package Name</label>
                                                         <input type="text" class="form-control" id="productName"
                                                             name="productName"
                                                             value="{{ $payment_infomation->packageName }}" readonly
@@ -100,6 +110,7 @@
                                                     </div>
 
                                                     <div class="col-sm-6">
+                                                        <label for="">Package Amount</label>
                                                         <input type="text" class="form-control" id="amount" name="amount"
                                                             value="{{ $payment_infomation->amount }}" readonly required>
                                                     </div>
