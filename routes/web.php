@@ -39,7 +39,7 @@ use App\Http\Controllers\Website\PartnerPreference\ProfessionalPreference\Profes
 use App\Http\Controllers\Website\PrivacyPolicy\PrivacyPolicyController;
 use App\Http\Controllers\Website\RefundPolicy\RefundPolicyController;
 use App\Http\Controllers\Website\TermsAndConditions\TermsController;
-use App\Http\Controllers\Website\UserDashBoard\DocumentUpload\DocumentUploadController;
+use App\Http\Controllers\Website\UserDashboard\DocumentUploadController;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Website\UserDashBoard\DocumentUpload;
+namespace App\Http\Controllers\Website\UserDashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\Website\DashboardServices\ProfileServices\BasicDetailsUpdateServices;
 use App\Helpers\File\ImageUploadHelper\ImageUploadHelper;
 use App\Models\Master\UserBasicInfoMaster\UserBasicInfoMaster;
+use App\Services\Website\DashboardServices\ProfileServices\BasicDetailsUpdateServices;
 
 class DocumentUploadController extends Controller
 {
