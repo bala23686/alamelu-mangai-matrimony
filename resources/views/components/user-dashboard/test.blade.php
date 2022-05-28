@@ -1,16 +1,6 @@
-@php
-$shortlist_count = \App\Models\Master\UserShortListInfoMaster\UserShortListInfoMaster::where('shortlisted_by', '=', Auth::user()->id)->get();
-$image_src = $user->userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
-
-@endphp
-
-<div>
-    {{-- {{dd($performance)}} --}}
-</div>
-
 <div class="dashboard-sidebar mb-3 shadow">
     <div class="user-image">
-        <img @if (!empty($user->userBasicInfo->image_with_path)) src="{{ $user->userBasicInfo->image_with_path }}"
+        <img @if (!empty($user_image_with_path)) src="{{ $user_image_with_path }}"
             @else
             src="{{ $image_src }}" @endif
             alt="#">
@@ -44,7 +34,7 @@ $image_src = $user->userBasicInfo->gender_id == 1 ? asset('assets/Website/male.p
                     Dashboard</a>
             </li>
 
-            @if ($user->userBasicInfo->profile_basic_status == 1)
+            @if ($userInfo->profile_basic_status == 1)
                 <li>
                     <a class="{{ Request::is('*/user-Profile/' . auth()->user()->id) ? 'active' : '' }}"
                         href="{{ route('user.profile.show', auth()->user()->id) }}"><i class="lni lni-eye"></i>
@@ -115,17 +105,3 @@ $image_src = $user->userBasicInfo->gender_id == 1 ? asset('assets/Website/male.p
         </ul>
     </div>
 </div>
-
-
-
-{{-- // document.querySelector('.progress-value > span').each(function() {
-        //     document.querySelector(this).prop('Counter', 0).animate({
-        //         Counter: document.querySelector(this).text('10')
-        //     }, {
-        //         duration: 3500,
-        //         easing: 'swing',
-        //         step: function(now) {
-        //             document.querySelector(this).text(Math.ceil(now));
-        //         }
-        //     });
-        // }); --}}

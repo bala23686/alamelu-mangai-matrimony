@@ -42,7 +42,7 @@ class UserTransaction extends Model
     public function getInvoiceFullPathAttribute()
     {
 
-        return url('/') . "/storage/invoice/" . $this->tr_invoice_pdf;
+        return url('/') . "/uploads/public/invoice/" . $this->tr_invoice_pdf;
     }
     public function user()
     {

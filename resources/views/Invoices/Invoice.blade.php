@@ -131,6 +131,7 @@
     <body>
         {{-- Header --}}
 
+        <h4>{{$company->company_name}}</h4>
             {{-- <img src="{{$logo}}" alt="logo" height="100"> --}}
 
         <table class="table mt-5">

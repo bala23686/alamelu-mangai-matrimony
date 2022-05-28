@@ -24,13 +24,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'username' => 'Exciteon Admin',
-            'email' => 'admin@exciteon.com',
-            'phonenumber' => '123456789',
-            'password' => Hash::make('1234'),
-            'is_admin' => 1
-        ]);
+
 
         User::factory()->count(100)->create()->each(function ($user) {
             $user->userBasicInfo()->save(UserBasicInfoMaster::factory()->make());

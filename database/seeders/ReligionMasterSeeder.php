@@ -9,9 +9,7 @@ class ReligionMasterSeeder extends Seeder
 {
 
     public $religion_master_list = [
-        'Hindu',
-        'Christian',
-        'Muslim',
+        'இந்து',
     ];
     /**
      * Run the database seeds.

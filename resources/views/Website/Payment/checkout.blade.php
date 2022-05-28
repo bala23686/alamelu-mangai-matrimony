@@ -33,11 +33,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
-                    <x-user-dashboard.side-bar></x-user-dashboard.side-bar>
                 </div>
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="main-content">
-
                         <body class="bg-light">
                             <div class="container">
                                 <main>

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phonenumber')->unique();
             $table->string('password');
             $table->string('user_profile_id')->default(null)->nullable();
-            $table->unsignedBigInteger('profile_status_id')->nullable()->default(null);
+            $table->unsignedBigInteger('profile_status_id')->nullable()->default(1);
             $table->foreign('profile_status_id')->references('id')->on('status_masters');
             $table->boolean('is_admin')->default(0)->nullable();
             $table->boolean('is_verified')->default(0)->comment('0 -Not Verified 1- Verified');

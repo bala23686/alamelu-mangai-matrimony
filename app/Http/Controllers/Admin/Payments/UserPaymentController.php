@@ -25,6 +25,8 @@ class UserPaymentController extends Controller
      */
     public function __invoke(UserPaymentRequest $request)
     {
+
+        // dd('ok');
         //more infomation abouts this transaction
         $payment_infos = [
             "tr_package_name"=>$request->tr_package_name,
@@ -63,6 +65,7 @@ class UserPaymentController extends Controller
         $userInfo=User::with('userBasicInfo')->where('id',(int)$request->user_id)->first();
 
 
+
         //section to send a mail to user if the they have a mail id
         $invioce!=null ?
 
@@ -70,6 +73,10 @@ class UserPaymentController extends Controller
          ->mailInvoice()
          :0;
 
+         //updating the user paid status
+         User::find($request->user_id)->update(["is_paid"=>1]);
+
+        // dd( User::find($request->user_id)->update(["is_paid"=>1]));
         return $is_processed && $invioce!=null
             ? response()->json(['message' => 'Payment Done Successfully','invoice'=>$invioce], 200)
             :response()->json(['message' => 'something went wrong'], 500);

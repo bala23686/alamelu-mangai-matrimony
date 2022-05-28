@@ -11,6 +11,7 @@ class MartialStatusSubMasterSeeder extends Seeder
     public $martial_status_list = [
         'Married',
         'Un-Married',
+        'Widow Commitment',
         'Widow',
         'Waiting for devorice',
     ];

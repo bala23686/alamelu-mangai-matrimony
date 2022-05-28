@@ -18,7 +18,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
-                    <x-user-dashboard.side-bar />
+                    @php
+                    $user=App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
+                    [$performance,$bgColor]=App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
+                @endphp
+                <x-user-dashboard.side-bar  :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
                 </div>
                 <div class="col-lg-9 col-md-12 col-12">
                     <div class="main-content">
