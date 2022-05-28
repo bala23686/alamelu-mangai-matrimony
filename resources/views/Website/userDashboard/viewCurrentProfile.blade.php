@@ -1,7 +1,5 @@
-@extends('Website.Layouts.default')
-@php
-$image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
-@endphp
+@extends('Website.layouts.default')
+
 
 @section('content')
     <style>
@@ -45,7 +43,11 @@ $image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') :
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
-                    <x-user-dashboard.side-bar />
+                    @php
+                        $user=App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
+                        [$performance,$bgColor]=App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
+                    @endphp
+                    <x-user-dashboard.side-bar  :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
                 </div>
                 <div class="col-lg-9">
                     <div class="item-details">

@@ -9,7 +9,7 @@ class EatingHabitSubMasterSeeder extends Seeder
 {
 
     public $eating_habits_list = [
-        'Vegetarian','Non-Vegetarian','Eggitarian','Vegan'
+        'Vegetarian'
     ];
     /**
      * Run the database seeds.

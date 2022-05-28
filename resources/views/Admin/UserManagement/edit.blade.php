@@ -76,8 +76,9 @@
 
             return dd + '/' + mm + '/' + yyyy;
         },
-        handelPayment()
+        handelPayment($el)
         {
+
             let data = {
                 user_id:this.SingleUserInfo.userId,
                 tr_package_name:this.packageChoosedInfo.package_name,
@@ -90,8 +91,11 @@
                 package_id:this.planChoosed,
             }
 
+
+
             axios.post('{{ route('admin.profile.purchaseNewPackage') }}', data)
                             .then(e => {
+
                                 if (e.status == 200) {
                                     let invoice_name=e.data.invoice
                                     Swal.fire({
@@ -102,12 +106,16 @@
                                         timer: 1500
                                     }).then(e => {
 
-                                        window.open('{{Url('/')}}'+'/storage/invoice/'+invoice_name);
+                                        window.open('{{Url('/')}}'+'/uploads/public/invoice/'+invoice_name);
                                         window.location.href='{{route('admin.profile.index')}}';
 
                                     })
 
                                 }
+                            })
+                            .catch(e=>{
+
+                                alert(e)
                             })
          }
 
@@ -304,7 +312,7 @@
                                                          autocomplete="off">
                                                 </div>
                                                 <div class="mt-2 float-end">
-                                                    <button x-on:click="handelPayment" x-bind:disabled="(packageChoosedInfo.package_price != paymentInfo.confrimAmount)" type="button" class="btn btn-dark w-60">
+                                                    <button x-on:click="($el)=>handelPayment($el)" x-bind:disabled="(packageChoosedInfo.package_price != paymentInfo.confrimAmount)" type="button" class="btn btn-dark w-60">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                             <rect x="7" y="9" width="14" height="10" rx="2"></rect>
@@ -344,7 +352,7 @@
                                                             <rect x="7" y="9" width="14" height="10" rx="2"></rect>
                                                             <circle cx="14" cy="14" r="2"></circle>
                                                             <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2"></path>
-                                                         </svg> Pay now
+                                                         </svg> payU
                                                     </a>
                                                 </div>
                                             </div>

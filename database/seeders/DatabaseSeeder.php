@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        User::create([
+            'username' => 'Exciteon Admin',
+            'email' => 'admin@exciteon.com',
+            'phonenumber' => '123456789',
+            'password' => Hash::make('1234'),
+            'is_admin' => 1
+        ]);
+
         $this->call(ProfileStatusSeeder::class);
         $this->call(PackageMasterSeeder::class);
         $this->call(StatusMasterSeeder::class);

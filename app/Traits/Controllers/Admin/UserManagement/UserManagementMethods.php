@@ -111,7 +111,7 @@ trait UserManagementMethods
         //end section to filter gender
 
         //final section to pagination
-        $data = $query->paginate($request->input('perpage', 10));
+        $data = $query->orderBy('id', 'DESC')->paginate($request->input('perpage', 10));
 
 
         return response(json_encode($data, 200));

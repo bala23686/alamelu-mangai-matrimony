@@ -33,14 +33,25 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-4 align-middle col-xs-offset-2">
-                {{-- <img src="{{ $userBasicInfo->image_with_path }}" alt=""> --}}
 
-                <img width="75%" 
-                {{-- @if (!empty($userBasicInfo->image_with_path)) src="{{ $userBasicInfo->image_with_path }}"
-                                                @else --}}
-                    src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png"
-                    {{-- @endif  --}}
+                    {{-- {{public_path('uploads/Users/ProfileImage').'/'.$userBasicInfo->user_profile_image}} --}}
+
+                    @if ($userBasicInfo->image_with_path!=null)
+                    <img width="75%"
+
+
+                    src="{{asset('uploads/Users/ProfileImage').'/'.$userBasicInfo->user_profile_image}}"
+
                     alt="Preview">
+                    @else
+                    <img width="75%"
+
+
+                    src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png"
+
+                    alt="Preview">
+                    @endif
+
             </div>
 
             <div class="col-xs-6">

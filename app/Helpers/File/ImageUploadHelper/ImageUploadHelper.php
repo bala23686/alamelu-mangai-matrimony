@@ -21,7 +21,7 @@ class ImageUploadHelper
 
         $imgFile->resize(500, 500);
 
-        Storage::put($path . '/' . $input['file'], $imgFile->encode());
+        Storage::disk('uploads')->put($path . '/' . $input['file'], $imgFile->encode());
 
         return $input['file'];
     }
@@ -31,7 +31,7 @@ class ImageUploadHelper
     {
 
         $fileName = "dummy" . "" . round(time() / 9999) . "" . rand(10, 500) . "." . $file->getClientOriginalExtension();
-        Storage::putFileAs($path, $file, $fileName);
+        Storage::disk('uploads')->putFileAs($path, $file, $fileName);
         return $fileName;
     }
 }

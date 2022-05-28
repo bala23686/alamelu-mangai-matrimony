@@ -10,21 +10,14 @@ class CasteMasterSeeder extends Seeder
 
 
     public $caste_master_list = [
-        ["caste_name"=>"CASTE-HINDU-1","caste_religion"=>1],
-        ["caste_name"=>"CASTE-HINDU-2","caste_religion"=>1],
-        ["caste_name"=>"CASTE-HINDU-3","caste_religion"=>1],
-        ["caste_name"=>"CASTE-HINDU-4","caste_religion"=>1],
-        ["caste_name"=>"NO CASTE BAR","caste_religion"=>1],
-        ["caste_name"=>"CASTE-CHRISTIAN-1","caste_religion"=>2],
-        ["caste_name"=>"CASTE-CHRISTIAN-2","caste_religion"=>2],
-        ["caste_name"=>"CASTE-CHRISTIAN-3","caste_religion"=>2],
-        ["caste_name"=>"CASTE-CHRISTIAN-4","caste_religion"=>2],
-        ["caste_name"=>"NO CASTE BAR","caste_religion"=>2],
-        ["caste_name"=>"CASTE-MUSLIM-1","caste_religion"=>3],
-        ["caste_name"=>"CASTE-MUSLIM-2","caste_religion"=>3],
-        ["caste_name"=>"CASTE-MUSLIM-3","caste_religion"=>3],
-        ["caste_name"=>"CASTE-MUSLIM-4","caste_religion"=>3],
-        ["caste_name"=>"NO CASTE BAR","caste_religion"=>3],
+        ["caste_name"=>"சைவபிள்ளை","caste_religion"=>1],
+        ["caste_name"=>"பிள்ளைமார்","caste_religion"=>1],
+        ["caste_name"=>"கார்காத்தார்","caste_religion"=>1],
+        ["caste_name"=>"பிராமணர்கள்","caste_religion"=>1],
+        ["caste_name"=>"ஐயர்","caste_religion"=>1],
+        ["caste_name"=>"ஐயங்கார்","caste_religion"=>1],
+        ["caste_name"=>"சைவ செட்டியார்","caste_religion"=>1],
+
     ];
     /**
      * Run the database seeds.

@@ -75,6 +75,7 @@ class PayUPaymentController extends Controller
 
             $package = PackageMaster::find($productID);
             $user = User::where('email', $userEmail)->first();
+            $user->is_paid=1;
             //more infomation abouts this transaction
             $payment_infos = [
                 "tr_package_name" => $package->package_name,
@@ -120,6 +121,9 @@ class PayUPaymentController extends Controller
                 (new InvocieMailAction($userInfo, (string)$invioce))
                 ->mailInvoice()
                 : 0;
+
+            //updating the user paid status
+            User::find($user->id)->update(["is_paid"=>1]);
 
             return redirect()
                 ->route('admin.payments.payu.payusuccess', $user->id)
