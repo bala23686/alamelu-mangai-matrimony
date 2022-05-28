@@ -21,6 +21,6 @@ class UserPhotoMaster extends Model
 
     public function getImageFullPathAttribute()
     {
-        return  Url('/') . self::IMAGE_UPLOAD_PATH . "{$this->user_photo}";
+        return  Url('/') . '/uploads'.self::IMAGE_UPLOAD_PATH . "{$this->user_photo}";
     }
 }

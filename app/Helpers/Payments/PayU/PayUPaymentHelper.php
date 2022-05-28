@@ -77,9 +77,8 @@ class PayUPaymentHelper
 
     public function sha512(): self
     {
-        // $this->transactionId = InvoiceNumberHelper::GenerateInvoiceNumber();
-        //testing
-        $this->transactionId = 'TRID3775556';
+        $this->transactionId = InvoiceNumberHelper::GenerateInvoiceNumber();
+
 
         $data = $this->key .
             "|" . $this->transactionId .

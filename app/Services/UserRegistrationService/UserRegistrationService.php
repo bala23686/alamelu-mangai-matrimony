@@ -40,6 +40,7 @@ class UserRegistrationService
         $user->email = $request->email;
         $user->password = Hash::make($request->input('password'));
         $user->user_profile_id = $user_profile_id;
+        $user->profile_status_id = 1;
         $user->save();
 
         $user_pref = new UserPreferenceInfo();

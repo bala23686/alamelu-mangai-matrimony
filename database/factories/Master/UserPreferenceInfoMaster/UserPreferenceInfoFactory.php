@@ -28,8 +28,8 @@ class UserPreferenceInfoFactory extends Factory
             "partner_job"=>rand(1,5),
             "partner_education"=>rand(1,2),
             "partner_salary"=>rand(50000,500000),
-            "partner_religion"=>rand(1,3),
-            "partner_caste"=>rand(1,12),
+            "partner_religion"=>1,
+            "partner_caste"=>rand(1,7),
             "partner_rasi"=>rand(1,20),
             "partner_country"=>rand(1,3),
 

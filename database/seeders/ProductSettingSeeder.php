@@ -14,8 +14,8 @@ class ProductSettingSeeder extends Seeder
         ["setting_name"=>"package_carry_forward","value"=>0],
         //end product settings seeder section
         //company settings seeder section
-        ["setting_name"=>"company_name","value"=>"Exciteon Tree of Techonology"],
-        ["setting_name"=>"company_slogan","value"=>"Exciteon Tree of Techonology"],
+        ["setting_name"=>"company_name","value"=>"Alamelu Mangai Matrimony"],
+        ["setting_name"=>"company_slogan","value"=>"திருமண தகவல் மையம்"],
         ["setting_name"=>"company_address","value"=>"No: 63/b 2nd main road"],
         ["setting_name"=>"company_country","value"=>"India"],
         ["setting_name"=>"company_state","value"=>"Tamil Nadu"],
@@ -46,8 +46,8 @@ class ProductSettingSeeder extends Seeder
         ["setting_name"=>"admin_nav_color","value"=>"#000000"],
         //end of color setting seeder
         //start of seo settings seeder
-        ["setting_name"=>"seo_tittle","value"=>"Exciteon"],
-        ["setting_name"=>"seo_meta_tittle","value"=>"Exciteon Tree of Techonology"],
+        ["setting_name"=>"seo_tittle","value"=>"Alamelu Mangai Matrimony"],
+        ["setting_name"=>"seo_meta_tittle","value"=>"Alamelu Mangai Matrimony"],
         ["setting_name"=>"seo_meta_description","value"=>"Web Design Trichy, SEO, Website Development Company in Trichy"],
         ["setting_name"=>"seo_meta_keywords","value"=>"Software, Digital marketing, Graphic Design, Mobile App, Logo Design"],
         //end of seo settings seeder
