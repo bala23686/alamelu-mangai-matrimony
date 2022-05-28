@@ -35,10 +35,12 @@
             <div class="col-xs-4 align-middle col-xs-offset-2">
                 {{-- <img src="{{ $userBasicInfo->image_with_path }}" alt=""> --}}
 
-                <img width="75%" {{-- @if (!empty($userBasicInfo->image_with_path)) src="{{ $userBasicInfo->image_with_path }}"
+                <img width="75%" 
+                {{-- @if (!empty($userBasicInfo->image_with_path)) src="{{ $userBasicInfo->image_with_path }}"
                                                 @else --}}
                     src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png"
-                    {{-- @endif --}} alt="Preview">
+                    {{-- @endif  --}}
+                    alt="Preview">
             </div>
 
             <div class="col-xs-6">

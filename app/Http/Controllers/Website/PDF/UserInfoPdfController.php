@@ -14,8 +14,11 @@ class UserInfoPdfController extends Controller
         $generatePDfService = new generatePdfService();
         $pdf_data = $generatePDfService->generatePdf($id);
 
-        $pdf = PDF::loadView('Website.PDF.UserProfilePdf', $pdf_data);
+        $pdf = PDF::loadView('Website.PDF.UserProfilePdf', $pdf_data)->setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true
+        ]);
 
-        return $pdf->inline();
+        return $pdf->download('invoice.pdf');
     }
 }

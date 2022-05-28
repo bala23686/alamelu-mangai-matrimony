@@ -83,6 +83,7 @@ class sideBar extends Component
                 $this->bgColor = 'secondary';
             }
         }
+
     }
 
     /**
@@ -92,6 +93,9 @@ class sideBar extends Component
      */
     public function render()
     {
-        return view('components.user-dashboard.side-bar');
+        return view('components.user-dashboard.side-bar', [
+            'user_info_demo' => $this->user_info,
+            'performance_demo' => $this->performance,
+        ]);
     }
 }

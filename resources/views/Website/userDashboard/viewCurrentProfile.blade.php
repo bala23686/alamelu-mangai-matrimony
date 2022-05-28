@@ -116,9 +116,9 @@ $image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') :
                                             <h3 class="float-start">More Information</h3>
                                             <div class="float-end">
                                                 <div x-data='userShortList'>
-                                                    {{-- <a class="btn btn-warning btn-sm"
+                                                    <a class="btn btn-warning btn-sm"
                                                         href="{{ route('generate-pdf', AUTH()->user()->id) }}"
-                                                        target="_blank"><i class="lni lni-download"></i> Get PDF</a> --}}
+                                                        target="_blank"><i class="lni lni-download"></i> Get PDF</a>
                                                 </div>
                                             </div>
 
@@ -140,45 +140,6 @@ $image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') :
                                                                     <ul>
                                                                         <div class="row">
                                                                             <div class="col-md-6">
-                                                                                {{-- @if (Auth::user()->id != $userInfo->id)
-                                                                    @if (empty($view_contact) || ($view_contact = null))
-                                                                        <div x-data='userShortList'>
-                                                                            <li class="p-2 d-flex">
-                                                                                <span class="text-primary">
-                                                                                    Mobile No :</span>
-                                                                                <span x-text="viewMobNum"
-                                                                                    class="view-num-1">**********</span
-                                                                                    x-data="userShortList">
-                                                                                &nbsp;<a @click="show = !show"
-                                                                                    :aria-expanded="show ? 'true' : 'false'"
-                                                                                    :class="{ 'active': show }"
-                                                                                    x-on:click='viewNumber'
-                                                                                    href="javascript:void(0)"
-                                                                                    class="btn btn-success btn-sm">show</a>
-                                                                            </li>
-                                                                            <li class="p-2">
-                                                                                <span class="text-primary">
-                                                                                    Alt. Mobile No :
-                                                                                </span><span
-                                                                                    x-text="viewAltNum">**********</span>
-                                                                            </li>
-                                                                        </div>
-                                                                    @else
-                                                                        <div class="contactInfo">
-                                                                            <li class="p-2 d-flex">
-                                                                                <span class="text-primary">
-                                                                                    Mobile No
-                                                                                    :</span>{{ $userInfo->phonenumber }}
-                                                                            </li>
-                                                                            <li class="p-2">
-                                                                                <span class="text-primary">
-                                                                                    Alt. Mobile No :
-                                                                                </span>{{ $userInfo->userBasicInfos->user_mobile_no }}
-                                                                            </li>
-                                                                        </div>
-                                                                    @endif
-                                                                @endif --}}
-
                                                                                 <li class="p-2">
                                                                                     <span class="text-primary">
                                                                                         Blood Group :
@@ -461,6 +422,12 @@ $image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') :
                                                                                     Details
                                                                                     :</span>
                                                                                 {{ $UserFamilyInfo->user_sibling_details ?? '-' }}
+                                                                            </li>
+                                                                            <li class="p-2"><span
+                                                                                    class="text-primary">Relative
+                                                                                    Address
+                                                                                    :</span>
+                                                                                {{ $UserFamilyInfo->paternal_uncle_address ?? '-' }}
                                                                             </li>
                                                                         </div>
                                                                     </div>
