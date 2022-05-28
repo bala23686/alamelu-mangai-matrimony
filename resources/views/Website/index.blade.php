@@ -38,7 +38,7 @@
                                 <h4 class="p-2 fw-light"><span class="fw-bolder text-primary">அலமேலு மங்கை</span> திருமண தகவல் மையம்</h4>
                                 {{-- <h5 class="text-center fw-normal">(சைவ பிள்ளை மட்டும்)</h5> --}}
                                 <hr>
-                            
+
                                 <ul class="text-dark p-0 m-0">
                                     <li class="small text-danger fw-bold">குறிப்பு :</li>
                                     <li>1. நுழைவு கட்டணம் ₹ 1000 + 18% GST.</li>
@@ -324,12 +324,14 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="content-left wow fadeInLeft" data-wow-delay=".3s">
-                            <iframe class="rounded" width="560" height="315"
-                                src="https://www.youtube.com/embed/AlpSKs_IPd0" title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                            <a href="https://www.youtube.com/watch?v=AlpSKs_IPd0" target="_blank"
-                                class="glightbox video"><i class="lni lni-play"></i></a>
+                            <span class="sub-heading">About</span>
+                            <h2 class="fw-light">
+                                {{-- About {{ $webInfo->company_name }}</h2>
+                            <p>{{ $webInfo->company_about }}</p> --}}
+                                <h3 class="fw-light">What We Do</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius mod tempor
+                                    incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                         </div>
                     </div>
                 </div>

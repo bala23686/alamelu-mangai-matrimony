@@ -17,8 +17,8 @@ class UserReligiousInfoMasterFactory extends Factory
     public function definition()
     {
         return [
-          "user_religion_id"=>rand(1,3),
-          "user_caste_id"=>rand(1,6),
+          "user_religion_id"=>1,
+          "user_caste_id"=>rand(1,7),
           "sub_caste"=>$this->faker->sentence(),
           "user_rasi_id"=>rand(1,9),
           "user_star_id"=>rand(1,25),

@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+        $this->call(ProfileStatusSeeder::class);
+
         User::create([
             'username' => 'Exciteon Admin',
             'email' => 'admin@exciteon.com',
@@ -24,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => 1
         ]);
 
-        $this->call(ProfileStatusSeeder::class);
+
         $this->call(PackageMasterSeeder::class);
         $this->call(StatusMasterSeeder::class);
 

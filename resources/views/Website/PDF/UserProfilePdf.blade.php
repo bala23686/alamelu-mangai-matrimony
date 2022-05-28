@@ -9,7 +9,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+
         }
 
         body {
@@ -82,16 +82,16 @@
 
     <div class="logo-section">
         <center>
-            <img width="25%" src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c51f.png" alt="">
+             <h4>Alamelu Mangai Matrimony</h4>
         </center>
     </div>
 
     <div class="row">
         <div class="col-6">
-            <img width="75%" {{-- @if (!empty($userBasicInfo->image_with_path)) src="{{ $userBasicInfo->image_with_path }}"
-                                            @else --}}
+            <img width="75%" @if (!empty($userBasicInfo->image_with_path)) src="{{ $userBasicInfo->image_with_path }}"
+                                            @else
                 src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png"
-                {{-- @endif --}} alt="Preview">
+                @endif alt="Preview">
         </div>
         <div class="col-6" style="margin-top: 1rem">
             <h3>{{ $userInfo->user_profile_id }}</h3>

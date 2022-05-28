@@ -26,7 +26,7 @@ class UserBasicInfoMasterFactory extends Factory
             'user_height_id' => rand(1, 37),
             'user_mother_tongue' => rand(1, 2),
             'martial_id' => rand(1, 4),
-            'user_eating_habit_id' => rand(1, 3),
+            'user_eating_habit_id' => 1,
             'user_complexion_id' => rand(1, 3),
             'is_disable' => rand(0, 1),
             'profile_basic_status' => rand(0, 1),

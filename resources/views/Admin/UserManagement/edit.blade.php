@@ -23,6 +23,7 @@
     x-data="{
         packageList: [],
         packageChoosedInfo: '',
+        packagePriceAfterGst:'',
         isLoadingPackage: true,
         planChoosed: 0,
         paymentMethod: 0,
@@ -63,6 +64,7 @@
                 return package.id == id
             })
             this.packageChoosedInfo = filtered[0]
+            {{-- this.packageChoosedInfo.package_price=packageChoosedInfo.package_price+packageChoosedInfo.package_price*18/100 --}}
 
         },
         getCurrentDate() {
@@ -75,6 +77,10 @@
             if (mm < 10) mm = '0' + mm;
 
             return dd + '/' + mm + '/' + yyyy;
+        },
+        getTotal()
+        {
+            return this.packagePriceAfterGst=Number(this.packageChoosedInfo.package_price)+Number(this.packageChoosedInfo.package_price*18/100)
         },
         handelPayment($el)
         {
@@ -224,7 +230,7 @@
                                     <th class="text-center" style="width: 1%"></th>
                                     <th>Package</th>
                                     <th class="text-center" style="width: 1%">Views</th>
-                                    <th class="text-end" style="width: 1%">Validity</th>
+                                    <th class="text-end" style="width: 1%">GST</th>
                                     <th class="text-end" style="width: 1%">Amount</th>
                                 </tr>
                             </thead>
@@ -237,17 +243,17 @@
                                     <td class="text-center" x-text="packageChoosedInfo.package_allowed_profile">
 
                                     </td>
-                                    <td class="text-end" x-text="packageChoosedInfo.package_valid_for+'-months'">
+                                    <td class="text-end" x-text="packageChoosedInfo.package_price*18/100+'%'">
                                         $1.800,00</td>
                                     <td class="text-end" x-text="packageChoosedInfo.package_price">$1.800,00</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="strong text-end">Subtotal</td>
-                                    <td class="text-end" x-text="packageChoosedInfo.package_price">$25.000,00</td>
+                                    <td class="text-end" x-text="getTotal()">$25.000,00</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Due</td>
-                                    <td class="font-weight-bold text-end" x-text="packageChoosedInfo.package_price">
+                                    <td class="font-weight-bold text-end" x-text="packagePriceAfterGst">
                                         $30.000,00</td>
                                 </tr>
                             </tbody>
@@ -302,17 +308,17 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="form-label">Total Amount</div>
-                                                    <input type="text" name="input-mask" disabled x-bind:value="packageChoosedInfo.package_price" class="form-control"
+                                                    <input type="text" name="input-mask" disabled x-bind:value="packagePriceAfterGst" class="form-control"
                                                         disabled autocomplete="off">
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="form-label">Confrim Amount</div>
-                                                    <input type="text" x-model="paymentInfo.confrimAmount" name="input-mask" x-bind:maxlength="packageChoosedInfo.package_price.length" class="form-control"
-                                                    x-bind:class="(packageChoosedInfo.package_price != paymentInfo.confrimAmount) ? 'is-invalid is-invalid-lite' : ''"
+                                                    <input type="text" x-model="paymentInfo.confrimAmount" name="input-mask" x-bind:maxlength="packagePriceAfterGst.length" class="form-control"
+                                                    x-bind:class="(packagePriceAfterGst != paymentInfo.confrimAmount) ? 'is-invalid is-invalid-lite' : ''"
                                                          autocomplete="off">
                                                 </div>
                                                 <div class="mt-2 float-end">
-                                                    <button x-on:click="($el)=>handelPayment($el)" x-bind:disabled="(packageChoosedInfo.package_price != paymentInfo.confrimAmount)" type="button" class="btn btn-dark w-60">
+                                                    <button x-on:click="($el)=>handelPayment($el)" x-bind:disabled="(packagePriceAfterGst != paymentInfo.confrimAmount)" type="button" class="btn btn-dark w-60">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                             <rect x="7" y="9" width="14" height="10" rx="2"></rect>
@@ -336,17 +342,17 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="form-label">Total Amount</div>
-                                                    <input type="text" name="input-mask" disabled x-bind:value="packageChoosedInfo.package_price" class="form-control"
+                                                    <input type="text" name="input-mask" disabled x-bind:value="packagePriceAfterGst" class="form-control"
                                                         disabled autocomplete="off">
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="form-label">Confrim Amount</div>
                                                     <input type="text" x-model="paymentInfo.confrimAmount" name="input-mask" x-bind:maxlength="packageChoosedInfo.package_price.length" class="form-control"
-                                                    x-bind:class="(packageChoosedInfo.package_price != paymentInfo.confrimAmount) ? 'is-invalid is-invalid-lite' : ''"
+                                                    x-bind:class="(packagePriceAfterGst != paymentInfo.confrimAmount) ? 'is-invalid is-invalid-lite' : ''"
                                                          autocomplete="off">
                                                 </div>
                                                 <div class="mt-2 float-end">
-                                                    <a x-bind:href="`{{route('admin.payments.payu',$singleUserInfo->id)}}?amount=${packageChoosedInfo.package_price}&&packageId=${planChoosed}`"  x-bind:disabled="(packageChoosedInfo.package_price != paymentInfo.confrimAmount)" type="button" class="btn btn-dark w-60">
+                                                    <a x-bind:href="`{{route('admin.payments.payu',$singleUserInfo->id)}}?amount=${packagePriceAfterGst}&&packageId=${planChoosed}`"  x-bind:disabled="(packagePriceAfterGst != paymentInfo.confrimAmount)" type="button" class="btn btn-dark w-60">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                             <rect x="7" y="9" width="14" height="10" rx="2"></rect>
