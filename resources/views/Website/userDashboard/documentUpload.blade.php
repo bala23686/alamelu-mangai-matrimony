@@ -126,11 +126,9 @@
             //upload Medical Certificate
             $('#medicUpload').on('click', (e) => {
                 let valid = false;
-
-
-                if ($('#medicUpload')[0].files.length === 0) {
+                if ($('#medicInput')[0].files.length === 0) {
                     alert("Attachment Required");
-                    $('#upload').focus();
+                    $('#medicUpload').focus();
 
                     valid = true;
                 } else {
@@ -163,7 +161,16 @@
             });
             //upload 10th  Certificate
             $('#tenthUpload').on('click', (e) => {
-                e.preventDefault();
+                let valid = false;
+                if ($('#tenthInput')[0].files.length === 0) {
+                    alert("Attachment Required");
+                    $('#tenthUpload').focus();
+
+                    valid = true;
+                } else {
+                    valid = false;
+                }
+
                 var ofile = document.getElementById('tenthInput').files[0];
                 var imgData = new FormData();
                 imgData.append("tenth_certificate", ofile);
@@ -172,23 +179,36 @@
                 $.each(tenthUploadForm, function(i, field) {
                     imgData.append(field.name, field.value);
                 });
-                $.ajax({
-                    url: URL,
-                    type: "POST",
-                    data: imgData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data, textStatus, jqXHR) {
-                        toastr.success(data.message);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        toastr.error(errorThrown);
-                    }
-                });
+                if (valid) {
+                    $.ajax({
+                        url: URL,
+                        type: "POST",
+                        data: imgData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data, textStatus, jqXHR) {
+                            toastr.success(data.message);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            toastr.error(errorThrown);
+                        }
+                    });
+                }
+
+                e.preventDefault();
             });
             //upload 12th  Certificate
             $('#twelthUpload').on('click', (e) => {
-                e.preventDefault();
+                let valid = false;
+                if ($('#twelthInput')[0].files.length === 0) {
+                    alert("Attachment Required");
+                    $('#twelthUpload').focus();
+
+                    valid = true;
+                } else {
+                    valid = false;
+                }
+
                 var ofile = document.getElementById('twelthInput').files[0];
                 var imgData = new FormData();
                 imgData.append("twelth_certificate", ofile);
@@ -197,23 +217,37 @@
                 $.each(twelthUploadForm, function(i, field) {
                     imgData.append(field.name, field.value);
                 });
-                $.ajax({
-                    url: URL,
-                    type: "POST",
-                    data: imgData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data, textStatus, jqXHR) {
-                        toastr.success(data.message);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        toastr.error(errorThrown);
-                    }
-                });
+                if (valid) {
+                    $.ajax({
+                        url: URL,
+                        type: "POST",
+                        data: imgData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data, textStatus, jqXHR) {
+                            toastr.success(data.message);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            toastr.error(errorThrown);
+                        }
+                    });
+                }
+
+                e.preventDefault();
+
             });
             //upload Transfer Certificate
             $('#tcUpload').on('click', (e) => {
-                e.preventDefault();
+                let valid = false;
+                if ($('#tenthInput')[0].files.length === 0) {
+                    alert("Attachment Required");
+                    $('#tenthUpload').focus();
+
+                    valid = true;
+                } else {
+                    valid = false;
+                }
+
                 var ofile = document.getElementById('tcInput').files[0];
                 var imgData = new FormData();
                 imgData.append("clg_tc", ofile);
@@ -222,19 +256,24 @@
                 $.each(tcUploadForm, function(i, field) {
                     imgData.append(field.name, field.value);
                 });
-                $.ajax({
-                    url: URL,
-                    type: "POST",
-                    data: imgData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data, textStatus, jqXHR) {
-                        toastr.success(data.message);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        toastr.error(errorThrown);
-                    }
-                });
+                if (valid) {
+                    $.ajax({
+                        url: URL,
+                        type: "POST",
+                        data: imgData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data, textStatus, jqXHR) {
+                            toastr.success(data.message);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            toastr.error(errorThrown);
+                        }
+                    });
+                }
+
+                e.preventDefault();
+
             });
 
 
