@@ -91,7 +91,7 @@ class PayUController extends Controller
             //getting the last transaction
             $transaction_info = UserTransaction::where('user_id', $user->id)
                 ->orderBy('tr_id', 'DESC')->first();
-            dd($transaction_info);
+            // dd($transaction_info);
             //section to generating invoice & mailing to party
             $invoice = (new InvoiceAction($transaction_info->tr_id))
                 ->generateInvoice();
