@@ -29,15 +29,14 @@ class PayUController extends Controller
     {
         // dd($request->amount);
         $payment_infomation = PayUPaymentHelper::initialize();
-
-        $payment_infomation->toUser($id, $request->amount)
+        $price = $request->amount;
+        $gst = ($price * 18) / 100;
+        $total = $price + $gst;
+        $payment_infomation->toUser($id, $total)
             ->package($request->packageId)
             ->sha512()
             ->get();
-
-
-
-        return view('Website.Payment.checkout', compact('payment_infomation'));
+        return view('Website.Payment.checkout', compact(['payment_infomation', 'gst', 'price']));
     }
     public function success(Request $request)
     {
@@ -111,7 +110,7 @@ class PayUController extends Controller
 
             return redirect()
                 ->route('user.payments.payU.paymentDone', $user->id)
-                ->with('pay-u-payment-success', $invoice);
+                ->with('pay-u-payment-success', $invoice, $transaction_info);
         }
     }
     public function payusuccess()

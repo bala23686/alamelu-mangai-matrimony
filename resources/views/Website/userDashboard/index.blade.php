@@ -143,9 +143,24 @@
                                             <li class="list-group-item py-2">
                                                 <i class="las la-check text-success mr-2"></i>
                                                 Package Name
-                                                :<strong>{{ $package_info->PackageInfo->package_name }}</strong>
+                                                :<strong>&nbsp;{{ $package_info->PackageInfo->package_name }}</strong>
                                             </li>
                                             <li class="list-group-item py-2">
+                                                <i class="las la-check text-success mr-2"></i>
+                                                Package Price
+                                                :<strong>&nbsp;&#8377;{{ $package_info->PackageInfo->package_price + ($package_info->PackageInfo->package_price * 18) / 100 }}</strong>
+                                                (includes 18%
+                                                of GST)
+
+                                            </li>
+                                            {{-- <li class="list-group-item py-2">
+                                                <i class="las la-check text-success mr-2"></i>
+                                                Package Validity
+                                                :<strong>&nbsp;{{ \Carbon\Carbon::parse($package_info->expires_on)->diffInDays() }}
+                                                    days remaining</strong>
+                                            </li> --}}
+
+                                            {{-- <li class="list-group-item py-2">
                                                 <i class="las la-check text-success mr-2"></i>
                                                 Express Interests
                                                 :<strong>{{ \App\Helpers\Utility\PackageHelper::get_remaining_package_value($user->id, 'interest_remaining') }}</strong>
@@ -159,22 +174,22 @@
                                                 <i class="las la-check text-success mr-2"></i>
                                                 Available Phone No. Counts
                                                 :<strong>{{ \App\Helpers\Utility\PackageHelper::get_remaining_package_value($user->id, 'user_views_remaining') }}</strong>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                         <div class="row">
-                                            <div class='col-6'>
+                                            <div class='col-6 justify-center'>
                                                 <h6 class="fs-18 mb-3">
                                                     Status:
                                                     @if (\App\Helpers\Utility\PackageHelper::package_validity($user->id))
                                                         <span class="text-success">Active</span>
                                                     @else
-                                                        <span class="text-danger">Expired</span>
+                                                        <span class="text-danger">In-Active</span>
                                                     @endif
                                                 </h6>
                                             </div>
-                                            <div class='col-6'><a href="{{ route('purchaseNew.show', $user->id) }}"
+                                            {{-- <div class='col-6'><a href="{{ route('purchaseNew.show', $user->id) }}"
                                                     class="btn btn-success d-inline-block float-end">Upgrade Package</a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

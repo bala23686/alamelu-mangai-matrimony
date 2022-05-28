@@ -70,7 +70,7 @@
                 </div>
                 <div class="content">
                     <h1>Payment Success !</h1>
-                    <h3>Login and Access Dashboard</h3>
+                    <h3>Successfully Purchased Our {{ $transaction_info->tr_package_name }}</h3>
                     <a href="{{ route('user.login') }}">Login</a>
                 </div>
 
