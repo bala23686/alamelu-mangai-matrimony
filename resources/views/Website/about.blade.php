@@ -32,9 +32,7 @@
                         <span class="sub-heading">About</span>
                         <h2>
                             About Our Company</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius mod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi aliquip ex ea commodo consequat.</p>
+                        {{-- <p> {!! $about->company_about !!}</p> --}}
                         <h3>What We Do</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius mod tempor incididunt
                             ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>

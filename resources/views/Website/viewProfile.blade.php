@@ -142,10 +142,14 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-12 mb-3">
                         <div class="single-block shadow"
-                            @if (empty($view_contact) || ($view_contact = null)) x-data="{ show: false }" @else x-data="{ show: true }" @endif>
+                            @if (empty($view_contact) || ($view_contact = null)) x-data="{ show: false }"
+                             @else x-data="{ show: true }" @endif>
                             <h3 class="float-start">More Information</h3>
                             <div class="float-end">
                                 <div x-data='userShortList'>
+                                    <a class="btn btn-warning btn-sm" href="{{ route('generate-pdf', $userInfo->id) }}"
+                                        target="_blank">
+                                        <i class="lni lni-download"></i> Get PDF</a>
                                     {{-- @if (empty($view_contact) || ($view_contact = null))
                                         <button x-show="show" id='getPdf' class="btn btn-warning btn-sm" target="_blank"><i
                                                 class="lni lni-download"></i>
