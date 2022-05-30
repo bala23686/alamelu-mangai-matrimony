@@ -36,6 +36,7 @@
                 </div>
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="main-content">
+
                         <body class="bg-light">
                             <div class="container">
                                 <main>
@@ -123,7 +124,8 @@
 
                                                     </div>
                                                     <hr class="my-4">
-                                                    <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to
+                                                    <button class="w-100 btn btn-primary btn-lg" style="margin-bottom: 10px"
+                                                        type="submit">Continue to
                                                         checkout</button>
                                             </form>
                                         </div>
