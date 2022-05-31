@@ -21,19 +21,22 @@ class ForgetPasswordController extends Controller
                 User::where('email', $request->email)->update(['token' => $token]);
             }
             if (empty($userData)) {
-                return redirect()->back()->with('warning', 'Email does not exist !');
+                toastr()->error('Email does not exist !');
+                return redirect()->back();
             } else {
                 //mail with link
                 Mail::to($request->email)->send(new UserForgotPassword($userData, $token));
-                return redirect()->back()->with('message', 'Password reset Mail Sent Successfully !');
+                toastr()->success('Password reset Mail Sent Successfully !');
+                return redirect()->route('Home');
             }
         } else {
-            return view('Website.Auth.passwordreset')->with('warning', 'Something Went Wrong');
+            toastr()->error('Something Went Wrong!');
+            return view('Website.Auth.passwordreset');
         }
     }
 
     #Password Reset
-    public function userpassResetUpdate(Request $request, $token = null)
+    public function userPassResetUpdate(Request $request, $token = null)
     {
         if ($token) {
             if ($request->isMethod('post')) {
@@ -43,17 +46,22 @@ class ForgetPasswordController extends Controller
                     'new_confirm_password' => 'required|min:8|same:new_password',
                 ]);
 
-                $userCredentialupdate = User::where('token', $token)->first();
-                if ($userCredentialupdate) {
-                    $userCredentialupdate->token = 'NULL';
-                    $userCredentialupdate->password = Hash::make($request->new_confirm_password);
-                    $userCredentialupdate->save();
-                    return redirect()->route('/')->with('message', 'Your Password Reset Successfully! Now you can Login');
+                $userCredentialUpdate = User::where('token', $token)->first();
+
+                if ($userCredentialUpdate) {
+                    $userCredentialUpdate->token = 'NULL';
+                    $userCredentialUpdate->password = Hash::make($request->new_confirm_password);
+                    $userCredentialUpdate->save();
+                    toastr()->success('Your Password Reset Successfully! Now you can Login');
+                    return redirect()->route('Home');
                 } else {
-                    return redirect()->route('/')->with('error', 'Something went wrong!');
+                    toastr()->error('Something went wrong! Try Again!');
+                    return redirect()->route('Home');
                 }
             } else {
-                return view('Website.Auth.passwordresetupdate', compact('token'))->with('info', 'Please Try Again');
+                toastr()->error('Try Again!');
+
+                return view('Website.Auth.passwordresetupdate', compact('token'));
             }
         }
     }

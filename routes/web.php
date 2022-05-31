@@ -175,7 +175,7 @@ Route::group(['middleware' => ['is_paid', 'is_member'], 'prefix' => 'user-panel'
 
 // FORGET PASSWORD ROUTES
 Route::any('/user-password-reset', [ForgetPasswordController::class, 'userpasswordReset'])->name('userpassword.reset');
-Route::any('/user/password/reset/update/{token}', [ForgetPasswordController::class, 'userpassResetUpdate'])->name('user.resetupdate');
+Route::any('/user/password/reset/update/{token}', [ForgetPasswordController::class, 'userPassResetUpdate'])->name('user.resetupdate');
 
 /* ===================== ROUTES FOR SEARCH ========================== */
 
