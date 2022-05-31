@@ -109,6 +109,11 @@ $image_src = $user->userBasicInfo->gender_id == 1 ? asset('assets/Website/male.p
                     Transaction
                     History</a>
             </li>
+            <li>
+                <a class="{{ Request::is('*/userTransaction/*') ? 'active' : '' }}"
+                    href="{{ route('account.index') }}"><i class="lni lni-user"></i>
+                    Manage Account</a>
+            </li>
             {{-- <div class="button text-center">
                 <a class="btn" href="{{ route('user.logout') }}">LOGOUT</a>
             </div> --}}

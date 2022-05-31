@@ -40,6 +40,7 @@ use App\Http\Controllers\Website\PrivacyPolicy\PrivacyPolicyController;
 use App\Http\Controllers\Website\RefundPolicy\RefundPolicyController;
 use App\Http\Controllers\Website\TermsAndConditions\TermsController;
 use App\Http\Controllers\Website\UserDashboard\DocumentUploadController;
+use App\Http\Controllers\Website\UserDashboard\ManageAccoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -171,6 +172,8 @@ Route::group(['middleware' => ['is_paid', 'is_member'], 'prefix' => 'user-panel'
     Route::post('/upload-Tenth-Certificate/{id}', [DocumentUploadController::class, 'uploadTenthCertificate'])->name('tenth.certificate');
     Route::post('/upload-Twelth-Certificate/{id}', [DocumentUploadController::class, 'uploadTwelthCertificate'])->name('twelth.certificate');
     Route::post('/upload-TC-Certificate/{id}', [DocumentUploadController::class, 'uploadCollegeTc'])->name('tc.certificate');
+    //Manage Account Section
+    Route::resource('/manage-account-setting', ManageAccoutController::class, ['names' => 'account']);
 });
 
 // FORGET PASSWORD ROUTES
