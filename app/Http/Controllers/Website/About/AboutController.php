@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website\About;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 
 class AboutController extends Controller
 {
@@ -14,7 +15,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('Website.about');
+        $data = Helper::get_settings('company_about');
+        return view('Website.about', compact('data'));
     }
 
     /**
