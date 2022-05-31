@@ -16,3 +16,4 @@ yarn-error.log
 /.composer.lock
 env.txt
 *.zip
+*.pdf

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Website\About;
+namespace App\Http\Controllers\Website\UserDashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Helpers\Helper;
 
-class AboutController extends Controller
+class ManageAccoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $data = Helper::get_settings('company_about');
-        return view('Website.about', compact('data'));
+        return view('Website.userDashboard.manageAccount');
     }
 
     /**

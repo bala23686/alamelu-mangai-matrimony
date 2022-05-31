@@ -32,10 +32,9 @@
                         <span class="sub-heading">About</span>
                         <h2>
                             About Our Company</h2>
-                        {{-- <p> {!! $about->company_about !!}</p> --}}
+                        <p> {!! $data !!}</p>
                         <h3>What We Do</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius mod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <p> {!! $data !!}</p>
 
                     </div>
                 </div>

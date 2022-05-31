@@ -41,9 +41,9 @@ class WelcomeEmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('Welcome to Exciteon')
+            ->line('Welcome to Alamelu Mangai Matrimony')
             ->action('User Dashboard', url('/'))
-            ->line('Thank you for using our application!');
+            ->line('Thank you for registering on our website!');
     }
 
     /**

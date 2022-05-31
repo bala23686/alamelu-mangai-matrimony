@@ -40,6 +40,7 @@ use App\Http\Controllers\Website\PrivacyPolicy\PrivacyPolicyController;
 use App\Http\Controllers\Website\RefundPolicy\RefundPolicyController;
 use App\Http\Controllers\Website\TermsAndConditions\TermsController;
 use App\Http\Controllers\Website\UserDashboard\DocumentUploadController;
+use App\Http\Controllers\Website\UserDashboard\ManageAccoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -171,11 +172,13 @@ Route::group(['middleware' => ['is_paid', 'is_member'], 'prefix' => 'user-panel'
     Route::post('/upload-Tenth-Certificate/{id}', [DocumentUploadController::class, 'uploadTenthCertificate'])->name('tenth.certificate');
     Route::post('/upload-Twelth-Certificate/{id}', [DocumentUploadController::class, 'uploadTwelthCertificate'])->name('twelth.certificate');
     Route::post('/upload-TC-Certificate/{id}', [DocumentUploadController::class, 'uploadCollegeTc'])->name('tc.certificate');
+    //Manage Account Section
+    Route::resource('/manage-account-setting', ManageAccoutController::class, ['names' => 'account']);
 });
 
 // FORGET PASSWORD ROUTES
 Route::any('/user-password-reset', [ForgetPasswordController::class, 'userpasswordReset'])->name('userpassword.reset');
-Route::any('/user/password/reset/update/{token}', [ForgetPasswordController::class, 'userpassResetUpdate'])->name('user.resetupdate');
+Route::any('/user/password/reset/update/{token}', [ForgetPasswordController::class, 'userPassResetUpdate'])->name('user.resetupdate');
 
 /* ===================== ROUTES FOR SEARCH ========================== */
 

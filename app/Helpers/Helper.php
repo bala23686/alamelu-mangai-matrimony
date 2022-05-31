@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\ProductSetting\ProductSetting;
+
 class Helper
 {
 
@@ -26,5 +28,17 @@ class Helper
             $zeros .= "0";
         }
         return $prefix . date('my') . $zeros . $last_number;
+    }
+    public static function get_settings($name)
+    {
+        $config = null;
+        $data = ProductSetting::where(['setting_name' => $name])->first();
+        if (isset($data)) {
+            $config = json_decode($data['value'], true);
+            if (is_null($config)) {
+                $config = $data['value'];
+            }
+        }
+        return $config;
     }
 }
