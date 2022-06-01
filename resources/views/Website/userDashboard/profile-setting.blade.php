@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ route('Home') }}">Home</a></li>
                         <li>Contact</li>
                     </ul>
                 </div>
@@ -20,10 +20,10 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
                     @php
-                        $user=App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
-                        [$performance,$bgColor]=App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
+                        $user = App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
+                        [$performance, $bgColor] = App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
                     @endphp
-                    <x-user-dashboard.side-bar  :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
+                    <x-user-dashboard.side-bar :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
                 </div>
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="main-content">
