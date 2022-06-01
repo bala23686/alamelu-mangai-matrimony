@@ -24,14 +24,13 @@ html {
 } */
 
 body {
-    font-family: 'Mukta Malar', sans-serif;
+    font-family: "Mukta Malar", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: rgb(116, 116, 116);
     overflow-x: hidden;
     font-size: 1rem;
 }
-
 
 p {
     margin: 0;
@@ -3833,6 +3832,13 @@ blockquote .shape {
     transform: translateY(-50%);
 }
 .newsletter .title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 50px;
+    color: #fff;
+    line-height: 40px;
+}
+.newsletter .title h3 {
     font-size: 32px;
     font-weight: 700;
     line-height: 50px;

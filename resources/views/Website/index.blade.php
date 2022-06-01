@@ -574,52 +574,57 @@
         </section>
         <!-- ACHIVEMENT SECTION END -->
 
-        <!-- REGISTER DEMO SECTION START-->
-        <section class="how-works bg-white mt-5 mb-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title">
-                            <h2 class="wow fadeInUp fw-light" data-wow-delay=".4s">Register In 3 Steps</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">Lorem ipsum dolor sit amet consectetur
-                                adipisicing
-                                elit. Veritatis voluptatum perferendis soluta. Quas, nostrum quaerat esse nulla expedita
-                                rem? Ad.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-12">
-
-                        <div class="single-work wow fadeInUp" data-wow-delay=".2s">
-                            <span class="serial"><i class="lni lni-user"></i></span>
-                            <h3 class="fw-light">Create Account</h3>
-                            <p>Lorem ipsum dolor sit amet constur adipisicing sed do eiusmod tempor incididunt labore.</p>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-
-                        <div class="single-work wow fadeInUp" data-wow-delay=".4s">
-                            <span class="serial"><i class="lni lni-money-location"></i></span>
-                            <h3 class="fw-light">Payment</h3>
-                            <p>Lorem ipsum dolor sit amet constur adipisicing sed do eiusmod tempor incididunt labore.</p>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-
-                        <div class="single-work wow fadeInUp" data-wow-delay=".6s">
-                            <span class="serial"><i class="lni lni-heart"></i></span>
-                            <h3 class="fw-light">Find Your Perfect Pair</h3>
-                            <p>Lorem ipsum dolor sit amet constur adipisicing sed do eiusmod tempor incididunt labore.</p>
-                        </div>
-
+       <!-- REGISTER DEMO SECTION START-->
+    <section class="how-works bg-white mt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2 class="wow fadeInUp fw-light" data-wow-delay=".4s">Register In 3 Steps</h2>
+                        {{-- <p class="wow fadeInUp" data-wow-delay=".6s">Lorem ipsum dolor sit amet consectetur
+                            adipisicing
+                            elit. Veritatis voluptatum perferendis soluta. Quas, nostrum quaerat esse nulla expedita
+                            rem? Ad.</p> --}}
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- REGISTER DEMO SECTION END-->
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+
+                    <div class="single-work wow fadeInUp" data-wow-delay=".2s">
+                        <span class="serial"><i class="lni lni-user"></i></span>
+                        <h3 class="fw-light">Create Account</h3>
+                        <p>To create a profile on the Alamelu Mangai Matrimony webiste, the users need to register by
+                            filling a simple form.</p>
+                        <br>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+
+                    <div class="single-work wow fadeInUp" data-wow-delay=".4s">
+                        <span class="serial"><i class="lni lni-rupee"></i></span>
+                        <h3 class="fw-light">Payment</h3>
+                        <p>On our website,the registration fee is &#8377;1000.After registration, the user put up profile.
+                        </p>
+                        <br>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+
+                    <div class="single-work wow fadeInUp" data-wow-delay=".6s">
+                        <span class="serial"><i class="lni lni-heart"></i></span>
+                        <h3 class="fw-light">Find Your Perfect Pair</h3>
+                        <p>We recommend matches as per your expectations, helping you connect with prospects and assisting
+                            you to find your perfect match.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- REGISTER DEMO SECTION END-->
 
         <!-- TESTIMONIALS SECTION START-->
         <section class="testimonials section">

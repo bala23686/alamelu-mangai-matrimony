@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url()->previous() }}">Home</a></li>
                         <li>Profile Details</li>
                     </ul>
                 </div>

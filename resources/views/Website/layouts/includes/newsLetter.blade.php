@@ -5,8 +5,8 @@
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="title">
                         <i class="lni lni-alarm"></i>
-                        <h2 class="fw-light">Keep in touch with us</h2>
-                        <p>Let us deliver every information regarding our latest events and news straight to you</p>
+                        <h3 class="fw-light">Don't hesitate, communicate with us for better help.</h3>
+                        <p>Our team is available at 4PM - 9PM</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
