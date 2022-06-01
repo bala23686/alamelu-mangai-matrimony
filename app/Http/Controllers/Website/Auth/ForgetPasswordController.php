@@ -65,4 +65,26 @@ class ForgetPasswordController extends Controller
             }
         }
     }
+    public function dashboardReset(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $userData = User::select('id', 'email')->where('email', '=', $request->email)->first();
+            if ($userData) {
+                $token = md5($request->email);
+                User::where('email', $request->email)->update(['token' => $token]);
+            }
+            if (empty($userData)) {
+                toastr()->error('Email does not exist !');
+                return redirect()->back();
+            } else {
+                //mail with link
+                Mail::to($request->email)->send(new UserForgotPassword($userData, $token));
+                toastr()->success('Password reset Mail Sent Successfully !');
+                return redirect()->back();
+            }
+        } else {
+            toastr()->error('Something Went Wrong!');
+            return back();
+        }
+    }
 }
