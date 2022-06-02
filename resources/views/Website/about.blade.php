@@ -20,9 +20,8 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="content-left wow fadeInLeft" data-wow-delay=".3s">
-                        <img src="assets/images/about/choose-left.jpg" alt="#">
-                        <a href="https://www.youtube.com/watch?v=r44RKWyfcFw&amp;fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM"
-                            class="glightbox video"><i class="lni lni-play"></i></a>
+                        <img src="{{ asset('web/images/about-us.jpg') }}" alt="#">
+
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-12">
@@ -146,82 +145,88 @@
     <!-- REGISTER DEMO SECTION END-->
 
 
+    <!-- TESTIMONIALS SECTION START-->
     <section class="testimonials section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title align-center gray-bg">
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s">What People Say</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
-                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <h2 class="wow fadeInUp fw-light" data-wow-delay=".4s" aria-hidden="true">What People Say</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">Read Our Happy Stories</p>
                     </div>
                 </div>
             </div>
             <div class="row testimonial-slider">
                 <div class="col-lg-4 col-md-6 col-12">
 
-                    <div class="single-testimonial">
+                    <div class="single-testimonial rounded shadow">
                         <div class="quote-icon">
                             <i class="lni lni-quotation"></i>
                         </div>
                         <div class="author">
-                            <img src="assets/images/testimonial/testi1.jpg" alt="#">
+                            <img src=" {{ asset('web/images/testimonial_img/testimonial-1.jpg') }} " alt="#">
                             <h4 class="name">
-                                Jane Anderson
-                                <span class="deg">Founder & CEO</span>
+                                Hari Krishnan & Gayathiri
+
                             </h4>
                         </div>
                         <div class="text">
-                            <p>"It’s amazing how much easier it has been to meet new people and create instant
-                                connections. I have the exact same personality, the only thing that has changed is my
-                                mindset and a few behaviors."</p>
+                            <p>"My whole family thanks Alamelu Mangai Matrimony for helping find a good life partner for me.
+                                Without you this would not have been possible."</p>
                         </div>
                     </div>
 
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
 
-                    <div class="single-testimonial">
+                    <div class="single-testimonial rounded shadow">
                         <div class="quote-icon">
                             <i class="lni lni-quotation"></i>
                         </div>
                         <div class="author">
-                            <img src="assets/images/testimonial/testi2.jpg" alt="#">
+                            <img src="{{ asset('web/images/testimonial_img/testimonial-2.jpg') }}" alt="#">
                             <h4 class="name">
-                                Devid Samuyel
-                                <span class="deg">Web Developer</span>
+                                Sudharshan & Abhirami
+
                             </h4>
                         </div>
                         <div class="text">
-                            <p>"It’s amazing how much easier it has been to meet new people and create instant
-                                connections. I have the exact same personality, the only thing that has changed is my
-                                mindset and a few behaviors."</p>
+                            <p>"Thanks a lot for the whole team of Alamelu Mangai Matrimony for helping to find my soul
+                                mate."</p>
+                            <br>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-testimonial">
+                    <div class="single-testimonial rounded shadow">
                         <div class="quote-icon">
                             <i class="lni lni-quotation"></i>
                         </div>
                         <div class="author">
-                            <img src="assets/images/testimonial/testi3.jpg" alt="#">
+                            <img src="{{ asset('web/images/testimonial_img/testimonial-3.jpg') }}" alt="#">
                             <h4 class="name">
-                                Jully Sulli
-                                <span class="deg">Ui/Ux Designer</span>
+                                Adhitya & Nandhini
+
                             </h4>
                         </div>
                         <div class="text">
-                            <p>"It’s amazing how much easier it has been to meet new people and create instant
-                                connections. I have the exact same personality, the only thing that has changed is my
-                                mindset and a few behaviors."</p>
+                            <p>"After searching everywhere, we came to Alamelu Mangai Matrimony and was impressed on getting
+                                a good match within two months."</p>
                         </div>
                     </div>
-
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title align-center gray-bg">
+                        <h2 class="wow fadeInUp fw-light" data-wow-delay=".4s" aria-hidden="true">Now it is your turn to be
+                            happily married </h2>
+                        <a class="btn btn-primary btn-lg" href="{{ route('Home') }}"><i class="lni lni-user"></i> Register
+                            Now</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- TESTIMONIALS SECTION END -->
 @stop
