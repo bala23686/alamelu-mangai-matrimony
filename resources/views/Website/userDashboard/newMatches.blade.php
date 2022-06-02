@@ -216,10 +216,10 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
                     @php
-                    $user=App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
-                    [$performance,$bgColor]=App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
-                @endphp
-                <x-user-dashboard.side-bar  :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
+                        $user = App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
+                        [$performance, $bgColor] = App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
+                    @endphp
+                    <x-user-dashboard.side-bar :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
                 </div>
 
                 <div class="col-lg-9 col-md-8 col-12">
@@ -236,7 +236,7 @@
                                             if ($profile->userBasicInfos->age >= $current_user_preference->partner_age_from && $profile->userBasicInfos->age <= $current_user_preference->partner_age_to) {
                                                 $match_count++;
                                             }
-                                            if ($profile->userBasicInfos->user_height_id >= $current_user_preference->partner_height_from && $profile->userBasicInfos->user_height_id <= $current_user_preference->partner_height_to) {
+                                            if ($profile->userBasicInfos->user_height_id >= $current_user_preference->partner_height_from || $profile->userBasicInfos->user_height_id <= $current_user_preference->partner_height_to) {
                                                 $match_count++;
                                             }
                                             if ($profile->userBasicInfos->martial_id == $current_user_preference->partner_martial_status) {
@@ -268,91 +268,24 @@
                                             }
                                         }
                                     @endphp
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="card h-100 shadow">
                                             <div class="text-center mt-2">
-                                                <img src="{{ $profile->userBasicInfos->imageWithPath ? $profile->userBasicInfos->imageWithPath : $image_src }}"
+                                                <img src="{{ $profile->userBasicInfos->imageWithPath ? $profile->userBasicInfos->imageWithPath : '' }}"
                                                     class="img-fluid rounded w-50 text-center">
                                                 <img src="{{ asset('assets/Website/male.png') }}"
                                                     class="img-fluid rounded w-50 text-center">
                                             </div>
-                                            <div class="card-body p-0">
-                                                <h5 class="card-title fw-normal text-primary text-center">
-                                                    {{ $profile->user_profile_id }}
-                                                </h5>
-                                                <div class="bg-success text-white h4">
-                                                    {{ $match_count }} / 11
-                                                </div>
-                                                <div style="padding-left: 10%;">
-                                                    <span class="card-text"><b>Name :</b>
-                                                        {{ $profile->userBasicInfos->user_full_name ?? '-' }}</span><br>
-                                                    <span class="card-text"><b>Age :</b>
-                                                        {{ $profile->userBasicInfos->age ?? '' }}
-                                                        yrs</span><br>
-                                                    <span class="card-text"><b>Gender :</b>
-                                                        {{ $profile->userBasicInfos->Gender->gender_name ?? '' }}
-                                                    </span><br>
-
-                                                    <span class="card-text"><b>Status :</b>
-                                                        {{ $profile->userBasicInfos->MartialStatus->martial_status_name ?? '' }}
-                                                    </span><br>
-                                                </div>
-                                                <div class="text-center mt-3">
-                                                    <a class="btn btn-primary btn-sm"
-                                                        href="{{ route('viewprofile.show', $profile->id) }}"
-                                                        target="_blank"><span>View Profile</span></a>
-                                                </div>
-                                            </div>
-                                            @php
-                                                $match_count = 0;
-                                                if ($user_has_preference) {
-                                                    if ($profile->userBasicInfos->age >= $current_user_preference->partner_age_from && $profile->userBasicInfos->age <= $current_user_preference->partner_age_to) {
-                                                        $match_count++;
-                                                    }
-                                                    if ($profile->userBasicInfos->user_height_id >= $current_user_preference->partner_height_from && $profile->userBasicInfos->user_height_id <= $current_user_preference->partner_height_to) {
-                                                        $match_count++;
-                                                    }
-                                                    if ($profile->userBasicInfos->martial_id == $current_user_preference->partner_martial_status) {
-                                                        $match_count++;
-                                                    }
-                                                    if (array_key_exists($profile->userBasicInfos->user_complexion_id, $current_user_preference->partner_complexion->pluck('id'))) {
-                                                        $match_count++;
-                                                    }
-                                                    if (array_key_exists($profile->userBasicInfos->user_mother_tongue, $current_user_preference->partner_mother_tongue->pluck('id'))) {
-                                                        $match_count++;
-                                                    }
-                                                    if (array_key_exists($profile->UserProfessionInfo->user_job_id, $current_user_preference->partner_job->pluck('id'))) {
-                                                        $match_count++;
-                                                    }
-                                                    if (substr_compare($profile->UserProfessionInfo->getRawOriginal('user_education_id'), $current_user_preference->getRawOriginal('partner_education'), 0) == 0) {
-                                                        $match_count++;
-                                                    }
-                                                    if (array_key_exists($profile->UserProfessionInfo->user_job_country, $current_user_preference->partner_job_country->pluck('id'))) {
-                                                        $match_count++;
-                                                    }
-                                                    if ($profile->UserProfessionInfo->user_annual_income >= $current_user_preference->partner_salary && $profile->UserProfessionInfo->user_annual_income <= $current_user_preference->partner_salary) {
-                                                        $match_count++;
-                                                    }
-                                                    if (array_key_exists($profile->userReligeonInfo->user_rasi_id, $current_user_preference->partner_rasi->pluck('id'))) {
-                                                        $match_count++;
-                                                    }
-                                                    if (array_key_exists($profile->userNativeInfo->user_country_id, $current_user_preference->partner_country->pluck('id'))) {
-                                                        $match_count++;
-                                                    }
-                                                }
-
-                                            @endphp
-                                            <div class="col-md-8 col-sm-12 col-7 mb-2 px-1 xs-pad0 text-left">
-                                                <div class="row">
-                                                    <div class="col-md-3">
+                                            <div class="col-md-12 col-sm-12  px-1 xs-pad0 text-left">
+                                                <div class="row mt-2">
+                                                    <div class="col-md-12 d-flex justify-content-center">
                                                         <div class="bg-success text-white h4">
                                                             {{ $match_count }} / 11
-                                                            {{ dd($match_count) }}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="row pt-0 font-weight-bold lato-bold fs-15 cursor-pointer outline-none color-initial xs-pad0">
+                                                    class="d-flex justify-content-center pt-0 font-weight-bold lato-bold fs-15 cursor-pointer outline-none color-initial xs-pad0">
                                                     <a class="color-inherit text-decoration-none col-md-12 pl-0 lh-23 xs-basic-view-lh"
                                                         target="_blank"
                                                         href='{{ route('viewprofile.show', $profile->id) }}'>
@@ -385,7 +318,10 @@
                                 @endif
 
                                 </a>
-                                <div class="col-md-12 col-sm-12 col-12 mt-2 fw-black xs-mt0">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-12 mt-2 fw-black xs-mt0 d-flex justify-content-center">
                                     <a href="{{ route('viewprofile.show', $profile->id) }}" target="_blank"><span
                                             class="btn btn-primary xs-fs-12">View
                                             Full Profile</span></a>
