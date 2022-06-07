@@ -1,5 +1,20 @@
 <div id="tab-top-1" class="card tab-pane active show" x-data="{
+    initializeEditor()
+    {
+        this.aboutEditor = ClassicEditor
+            .create(document.querySelector('#about-editor'))
+            .then(editor => {
+                editor.model.document.on('change:data', () => {
+                    this.companySettingInfo.company_about = editor.getData();
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
+
+    },
+    aboutEditor:'',
     logoChanged: false,
     logoPreview: '',
     themeSettings:{
@@ -305,7 +320,10 @@
             })
     },
 
-}">
+}"
+
+x-init="initializeEditor()"
+>
     <div class="card-body">
         <div class="card-title">Product Settings</div>
         <div class="row">
@@ -399,10 +417,10 @@
                                 <span class="form-label-description"><span
                                         x-text="companySettingInfo.company_about.length"></span>/100</span>
                             </label>
-                            <textarea class="form-control" name="example-textarea-input" rows="8" placeholder="About Your Company"
+                            <textarea id="about-editor" class="form-control" name="example-textarea-input" rows="8" placeholder="About Your Company"
                                 x-bind:class="(companySettingInfo.company_about == '' || companySettingInfo.company_about.length >
                                     100) ? 'is-invalid' : ''"
-                                x-model="companySettingInfo.company_about"></textarea>
+                                x-model="companySettingInfo.company_about"> {{$companySettingInfo->company_about}}</textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label required">Company Facebook Link</label>
