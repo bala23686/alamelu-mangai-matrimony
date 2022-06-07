@@ -40,11 +40,12 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <a href="#" class="dropdown-item">Set status</a>
+                {{-- <a href="#" class="dropdown-item">Set status</a>
                 <a href="#" class="dropdown-item">Profile & account</a>
-                <a href="#" class="dropdown-item">Feedback</a>
+                <a href="#" class="dropdown-item">Feedback</a> --}}
+
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">Settings</a>
+                <a href="{{ route('admin.setting.product-setting') }}" class="dropdown-item">Settings</a>
                 <form action="{{ route('admin.logout') }}" method="post">
                     @csrf
                     <button type="submit" class="dropdown-item">{{ __('auth.logout') }}</button>

@@ -26,15 +26,15 @@ class UserSeeder extends Seeder
     {
 
 
-        User::factory()->count(100)->create()->each(function ($user) {
-            $user->userBasicInfo()->save(UserBasicInfoMaster::factory()->make());
-            $user->userReligeonInfo()->save(UserReligiousInfoMaster::factory()->make());
-            $user->userNativeInfo()->save(UserNativeInfoMaster::factory()->make());
-            $user->userPackageInfo()->save(UserPackageInfoMaster::factory()->make());
-            $user->userFamilyInfos()->save(UserFamilyInfoMaster::factory()->make());
-            $user->userHoroScopeInfo()->save(UserHoroscopeInfoMaster::factory()->make());
-            $user->userPreferrenceInfo()->save(UserPreferenceInfo::factory()->make());
-            $user->userProfessinalInfos()->save(UserProfessionalMaster::factory()->make());
-        });
+        // User::factory()->count(100)->create()->each(function ($user) {
+        //     $user->userBasicInfo()->save(UserBasicInfoMaster::factory()->make());
+        //     $user->userReligeonInfo()->save(UserReligiousInfoMaster::factory()->make());
+        //     $user->userNativeInfo()->save(UserNativeInfoMaster::factory()->make());
+        //     $user->userPackageInfo()->save(UserPackageInfoMaster::factory()->make());
+        //     $user->userFamilyInfos()->save(UserFamilyInfoMaster::factory()->make());
+        //     $user->userHoroScopeInfo()->save(UserHoroscopeInfoMaster::factory()->make());
+        //     $user->userPreferrenceInfo()->save(UserPreferenceInfo::factory()->make());
+        //     $user->userProfessinalInfos()->save(UserProfessionalMaster::factory()->make());
+        // });
     }
 }
