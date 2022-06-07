@@ -11,54 +11,51 @@ class ProductSettingSeeder extends Seeder
 
     public $settings_list = [
         //product settings seeder section
-        ["setting_name"=>"package_carry_forward","value"=>0],
+        ["setting_name" => "package_carry_forward", "value" => 0],
         //end product settings seeder section
         //company settings seeder section
-        ["setting_name"=>"company_name","value"=>"Alamelu Mangai Matrimony"],
-        ["setting_name"=>"company_slogan","value"=>"திருமண தகவல் மையம்"],
-        ["setting_name"=>"company_address","value"=>"No: 63/b 2nd main road"],
-        ["setting_name"=>"company_country","value"=>"India"],
-        ["setting_name"=>"company_state","value"=>"Tamil Nadu"],
-        ["setting_name"=>"company_city","value"=>"Trichy"],
-        ["setting_name"=>"company_pincode","value"=>"620021"],
-        ["setting_name"=>"company_contact_number","value"=>"9092756325"],
-        ["setting_name"=>"company_whatsapp_number","value"=>"9092756325"],
-        ["setting_name"=>"company_email","value"=>"admin@alamelumangai.com"],
-        ["setting_name"=>"company_about","value"=>"Alamelu mangai, as a start-up -matrimonial service was founded with a simple objective - to help people find happiness.
-        Unlike other Matrimonial services, we focus on providing detailed family and background information to help you take the next step with confidence.
-        We provide matrimonial services for communities like Saiva Vellalar, Iyer and Iyangar.
-        Ours will be the most trusted matrimonial service provider to find out the better half of your live."],
-        ["setting_name"=>"company_fb_link","value"=>"www.facebook.com"],
-        ["setting_name"=>"company_youtube_link","value"=>"www.youtube.com"],
-        ["setting_name"=>"company_logo","value"=>"http://localhost:8000/assets/admin/images/exciteon-logo.png"],
-        ["setting_name"=>"company_water_mark","value"=>"http://localhost:8000/assets/admin/images/exciteon-logo.png"],
-        ["setting_name"=>"company_logo_image","value"=>"http://localhost:8000/assets/admin/images/exciteon-logo.png"],
+        ["setting_name" => "company_name", "value" => "Alamelu Mangai Matrimony"],
+        ["setting_name" => "company_slogan", "value" => "திருமண தகவல் மையம்"],
+        ["setting_name" => "company_address", "value" => "No: 63/b 2nd main road"],
+        ["setting_name" => "company_country", "value" => "India"],
+        ["setting_name" => "company_state", "value" => "Tamil Nadu"],
+        ["setting_name" => "company_city", "value" => "Trichy"],
+        ["setting_name" => "company_pincode", "value" => "620021"],
+        ["setting_name" => "company_contact_number", "value" => "9092756325"],
+        ["setting_name" => "company_whatsapp_number", "value" => "9092756325"],
+        ["setting_name" => "company_email", "value" => "admin@alamelumangai.com"],
+        ["setting_name" => "company_about", "value" => "<ul><li>To register as a member of Alamelumangaimatrimony.com or use this Site, you must be of legal marriageable age as per the laws of India (currently, 18 years or over for females and 21 years or over for males). </li><li>The Alamelumangaimatrimony.com site is only to facilitate personal advertisement for lawful marriage alliance between persons who are legally competent to enter into matrimony under the laws to which they are subject. Membership in the Service is void where prohibited. </li><li>By using this Site, you represent and warrant that you have the right, authority, and legal capacity to enter into this Agreement and that you are not prohibited or prevented by any applicable law for the time being in force or any order or decree or injunction from any court, tribunal or any such competent authority restraining you from entering into matrimony. </li><li>You also agree to abide by all of the terms and conditions of this Agreement. If at any time Alamelumangaimatrimony.com is of the opinion (in its sole discretion) or has any reason to believe that you are not eligible to become a member or that you have made any misrepresentation about your eligibility, </li><li>Alamelumangaimatrimony.com reserves the right to forthwith terminate your membership and / or your right to use the Service without any refund to you of any of your unutilized subscription fee You may terminate your membership at any time, for any reason by writing to Alamelumangaimatrimony.com. In the event you terminate your membership, you will not be entitled to a refund of any unutilized subscription fees Alamelumangaimatrimony.com reserves the right in it's sole discretion to review the activity &amp; status of each account &amp; block the account of a member based on such review.</li></ul>"],
+        ["setting_name" => "company_fb_link", "value" => "www.facebook.com"],
+        ["setting_name" => "company_youtube_link", "value" => "www.youtube.com"],
+        ["setting_name" => "company_logo", "value" => "http://localhost:8000/assets/admin/images/exciteon-logo.png"],
+        ["setting_name" => "company_water_mark", "value" => "http://localhost:8000/assets/admin/images/exciteon-logo.png"],
+        ["setting_name" => "company_logo_image", "value" => "http://localhost:8000/assets/admin/images/exciteon-logo.png"],
         //end company settings seeder section
         //privacy setting  seeder section
-        ["setting_name"=>"company_privacy_policy","value"=>"To register as a member of Alamelumangaimatrimony.com or use this Site, you must be of legal marriageable age as per the laws of India (currently, 18 years or over for females and 21 years or over for males).
+        ["setting_name" => "company_privacy_policy", "value" => "To register as a member of Alamelumangaimatrimony.com or use this Site, you must be of legal marriageable age as per the laws of India (currently, 18 years or over for females and 21 years or over for males).
         The Alamelumangaimatrimony.com site is only to facilitate personal advertisement for lawful marriage alliance between persons who are legally competent to enter into matrimony under the laws to which they are subject.
         Membership in the Service is void where prohibited. By using this Site, you represent and warrant that you have the right, authority, and legal capacity to enter into this Agreement and that you are not prohibited or prevented by any applicable law for the time being in force or any order or decree or injunction from any court, tribunal or any such competent authority restraining you from entering into matrimony.
         You also agree to abide by all of the terms and conditions of this Agreement. If at any time Alamelumangaimatrimony.com is of the opinion (in its sole discretion) or has any reason to believe that you are not eligible to become a member or that you have made any misrepresentation about your eligibility,
         Alamelumangaimatrimony.com reserves the right to forthwith terminate your membership and / or your right to use the Service without any refund to you of any of your unutilized subscription fee
         You may terminate your membership at any time, for any reason by writing to Alamelumangaimatrimony.com. In the event you terminate your membership, you will not be entitled to a refund of any unutilized subscription fees
         Alamelumangaimatrimony.com reserves the right in it's sole discretion to review the activity & status of each account & block the account of a member based on such review."],
-        ["setting_name"=>"company_refund_policy","value"=>"Refund will not be provided back at any cost after registration."],
+        ["setting_name" => "company_refund_policy", "value" => "Refund will not be provided back at any cost after registration."],
         //end privacy setting  seeder section
         //start of color setting seeder
         //privacy setting  seeder section
-        ["setting_name"=>"primary_color","value"=>"#6a46e3"],
-        ["setting_name"=>"primary_color_dark","value"=>"#000000"],
-        ["setting_name"=>"primary_color_light","value"=>"#000000"],
-        ["setting_name"=>"secondary_color","value"=>"#000000"],
-        ["setting_name"=>"secondary_color_dark","value"=>"#000000"],
-        ["setting_name"=>"secondary_color_light","value"=>"#000000"],
-        ["setting_name"=>"admin_nav_color","value"=>"#6a46e3"],
+        ["setting_name" => "primary_color", "value" => "#6a46e3"],
+        ["setting_name" => "primary_color_dark", "value" => "#000000"],
+        ["setting_name" => "primary_color_light", "value" => "#000000"],
+        ["setting_name" => "secondary_color", "value" => "#000000"],
+        ["setting_name" => "secondary_color_dark", "value" => "#000000"],
+        ["setting_name" => "secondary_color_light", "value" => "#000000"],
+        ["setting_name" => "admin_nav_color", "value" => "#6a46e3"],
         //end of color setting seeder
         //start of seo settings seeder
-        ["setting_name"=>"seo_tittle","value"=>"Alamelu Mangai Matrimony"],
-        ["setting_name"=>"seo_meta_tittle","value"=>"Alamelu Mangai Matrimony"],
-        ["setting_name"=>"seo_meta_description","value"=>"Web Design Trichy, SEO, Website Development Company in Trichy"],
-        ["setting_name"=>"seo_meta_keywords","value"=>"Software, Digital marketing, Graphic Design, Mobile App, Logo Design"],
+        ["setting_name" => "seo_tittle", "value" => "Alamelu Mangai Matrimony"],
+        ["setting_name" => "seo_meta_tittle", "value" => "Alamelu Mangai Matrimony"],
+        ["setting_name" => "seo_meta_description", "value" => "Web Design Trichy, SEO, Website Development Company in Trichy"],
+        ["setting_name" => "seo_meta_keywords", "value" => "Software, Digital marketing, Graphic Design, Mobile App, Logo Design"],
         //end of seo settings seeder
     ];
     /**
@@ -76,7 +73,5 @@ class ProductSettingSeeder extends Seeder
             $settings->value = $this->settings_list[$i]["value"];
             $settings->save();
         }
-
-
     }
 }
