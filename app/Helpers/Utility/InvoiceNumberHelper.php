@@ -31,7 +31,7 @@ class InvoiceNumberHelper
             $number = substr($lastTransactionId->tr_id, 8);
 
 
-        return "IN".$date_sequence. sprintf('%03d', intval($number) + 1);
+        return "TR".$date_sequence. sprintf('%03d', intval($number) + 1);
 
        }
        catch (\Exception $e)

@@ -27,6 +27,7 @@ class UserBasicInfoMaster extends Model
     const USER_TENTH_CERIFICATE_IMAGE_PATH = "/Users/TenthCertificate/";
     const USER_TWELTH_CERIFICATE_IMAGE_PATH = "/Users/TwelthCertificate/";
     const USER_CLG_TC_IMAGE_PATH = "/Users/ClgTc/";
+    const USER_ADHAR_IMAGE_PATH = "/Users/adharcard/";
 
     protected $table = "user_basic_info_masters";
 
@@ -47,6 +48,10 @@ class UserBasicInfoMaster extends Model
         'user_profile_image',
         'dob',
         'age',
+        'is_tenth_passed',
+        'adhard_card_no',
+        'adhard_card_image',
+        'adhard_card_image_is_uploaded',
         'medical_certificate',
         'medical_certificate_uploaded_on',
         'tenth_marksheet',
@@ -98,6 +103,12 @@ class UserBasicInfoMaster extends Model
     public function getCollegeTcWithPathAttribute()
     {
         return ($this->clg_tc_is_uploaded) ? Url('/') . "/uploads" . self::USER_CLG_TC_IMAGE_PATH . "{$this->clg_tc}" : null;
+    }
+
+
+    public function getadharImageWithPathAttribute()
+    {
+        return ($this->adhard_card_image) ? Url('/') . "/uploads" . self::USER_ADHAR_IMAGE_PATH . "{$this->adhard_card_image}" : null;
     }
     /**
      * Get the user associated with the UserBasicInfoMaster

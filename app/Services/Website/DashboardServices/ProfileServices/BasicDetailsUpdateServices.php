@@ -21,6 +21,7 @@ class BasicDetailsUpdateServices
             "user_address" => $request->user_address,
             "blood_group" => $request->blood_group,
             "gender_id" => $request->gender,
+            "is_tenth_passed" => $request->is_tenth_passed,
             "user_height_id" => $request->height,
             "user_complexion_id" => $request->user_complexion,
             "user_mother_tongue" => $request->mother_tongue,
@@ -99,6 +100,24 @@ class BasicDetailsUpdateServices
         $data = [
             "clg_tc" => $clg_tc,
             "clg_tc_is_uploaded" => 1,
+        ];
+
+        $is_saved = User::find($id)
+            ->userBasicInfo()
+            ->updateOrCreate(['user_id' => $id], $data);
+
+
+        return $is_saved ? true : false;
+    }
+
+
+    public function handleAdharCardUpload($adharCard, $adharNo,$id)
+    {
+
+        $data = [
+            "adhard_card_image" => $adharCard,
+            "adhard_card_no" => $adharNo,
+            "adhard_card_image_is_uploaded" => 1,
         ];
 
         $is_saved = User::find($id)

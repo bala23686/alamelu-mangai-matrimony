@@ -1,7 +1,7 @@
 @extends('layouts.Admin.app')
 
 @section('tab_tittle')
-    User {{ $singleUserInfo->username }} | {{ $company->company_name }}
+ {{ $singleUserInfo->username }} | {{ $company->company_name }}
 @endsection
 
 @section('meta_tages')

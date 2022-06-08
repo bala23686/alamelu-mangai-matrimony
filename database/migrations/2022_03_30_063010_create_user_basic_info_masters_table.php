@@ -25,6 +25,10 @@ class CreateUserBasicInfoMastersTable extends Migration
             $table->string('about', 255)->default(null)->nullable();
             $table->string('user_address', 255)->default(null)->nullable();
             $table->integer('age')->nullable();
+            $table->boolean('is_tenth_passed')->default(0);
+            $table->string('adhard_card_no')->default(null)->nullable();
+            $table->string('adhard_card_image')->default(null)->nullable();
+            $table->boolean('adhard_card_image_is_uploaded')->default(0)->comment('0 not uploaded 1 means uploaded');
             $table->string('medical_certificate')->default(null)->nullable();
             $table->timestamp('medical_certificate_uploaded_on')->useCurrent();
             $table->string('tenth_marksheet')->nullable()->default(null);
