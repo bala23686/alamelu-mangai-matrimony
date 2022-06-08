@@ -111,7 +111,7 @@ class PayUController extends Controller
 
             return redirect()
                 ->route('user.payments.payU.paymentDone', $user->id)
-                ->with('pay-u-payment-success', $invoice)->with('transactions', $transaction_info);
+                ->with('pay-u-payment-success', $invoice);
         }
     }
     public function payusuccess(Request $request)

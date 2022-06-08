@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabcart</title>
+    <title>Alamelu Mangai Matrimony</title>
     <style>
         * {
             margin: 0;
@@ -82,31 +82,32 @@
 
     <div class="logo-section">
         <center>
-             <h4>Alamelu Mangai Matrimony</h4>
+            <h4>Alamelu Mangai Matrimony</h4>
         </center>
     </div>
 
     <div class="row">
         <div class="col-6">
-            <img width="75%" @if (!empty($userBasicInfo->image_with_path)) src="{{ $userBasicInfo->image_with_path }}"
+            <img width="75%"
+                @if (!empty($userInfo->userBasicInfos->image_with_path)) src="{{ $userInfo->userBasicInfos->image_with_path }}"
                                             @else
-                src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png"
-                @endif alt="Preview">
+                src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png" @endif
+                alt="Preview">
         </div>
         <div class="col-6" style="margin-top: 1rem">
             <h3>{{ $userInfo->user_profile_id }}</h3>
             <h4><span class="text-dark">I'm</span>
-                {{ $userBasicInfo->user_full_name }}</h4>
+                {{ $userInfo->userBasicInfos->user_full_name }}</h4>
 
             <hr style="width: 50%">
 
             <ul style="margin-left: 1rem">
-                @if (!empty($userBasicInfo))
+                @if (!empty($userInfo->userBasicInfos))
                     <li>
-                        {{ $userBasicInfo->age }}
+                        {{ $userInfo->userBasicInfos->age }}
                         Yrs</li>
                     <li>
-                        {{ $userBasicInfo->MartialStatus->martial_status_name }}
+                        {{ $userInfo->userBasicInfos->MartialStatus->martial_status_name }}
                     </li>
                 @endif
 
@@ -157,13 +158,13 @@
                         <span>
                             Height :
                         </span>
-                        {{ $userBasicInfo->Height->height_feet_cm ?? '-' }}
+                        {{ $userInfo->userBasicInfos->Height->height_feet_cm ?? '-' }}
                     </li>
                     <li>
                         <span>
                             Complexion :
                         </span>
-                        {{ $userBasicInfo->Complex->complexion_name }}
+                        {{ $userInfo->userBasicInfos->Complex->complexion_name }}
                     </li>
                 </div>
 
@@ -172,25 +173,25 @@
                         <span>
                             Mother Tongue :
                         </span>
-                        {{ $userBasicInfo->MotherTongue->language_name }}
+                        {{ $userInfo->userBasicInfos->MotherTongue->language_name }}
                     </li>
                     <li>
                         <span>
                             Marital Status :
                         </span>
-                        {{ $userBasicInfo->MartialStatus->martial_status_name }}
+                        {{ $userInfo->userBasicInfos->MartialStatus->martial_status_name }}
                     </li>
                     <li>
                         <span>
                             Eating Habit :
                         </span>
-                        {{ $userBasicInfo->EatingHabit->habit_type_name }}
+                        {{ $userInfo->userBasicInfos->EatingHabit->habit_type_name }}
                     </li>
                     <li>
                         <span>
                             Disability :
                         </span>
-                        {{ ($userBasicInfo->is_disable = 1) ? 'Yes' : 'No' }}
+                        {{ ($userInfo->userBasicInfos->is_disable = 1) ? 'Yes' : 'No' }}
                     </li>
                 </div>
             </div>
