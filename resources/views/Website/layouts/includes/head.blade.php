@@ -1,12 +1,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Matrimony</title>
+    <title>{{$seoInfo->seo_tittle}}</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     @yield('meta_tages')
 
+    <meta name="description" content="{{$seoInfo->seo_meta_tittle}}" />
+<meta name="keywords" content="{{$seoInfo->seo_meta_keywords}}" />
     <link rel="shortcut icon" type="image/x-icon" href="#" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="

@@ -22,7 +22,7 @@
                             <div class="form-title">
                                 <h2 class="text-center">Terms And Conditions</h2>
                                 <div>
-
+                                    {{$privacyInfo->company_privacy_policy}}
                                 </div>
                             </div>
                             <div class="row">

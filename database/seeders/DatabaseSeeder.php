@@ -19,13 +19,21 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfileStatusSeeder::class);
 
         User::create([
-            'username' => 'Exciteon Admin',
-            'email' => 'admin@exciteon.com',
+            'username' => 'Anadha Lakshman',
+            'email' => 'admin@alamelumangai.com',
             'phonenumber' => '123456789',
             'password' => Hash::make('1234'),
             'is_admin' => 1
         ]);
 
+
+        User::create([
+            'username' => 'Exciteon Dev',
+            'email' => 'admin@exciteon.com',
+            'phonenumber' => '1478523697',
+            'password' => Hash::make('1234'),
+            'is_admin' => 1
+        ]);
 
         $this->call(PackageMasterSeeder::class);
         $this->call(StatusMasterSeeder::class);
