@@ -321,7 +321,7 @@
                             <span class="sub-heading">About</span>
                             <h2 class="fw-light">
                                 {{-- About {{ $webInfo->company_name }}</h2>--}}
-                            <p>{{ $webInfo->company_about }}</p>
+                            <p>{!! $webInfo->company_about !!}</p>
                                 {{-- <h3 class="fw-light">What We Do</h3>
                                 <p>{{ $webInfo->company_name }}</p> --}}
                         </div>
