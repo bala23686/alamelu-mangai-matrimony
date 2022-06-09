@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Helpers\Utility\InvoiceNumberHelper;
+use App\Jobs\User\UserRegisteredJob;
 use App\Models\Master\PackageMaster\PackageMaster;
 
 class UserRegistrationService
@@ -96,7 +97,10 @@ class UserRegistrationService
         $is_registered = $user->userBasicInfo()->save($user_info);
 
         //Fire Welcome Mail Event
-        event(new UserCreated($user));
+        // event(new UserCreated($user));
+
+        dispatch((new UserRegisteredJob($user)));
+
         return  $is_registered ? true : false;
     }
 }

@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('packages:expire')->daily();
+        $schedule->command('send:emails')->everyMinute()->withoutOverlapping();
+    // you can add ->withoutOverlapping(); if you think it won't finish in 1 minute
     }
 
     /**

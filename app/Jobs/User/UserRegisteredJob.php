@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Jobs\Invoice;
+namespace App\Jobs\User;
 
-use App\Mail\Invoice\InvoiceMail;
+use App\Mail\User\UserRegisteredMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,22 +11,19 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class SendInvoiceJob implements ShouldQueue
+class UserRegisteredJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-
     public  $user;
-    public  $invoice;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct( $user,string $invoice)
+    public function __construct($user)
     {
         $this->user=$user;
-        $this->invoice=$invoice;
     }
 
     /**
@@ -37,6 +34,6 @@ class SendInvoiceJob implements ShouldQueue
     public function handle()
     {
         Mail::to($this->user->email)
-        ->send(new InvoiceMail($this->user,$this->invoice));
+        ->send(new UserRegisteredMail($this->user));
     }
 }

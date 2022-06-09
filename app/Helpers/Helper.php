@@ -9,7 +9,7 @@ use DateTime;
 class Helper
 {
 
-    public static function IDGenerator($model, $trow, $length = 4, $prefix)
+    public static function IDGenerator($model, $trow, $length = 10, $prefix)
     {
 
         try {
@@ -28,7 +28,7 @@ class Helper
                 $number = 0;
             else
 
-                $number = substr($lastTransactionId->tr_id, $length);
+                $number = substr($lastTransactionId->user_profile_id, 10);
 
 
             return  $prefix . $date_sequence . sprintf('%03d', intval($number) + 1);
