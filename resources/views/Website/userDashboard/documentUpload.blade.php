@@ -3,7 +3,6 @@
     .highlight-error {
         border-color: red;
     }
-
 </style>
 @section('content')
     <div class="breadcrumbs">
@@ -118,20 +117,21 @@
                                                         <input type="file" id="aadharInput" name="userAdharCard"
                                                             class="form-control" accept=".jpeg,jpg" required>
                                                     </div>
-                                                    <div class="mt-2">
-                                                        <button type="button" id="aadharUpload"
-                                                            class="btn btn-primary btn-sm float-end"><i
-                                                                class="lni lni-add-files"></i> Upload</button>
-                                                    </div>
+
                                                 </div>
                                                 <div class="col-lg-6 col-12">
-                                                    <label>Enter Aadhar No <span class="text-danger">*</span></label>
+                                                    <label>Enter Aadhar No <span
+                                                            class="text-danger">&nbsp;(*)Mandatory</span></label>
                                                     {{-- <input type="number" id="aadharNoInput" name="userAdharCardNo"
                                                     class="form-control" maxlength="16" pattern="[0-9]" required> --}}
-                                                    <input class="form-control" type="text" data-type="adhaar-number"
-                                                        maxLength="19">
+                                                    <input class="form-control" name="userAdharCardNo" type="text"
+                                                        data-type="adhaar-number" maxLength="19" required>
                                                 </div>
-
+                                                <div class="mt-2">
+                                                    <button type="button" id="aadharUpload"
+                                                        class="btn btn-primary btn-sm float-end"><i
+                                                            class="lni lni-add-files"></i> Upload</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -152,12 +152,13 @@
             $('#medicUpload').on('click', (e) => {
                 let valid = false;
                 if ($('#medicInput')[0].files.length === 0) {
-                    alert("Attachment Required");
+                    // toastr.error('Attachment Required');
+                    toastr.error('Attachment Required');
                     $('#medicUpload').focus();
 
-                    valid = true;
+
                 } else {
-                    valid = false;
+                    valid = true;
                 }
                 var ofile = document.getElementById('medicInput').files[0];
                 var imgData = new FormData();
@@ -188,12 +189,12 @@
             $('#tenthUpload').on('click', (e) => {
                 let valid = false;
                 if ($('#tenthInput')[0].files.length === 0) {
-                    alert("Attachment Required");
+                    toastr.error('Attachment Required');
                     $('#tenthUpload').focus();
 
-                    valid = true;
+
                 } else {
-                    valid = false;
+                    valid = true;
                 }
 
                 var ofile = document.getElementById('tenthInput').files[0];
@@ -226,12 +227,12 @@
             $('#twelthUpload').on('click', (e) => {
                 let valid = false;
                 if ($('#twelthInput')[0].files.length === 0) {
-                    alert("Attachment Required");
+                    toastr.error('Attachment Required');
                     $('#twelthUpload').focus();
 
-                    valid = true;
+
                 } else {
-                    valid = false;
+                    valid = true;
                 }
 
                 var ofile = document.getElementById('twelthInput').files[0];
@@ -264,13 +265,13 @@
             //upload Transfer Certificate
             $('#tcUpload').on('click', (e) => {
                 let valid = false;
-                if ($('#tenthInput')[0].files.length === 0) {
-                    alert("Attachment Required");
-                    $('#tenthUpload').focus();
+                if ($('#tcInput')[0].files.length === 0) {
+                    toastr.error('Attachment Required');
+                    $('#tcUpload').focus();
 
-                    valid = true;
+
                 } else {
-                    valid = false;
+                    valid = true;
                 }
 
                 var ofile = document.getElementById('tcInput').files[0];
@@ -279,45 +280,6 @@
                 let URL = "{{ route('tc.certificate', $user->id) }}";
                 let tcUploadForm = $("#tcUploadForm").serializeArray();
                 $.each(tcUploadForm, function(i, field) {
-                    imgData.append(field.name, field.value);
-                });
-                if (valid) {
-                    $.ajax({
-                        url: URL,
-                        type: "POST",
-                        data: imgData,
-                        processData: false,
-                        contentType: false,
-                        success: function(data, textStatus, jqXHR) {
-                            toastr.success(data.message);
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            toastr.error(errorThrown);
-                        }
-                    });
-                }
-
-                e.preventDefault();
-
-            });
-            //upload Aadhar
-            $('#aadharUpload').on('click', (e) => {
-                let valid = false;
-                if ($('#aadharInput')[0].files.length === 0) {
-                    alert("Attachment Required");
-                    $('#aadharUpload').focus();
-
-                    valid = true;
-                } else {
-                    valid = false;
-                }
-
-                var ofile = document.getElementById('aadharUpload').files[0];
-                var imgData = new FormData();
-                imgData.append("userAdharCard", ofile);
-                let URL = "{{ route('aadhar.certificate', $user->id) }}";
-                let aadharUploadForm = $("#aadharUploadForm").serializeArray();
-                $.each(aadharUploadForm, function(i, field) {
                     imgData.append(field.name, field.value);
                 });
                 if (valid) {
@@ -356,6 +318,46 @@
                     $(this).removeClass("highlight-error");
                 }
             });
+            //upload Aadhar
+            $('#aadharUpload').on('click', (e) => {
+                let valid = false;
+                let aadharNo = $('#aadharNo').val();
+                if ($('#aadharInput')[0].files.length === 0 || aadharNo === '') {
+                    toastr.error('Attachment Required');
+                    $('#aadharUpload').focus();
+
+                } else {
+                    valid = true;
+                }
+
+                var ofile = document.getElementById('aadharInput').files[0];
+                var imgData = new FormData();
+                imgData.append("userAdharCard", ofile);
+                let URL = "{{ route('aadhar.certificate', $user->id) }}";
+                let aadharUploadForm = $("#aadharUploadForm").serializeArray();
+                $.each(aadharUploadForm, function(i, field) {
+                    imgData.append(field.name, field.value);
+                });
+                if (valid) {
+                    $.ajax({
+                        url: URL,
+                        type: "POST",
+                        data: imgData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data, textStatus, jqXHR) {
+                            toastr.success(data.message);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            toastr.error(errorThrown);
+                        }
+                    });
+                }
+
+                e.preventDefault();
+
+            });
+
         });
     </script>
 @stop

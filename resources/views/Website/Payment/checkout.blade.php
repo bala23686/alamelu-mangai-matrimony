@@ -16,7 +16,6 @@
             font-size: 3.5rem;
         }
     }
-
 </style>
 {{-- @section('content') --}}
 
@@ -37,13 +36,13 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-12">
             </div>
-            <div class="col-lg-9 col-md-8 col-12">
+            <div class="col-lg-12 col-md-8 col-12">
                 <div class="main-content">
 
                     <body class="bg-light">
                         <div class="container">
                             <main>
-                                <div class="py-5 text-center">
+                                <div class="py-5 text-center" style="margin-left: -25px">
                                     <h3>Checkout</h3>
                                 </div>
                                 <div class="row g-5">
@@ -88,7 +87,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="">Reference ID</label>
-                                                    <input type="email" class="form-control" id="email"
+                                                    <input type="text" class="form-control" id="email"
                                                         placeholder="firstname" readonly
                                                         value="{{ $payment_infomation->transactionId }}" required>
                                                 </div>
