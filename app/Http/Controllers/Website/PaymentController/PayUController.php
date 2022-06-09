@@ -101,11 +101,7 @@ class PayUController extends Controller
 
 
             //section to send a mail to user if the they have a mail id
-            // $invoice != null ?
-
-            //     (new InvocieMailAction($userInfo, (string)$invoice))
-            //     ->mailInvoice()
-            //     : 0;
+            // $invoice != null ? (new InvocieMailAction($userInfo, (string)$invoice))->mailInvoice() : 0;
             //update payment status
 
 

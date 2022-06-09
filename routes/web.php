@@ -172,6 +172,7 @@ Route::group(['middleware' => ['is_paid', 'is_member'], 'prefix' => 'user-panel'
     Route::post('/upload-Tenth-Certificate/{id}', [DocumentUploadController::class, 'uploadTenthCertificate'])->name('tenth.certificate');
     Route::post('/upload-Twelth-Certificate/{id}', [DocumentUploadController::class, 'uploadTwelthCertificate'])->name('twelth.certificate');
     Route::post('/upload-TC-Certificate/{id}', [DocumentUploadController::class, 'uploadCollegeTc'])->name('tc.certificate');
+    Route::post('/upload-Aadhar-Card/{id}', [DocumentUploadController::class, 'adharCardUpload'])->name('aadhar.certificate');
     //Manage Account Section
     Route::resource('/manage-account-setting', ManageAccoutController::class, ['names' => 'account']);
 });
