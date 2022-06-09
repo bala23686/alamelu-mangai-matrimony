@@ -34,11 +34,14 @@ class InvoiceMail extends Mailable
     public function build()
     {
 
-        return $this->subject('')
-        ->attach("storage/invoice/",[
-            'as' => "{$this->invoice}",
-            'mime' => 'application/pdf',
-        ])
+
+
+        return $this->subject('Purchased Membership on Alamelumangai Matrimony')
+
+        // ->attach("storage/invoice/",[
+        //     'as' => "{$this->invoice}",
+        //     'mime' => 'application/pdf',
+        // ])
         ->markdown('emails.Invoice.InvoicePurchased',['user'=>$this->user,'url'=>url('/')]);
     }
 }

@@ -252,13 +252,25 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="pl-0">
+
+                    </td>
+                    <td class="text-center"></td>
+                    <td class="text-right">
+                       gst 18% + Transaction fee
+                    </td>
+                    <td class="text-right pr-0">
+                        {{ round($invoice->tr_package_price * 18/100) }}
+                    </td>
+                </tr>
                 {{-- Summary --}}
 
                 @if($invoice)
                     <tr>
                         <td colspan="3" class="border-0"></td>
                         <td class="text-right pr-0">
-                           {{$invoice->tr_package_price}}
+                           {{$invoice->tr_amount_paid }}
                         </td>
                     </tr>
                 @endif
