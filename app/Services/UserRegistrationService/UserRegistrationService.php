@@ -96,7 +96,7 @@ class UserRegistrationService
         $is_registered = $user->userBasicInfo()->save($user_info);
 
         //Fire Welcome Mail Event
-        // event(new UserCreated($user));
+        event(new UserCreated($user));
         return  $is_registered ? true : false;
     }
 }

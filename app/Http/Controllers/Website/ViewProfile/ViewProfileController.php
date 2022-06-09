@@ -19,7 +19,6 @@ use App\Models\Master\UserShortListInfoMaster\UserShortListInfoMaster;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-use function React\Promise\Stream\first;
 
 class ViewProfileController extends Controller
 {
@@ -97,7 +96,7 @@ class ViewProfileController extends Controller
         }
 
         if ($userInfo->userBasicInfos->profile_pro_info_status == 1) {
-            $view_page_data['UserProfessionInfo'] =UserProfessionalMaster::find($id)->load(['Job','JobCountry','JobState','JobCity']);
+            $view_page_data['UserProfessionInfo'] = UserProfessionalMaster::find($id)->load(['Job', 'JobCountry', 'JobState', 'JobCity']);
         }
 
         if ($userInfo->userBasicInfos->profile_location_status == 1) {

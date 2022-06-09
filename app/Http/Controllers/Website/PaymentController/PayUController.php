@@ -101,17 +101,13 @@ class PayUController extends Controller
 
 
             //section to send a mail to user if the they have a mail id
-            // $invoice != null ?
-
-            //     (new InvocieMailAction($userInfo, (string)$invoice))
-            //     ->mailInvoice()
-            //     : 0;
+            // $invoice != null ? (new InvocieMailAction($userInfo, (string)$invoice))->mailInvoice() : 0;
             //update payment status
 
 
             return redirect()
                 ->route('user.payments.payU.paymentDone', $user->id)
-                ->with('pay-u-payment-success', $invoice)->with('transactions', $transaction_info);
+                ->with('pay-u-payment-success', $invoice);
         }
     }
     public function payusuccess(Request $request)

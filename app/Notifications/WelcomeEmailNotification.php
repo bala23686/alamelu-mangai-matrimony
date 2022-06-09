@@ -41,9 +41,11 @@ class WelcomeEmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->greeting('Hey there!')
             ->line('Welcome to Alamelu Mangai Matrimony')
-            ->action('User Dashboard', url('/'))
-            ->line('Thank you for registering on our website!');
+            ->line('Thanks for signing up, Alamelu Mangai Matrimony.')
+            ->line('We are glad you’re here.')
+            ->action('JUMP IN & GET STARTED', url('/'));
     }
 
     /**
