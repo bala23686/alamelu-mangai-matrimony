@@ -66,7 +66,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                             </button>
 
                                         </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                        <div id="collapseOne" class="accordion-collapse collapse show" x-data="{useraddress:'{{ $user_data['user_info']->user_address }}'}"
                                             aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <div class="profile-setting-form">
@@ -255,12 +255,16 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     </select>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-6">
                                                                 <div class="">
                                                                     <label for="user_address" class="text-dark">Address
+                                                                        <template x-if="/(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/.test(useraddress)">
+                                                                         <span class="text-danger">Type Address Only</span>
+                                                                        </template>
                                                                         <span class="small text-danger">*
                                                                         </span></label>
-                                                                    <textarea style="text-align: left" class="form-control text-justify" name='user_address' id="userAddress" rows="1"
+                                                                    <textarea x-model="useraddress" style="text-align: left" class="form-control text-justify" name='user_address' id="userAddress" rows="1"
                                                                         value="{{ $user_data['user_info']->user_address }}">{{ $user_data['user_info']->user_address }}</textarea>
                                                                 </div>
                                                             </div>
@@ -274,13 +278,13 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                         value="{{ $user_data['user_info']->about }}"></textarea>
                                                                 </div>
                                                             </div>
-
                                                             <div class="col-12 mt-3 mb-3">
-                                                                <button id="updateBasicDetails" type="button"
+                                                                <button id="updateBasicDetails" x-bind:disabled="/(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/.test(useraddress)" type="button"
                                                                     class="btn btn-primary btn-sm float-end">Update
                                                                     Basic
                                                                     Details</button>
                                                             </div>
+
                                                         </div>
                                                     </form>
                                                 </div>

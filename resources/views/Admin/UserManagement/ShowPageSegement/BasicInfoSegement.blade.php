@@ -462,7 +462,7 @@ loadHeightList()" class="card tab-pane active show">
                     <label class="form-label">Address<span class="form-label-description"
                             x-text="SingleUserInfo.user_address.length+'/100'"></span></label>
                     <textarea class="form-control"
-                        x-bind:class="(SingleUserInfo.user_address === '' || SingleUserInfo.user_address.length > 100) ?
+                        x-bind:class="(SingleUserInfo.user_address === '' || SingleUserInfo.user_address.length > 100 || /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/g.test(SingleUserInfo.user_address)) ?
                         ' is-invalid is-invalid-lite' : ''"
                         x-model="SingleUserInfo.user_address" name="example-textarea-input" rows="3" placeholder="Content..">
                     </textarea>
