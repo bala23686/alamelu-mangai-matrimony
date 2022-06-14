@@ -20,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
 
-    protected array $web_Admin_routes_path = [
+    protected  $web_Admin_routes_path = [
         ['folder' => 'auth', 'file' => 'auth_routes'],
         ['folder' => 'masters', 'file' => 'mastes_routes'],
         ['folder' => 'usermanagement', 'file' => 'user_management_routes'],
@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
         ['folder' => 'payments', 'file' => 'payments_routes'],
     ];
 
-    protected array $api_routes_path = [
+    protected  $api_routes_path = [
         ['folder' => 'RasiMaster', 'file' => 'rasi_routes'],
         ['folder' => 'Authentication', 'file' => 'user_auth_routes'],
         ['folder' => 'Masters', 'file' => 'masters_routes'],

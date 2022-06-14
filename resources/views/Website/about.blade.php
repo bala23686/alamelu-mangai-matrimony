@@ -123,7 +123,7 @@
                     <div class="single-work wow fadeInUp" data-wow-delay=".4s">
                         <span class="serial"><i class="lni lni-rupee"></i></span>
                         <h3 class="fw-light">Payment</h3>
-                        <p>On our website,the registration fee is &#8377;1000.After registration, the user put up profile.
+                        <p>On our website,the registration fee is &#8377;1020.After registration, the user put up profile.
                         </p>
                         <br>
                     </div>

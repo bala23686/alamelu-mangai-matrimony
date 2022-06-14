@@ -80,7 +80,7 @@
         },
         getTotal()
         {
-            return this.packagePriceAfterGst=Number(this.packageChoosedInfo.package_price)+Number(this.packageChoosedInfo.package_price*18/100)
+            return this.packagePriceAfterGst=Math.round(Number(this.packageChoosedInfo.package_price)+Number(this.packageChoosedInfo.package_price*18/100))
         },
         handelPayment($el)
         {
@@ -243,7 +243,7 @@
                                     <td class="text-center" x-text="packageChoosedInfo.package_allowed_profile">
 
                                     </td>
-                                    <td class="text-end" x-text="packageChoosedInfo.package_price*18/100+'%'">
+                                    <td class="text-end" x-text="18+'%'">
                                         $1.800,00</td>
                                     <td class="text-end" x-text="packageChoosedInfo.package_price">$1.800,00</td>
                                 </tr>

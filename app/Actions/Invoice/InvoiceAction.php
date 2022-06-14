@@ -55,6 +55,7 @@ class InvoiceAction
         $pdf = Pdf::loadView('Invoices.Invoice', $data);
 
         Storage::disk('uploads')->put("public/invoice/{$this->transaction_info->tr_id}.pdf", $pdf->output());
+        Storage::put("public/invoice/{$this->transaction_info->tr_id}.pdf", $pdf->output());
 
         $this->transaction_info->tr_invoice_pdf = "{$this->transaction_info->tr_id}.pdf";
 

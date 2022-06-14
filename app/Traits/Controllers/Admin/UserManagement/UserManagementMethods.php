@@ -332,6 +332,21 @@ trait UserManagementMethods
         : response()->json(['message' => ''], 500);
     }
 
+    public function adharCardUpload(Request $request,BasicDetailsUpdateServices $service,$id)
+    {
+        $this->validate($request,[
+            'userAdharCard'=>['required'],
+            'userAdharCardNo'=>['required'],
+        ]);
+
+        $user_adhar_card = ImageUploadHelper::storeImage($request->userAdharCard, UserBasicInfoMaster::USER_ADHAR_IMAGE_PATH);
+
+        return $service->handleAdharCardUpload($user_adhar_card,$request->userAdharCardNo,$id)
+        ? response()->json(['message' => 'User Adhar Card Uploaded'], 201)
+        : response()->json(['message' => ''], 500);
+    }
+
+
     public function updateUserFamilyInformation(FamilyDetailsRequest $request, FamilyDetailsUpdateServices $service, $id)
     {
         return $service->HandleUpdateFamilyDetails($request, $id)

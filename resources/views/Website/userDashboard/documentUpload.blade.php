@@ -1,5 +1,9 @@
 @extends('Website.layouts.default')
-
+<style>
+    .highlight-error {
+        border-color: red;
+    }
+</style>
 @section('content')
     <div class="breadcrumbs">
         <div class="container">
@@ -19,10 +23,10 @@
                 <div class="col-lg-3 col-md-4 col-12">
 
                     @php
-                    $user=App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
-                    [$performance,$bgColor]=App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
-                @endphp
-                <x-user-dashboard.side-bar  :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
+                        $user = App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
+                        [$performance, $bgColor] = App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
+                    @endphp
+                    <x-user-dashboard.side-bar :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
 
                 </div>
                 <div class="col-lg-9 col-md-8 col-12">
@@ -102,28 +106,43 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    {{-- <div class="col-md-6">
-                                        <form method="post" action="#" id="familyPicUploadForm">
-                                            @csrf
-                                            <div class="form-group files color">
-                                                <label>Family Photo <span class="text-danger">*</span></label>
-                                                <input type="file" id="familypicInput" name="family_pic"
-                                                    class="form-control" accept=".jpeg,jpg" required>
-                                            </div>
-                                            <div class="mt-2">
-                                                <button type="button" id="familyPicUpload"
-                                                    class="btn btn-primary btn-sm float-end" name="family_pic"><i
-                                                        class="lni lni-add-files"></i> Upload</button>
-                                            </div>
-                                        </form>
-                                    </div> --}}
+                                    <div class="row">
+                                        <div class="col-lg-12 col-12">
+                                            <form method="post" action="#" id="aadharUploadForm">
+                                                @csrf
+                                                <div class="col-lg-6 col-12">
+                                                    <div class="form-group files color">
+                                                        <label>Upload Your Aadhar <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="file" id="aadharInput" name="userAdharCard"
+                                                            class="form-control" accept=".jpeg,jpg" required>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-lg-6 col-12">
+                                                    <label>Enter Aadhar No <span
+                                                            class="text-danger">&nbsp;(*)Mandatory</span></label>
+                                                    {{-- <input type="number" id="aadharNoInput" name="userAdharCardNo"
+                                                    class="form-control" maxlength="16" pattern="[0-9]" required> --}}
+                                                    <input class="form-control" name="userAdharCardNo" type="text"
+                                                        data-type="adhaar-number" maxLength="19" required>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <button type="button" id="aadharUpload"
+                                                        class="btn btn-primary btn-sm float-end"><i
+                                                            class="lni lni-add-files"></i> Upload</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
+        </div>
         </div>
     </section>
     <script>
@@ -133,12 +152,13 @@
             $('#medicUpload').on('click', (e) => {
                 let valid = false;
                 if ($('#medicInput')[0].files.length === 0) {
-                    alert("Attachment Required");
+                    // toastr.error('Attachment Required');
+                    toastr.error('Attachment Required');
                     $('#medicUpload').focus();
 
-                    valid = true;
+
                 } else {
-                    valid = false;
+                    valid = true;
                 }
                 var ofile = document.getElementById('medicInput').files[0];
                 var imgData = new FormData();
@@ -169,12 +189,12 @@
             $('#tenthUpload').on('click', (e) => {
                 let valid = false;
                 if ($('#tenthInput')[0].files.length === 0) {
-                    alert("Attachment Required");
+                    toastr.error('Attachment Required');
                     $('#tenthUpload').focus();
 
-                    valid = true;
+
                 } else {
-                    valid = false;
+                    valid = true;
                 }
 
                 var ofile = document.getElementById('tenthInput').files[0];
@@ -207,12 +227,12 @@
             $('#twelthUpload').on('click', (e) => {
                 let valid = false;
                 if ($('#twelthInput')[0].files.length === 0) {
-                    alert("Attachment Required");
+                    toastr.error('Attachment Required');
                     $('#twelthUpload').focus();
 
-                    valid = true;
+
                 } else {
-                    valid = false;
+                    valid = true;
                 }
 
                 var ofile = document.getElementById('twelthInput').files[0];
@@ -245,13 +265,13 @@
             //upload Transfer Certificate
             $('#tcUpload').on('click', (e) => {
                 let valid = false;
-                if ($('#tenthInput')[0].files.length === 0) {
-                    alert("Attachment Required");
-                    $('#tenthUpload').focus();
+                if ($('#tcInput')[0].files.length === 0) {
+                    toastr.error('Attachment Required');
+                    $('#tcUpload').focus();
 
-                    valid = true;
+
                 } else {
-                    valid = false;
+                    valid = true;
                 }
 
                 var ofile = document.getElementById('tcInput').files[0];
@@ -281,7 +301,62 @@
                 e.preventDefault();
 
             });
+            //aadhar card
+            $('[data-type="adhaar-number"]').keyup(function() {
+                var value = $(this).val();
+                value = value.replace(/\D/g, "").split(/(?:([\d]{4}))/g).filter(s => s.length > 0).join(
+                    "-");
+                $(this).val(value);
+            });
 
+            $('[data-type="adhaar-number"]').on("change, blur", function() {
+                var value = $(this).val();
+                var maxLength = $(this).attr("maxLength");
+                if (value.length != maxLength) {
+                    $(this).addClass("highlight-error");
+                } else {
+                    $(this).removeClass("highlight-error");
+                }
+            });
+            //upload Aadhar
+            $('#aadharUpload').on('click', (e) => {
+                let valid = false;
+                let aadharNo = $('#aadharNo').val();
+                if ($('#aadharInput')[0].files.length === 0 || aadharNo === '') {
+                    toastr.error('Attachment Required');
+                    $('#aadharUpload').focus();
+
+                } else {
+                    valid = true;
+                }
+
+                var ofile = document.getElementById('aadharInput').files[0];
+                var imgData = new FormData();
+                imgData.append("userAdharCard", ofile);
+                let URL = "{{ route('aadhar.certificate', $user->id) }}";
+                let aadharUploadForm = $("#aadharUploadForm").serializeArray();
+                $.each(aadharUploadForm, function(i, field) {
+                    imgData.append(field.name, field.value);
+                });
+                if (valid) {
+                    $.ajax({
+                        url: URL,
+                        type: "POST",
+                        data: imgData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data, textStatus, jqXHR) {
+                            toastr.success(data.message);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            toastr.error(errorThrown);
+                        }
+                    });
+                }
+
+                e.preventDefault();
+
+            });
 
         });
     </script>

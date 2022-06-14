@@ -3,32 +3,41 @@
 namespace App\Helpers;
 
 use App\Models\ProductSetting\ProductSetting;
+use App\Models\User;
+use DateTime;
 
 class Helper
 {
 
-    public static function IDGenerator($model, $trow, $length = 4, $prefix)
+    public static function IDGenerator($model, $trow, $length = 10, $prefix)
     {
-        $data = $model::orderBy('id', 'desc')->first();
 
-        if (!$data) {
-            $og_length = $length;
-            $last_number = '';
-        } else {
-            // $code = substr($data->$trow, strlen($prefix) + 1);
-            // $actual_last_number = ($code / 1) * 1;
+        try {
 
-            $increment_last_number = ((int)$data->$trow) + 1;
-            $last_number_length = strlen($increment_last_number);
-            $og_length = $length - $last_number_length;
-            $last_number = $increment_last_number;
+            $current_date_time = new DateTime();
+
+            $date_sequence = $current_date_time->format("dmy");
+
+            //section generate the sequence of running number of trip sheet
+
+            $lastTransactionId = User::orderBy('id', 'desc')->first();
+
+            if (!$lastTransactionId)
+                // We get here if there is no TripSheet at all
+                // If there is no Trip sheet number set it to 0, which will be 1 at the end.
+                $number = 0;
+            else
+
+                $number = substr($lastTransactionId->user_profile_id, 10);
+
+
+            return  $prefix . $date_sequence . sprintf('%03d', intval($number) + 1);
+        } catch (\Exception $e) {
+            dd($e);
         }
-        $zeros = "";
-        for ($i = 0; $i < $og_length; $i++) {
-            $zeros .= "0";
-        }
-        return $prefix . date('my') . $zeros . $last_number;
     }
+
+
     public static function get_settings($name)
     {
         $config = null;

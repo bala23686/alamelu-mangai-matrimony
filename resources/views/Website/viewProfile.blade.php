@@ -1,12 +1,12 @@
 @extends('Website.layouts.default')
 @section('content')
     @php
-    // dump($userInfo->userBasicInfos->user_mobile_no);
+    // dump($userInfo->userBasicInfoss->user_mobile_no);
     $view_contact = \App\Models\Master\UserLog\UserLogMaster::where('user_id', '=', Auth::user()->id)
         ->where('viewed_user_id', '=', $userInfo->id)
         ->first();
 
-    $image_src = $userBasicInfo->gender_id == 1 ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
+    $image_src = $userInfo->userBasicInfos->gender_id == 1 ? asset('assets/Website/male.png') : asset('assets/Website/female.png');
 
     @endphp
 
@@ -57,7 +57,7 @@
                             <main id="gallery">
                                 <div class="main-img">
                                     <img class='rounded' id='profileImg'
-                                        @if (!empty($userBasicInfo->image_with_path)) src="{{ $userBasicInfo->image_with_path }}"
+                                        @if (!empty($userInfo->userBasicInfos->image_with_path)) src="{{ $userInfo->userBasicInfos->image_with_path }}"
                                                 @else
                                                     src="{{ $image_src }}" @endif
                                         alt="Preview">
@@ -81,18 +81,18 @@
                         <div class="product-info">
                             <h1 class="lead fw-normal">{{ $userInfo->user_profile_id }}</h1>
                             <h5 class="price pt-2"><span class="text-dark">I'm</span>
-                                {{ $userBasicInfo->user_full_name }}</h5>
+                                {{ $userInfo->userBasicInfos->user_full_name }}</h5>
                             <hr>
                             <div class="row">
                                 <div class="col-12">
                                     <ul class="text">
-                                        @if (!empty($userBasicInfo))
+                                        @if (!empty($userInfo->userBasicInfos))
                                             <li class="location m-0"><i class="lni lni-user"></i>
-                                                &nbsp;{{ $userBasicInfo->age }}
+                                                &nbsp;{{ $userInfo->userBasicInfos->age }}
                                                 Yrs</li>
 
                                             <li class="location m-0"><i class="lni lni-flag-alt"></i>
-                                                &nbsp;{{ $userBasicInfo->MartialStatus->martial_status_name }}
+                                                &nbsp;{{ $userInfo->userBasicInfos->MartialStatus->martial_status_name }}
                                             </li>
                                         @endif
 
@@ -169,7 +169,7 @@
                             </div>
 
                             <div class="accordion" id="accordionExample">
-                                @if (!empty($userBasicInfo))
+                                @if (!empty($userInfo->userBasicInfos))
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingTwo">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -219,7 +219,7 @@
                                                                             <li class="p-2">
                                                                                 <span class="text-primary">
                                                                                     Alt. Mobile No :
-                                                                                </span>{{ $userInfo->userBasicInfos->user_mobile_no }}
+                                                                                </span>{{ $userInfo->userBasicInfoss->user_mobile_no }}
                                                                             </li>
                                                                         </div>
                                                                     @endif
@@ -229,19 +229,19 @@
                                                                     <span class="text-primary">
                                                                         Address :
                                                                     </span>
-                                                                    {{ $userBasicInfo->user_address ?? '-' }}
+                                                                    {{ $userInfo->userBasicInfos->user_address ?? '-' }}
                                                                 </li>
                                                                 <li class="p-2">
                                                                     <span class="text-primary">
                                                                         Height :
                                                                     </span>
-                                                                    {{ $userBasicInfo->Height->height_feet_cm ?? '-' }}
+                                                                    {{ $userInfo->userBasicInfos->Height->height_feet_cm ?? '-' }}
                                                                 </li>
                                                                 <li class="p-2">
                                                                     <span class="text-primary">
                                                                         Complexion :
                                                                     </span>
-                                                                    {{ $userBasicInfo->Complex->complexion_name }}
+                                                                    {{ $userInfo->userBasicInfos->Complex->complexion_name }}
                                                                 </li>
                                                             </div>
                                                             <div class="col-md-6">
@@ -249,25 +249,25 @@
                                                                     <span class="text-primary">
                                                                         Mother Tongue :
                                                                     </span>
-                                                                    {{ $userBasicInfo->MotherTongue->language_name }}
+                                                                    {{ $userInfo->userBasicInfos->MotherTongue->language_name }}
                                                                 </li>
                                                                 {{-- <li class="p-2">
                                                                     <span class="text-primary">
                                                                         Marital Status :
                                                                     </span>
-                                                                    {{ $userBasicInfo->MartialStatus->martial_status_name }}
+                                                                    {{ $userInfo->userBasicInfos->MartialStatus->martial_status_name }}
                                                                 </li> --}}
                                                                 <li class="p-2">
                                                                     <span class="text-primary">
                                                                         Eating Habit :
                                                                     </span>
-                                                                    {{ $userBasicInfo->EatingHabit->habit_type_name }}
+                                                                    {{ $userInfo->userBasicInfos->EatingHabit->habit_type_name }}
                                                                 </li>
                                                                 <li class="p-2">
                                                                     <span class="text-primary">
                                                                         Disability :
                                                                     </span>
-                                                                    {{ ($userBasicInfo->is_disable = 1) ? 'Yes' : 'No' }}
+                                                                    {{ ($userInfo->userBasicInfos->is_disable = 1) ? 'Yes' : 'No' }}
                                                                 </li>
 
                                                             </div>
@@ -848,7 +848,8 @@
                                 console.log(e.message);
                                 toastr.success('Contact Info Showed Successfully');
                                 this.viewMobNum = '{{ $userInfo->phonenumber }}';
-                                this.viewAltNum = '{{ $userBasicInfo->user_mobile_no }}';
+                                this.viewAltNum =
+                                    '{{ $userInfo->userBasicInfos->user_mobile_no }}';
                             } else if ((e.status == 500)) {
                                 console.log(e.message);
                                 toastr.error(e.message);

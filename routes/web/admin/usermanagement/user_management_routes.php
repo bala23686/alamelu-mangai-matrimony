@@ -25,12 +25,13 @@ Route::group(['prefix'=>'profile-managament','as'=>'admin.','middleware'=>'is_ad
        Route::put('profile/profile-verification/{id}/status-update',[UserMasterController::class,'updateVerificationStatus'])->name('profile.updateVerificationStatus');
        Route::put('profile/profile-image-delete/{id}/delete-profile-image',[UserMasterController::class,'deleteUserProfileImage'])->name('profile.deleteprofileimage');
        Route::post('profile/profile-photo-upload/image-update',[UserMasterController::class,'userProfileImageUpload'])->name('profile.userProfileImageUpload');
-       //section to handle user basic info details
+       //section to handle user basic info details & Documents upload
        Route::put('profile/profile-basic-information/information-update/{id}',[UserMasterController::class,'updateUserBasicInformation'])->name('profile.updateUserBasicInformation');
        Route::post('profile/profile-basic-information/medical-certificate-upload/{id}',[UserMasterController::class,'uploadMedicalCertificate'])->name('profile.uploadMedicalCertificate');
        Route::post('profile/profile-basic-information/tenth-certificate-upload/{id}',[UserMasterController::class,'uploadTenthCertificate'])->name('profile.uploadTenthCertificate');
        Route::post('profile/profile-basic-information/twelth-certificate-upload/{id}',[UserMasterController::class,'uploadTwelthCertificate'])->name('profile.uploadTwelthCertificate');
        Route::post('profile/profile-basic-information/clg-tc-upload/{id}',[UserMasterController::class,'uploadCollegeTc'])->name('profile.uploadCollegeTc');
+       Route::post('profile/profile-basic-information/user-adhar-card-upload/{id}',[UserMasterController::class,'adharCardUpload'])->name('profile.adharCardUpload');
 
        //end of section to handle user basic info details
        Route::put('profile/profile-family-information/information-update/{id}',[UserMasterController::class,'updateUserFamilyInformation'])->name('profile.updateUserFamilyInformation');

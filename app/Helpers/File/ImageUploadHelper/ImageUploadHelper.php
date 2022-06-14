@@ -17,7 +17,15 @@ class ImageUploadHelper
 
         $imgFile = ImageIntervention::make($file->getRealPath());
 
-        $imgFile->insert('assets/admin/images/exciteon-logo.png', 'bottom');
+
+        // use callback to define details
+        $imgFile->text('Alamelumangai Matrimony.com', 60, 15, function ($font) {
+            $font->size(24);
+            $font->color('#fdf6e3');
+            $font->align('center');
+            $font->valign('top');
+            $font->angle(45);
+        });
 
         $imgFile->resize(500, 500);
 
@@ -30,7 +38,7 @@ class ImageUploadHelper
     public static function storeImage($file, string $path): string
     {
 
-        $fileName = "dummy" . "" . round(time() / 9999) . "" . rand(10, 500) . "." . $file->getClientOriginalExtension();
+        $fileName = "image" . "" . round(time() / 9999) . "" . rand(10, 500) . "." . $file->getClientOriginalExtension();
         Storage::disk('uploads')->putFileAs($path, $file, $fileName);
         return $fileName;
     }

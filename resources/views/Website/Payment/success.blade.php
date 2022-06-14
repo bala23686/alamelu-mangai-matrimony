@@ -82,8 +82,8 @@
     </div>
 </div>
 
-@if (session()->has('pay-u-payment-success'))
+{{-- @if (session()->has('pay-u-payment-success'))
     <script>
         window.open('{{ Url('/') }}' + '/storage/invoice/' + {{ session('pay-u-payment-success') }});
     </script>
-@endif
+@endif --}}

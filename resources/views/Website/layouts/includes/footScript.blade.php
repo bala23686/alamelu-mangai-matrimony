@@ -1,10 +1,10 @@
 <script type="text/javascript" data-cfasync="false"
 src="//cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"
 integrity="sha512-8cU710tp3iH9RniUh6fq5zJsGnjLzOWLWdZqBMLtqaoZUA6AWIE34lwMB3ipUNiTBP5jEZKY95SfbNnQ8cCKvA=="
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ asset('web/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('web/js/wow.min.js') }}"></script>
 <script src="{{ asset('web/js/tiny-slider.js') }}"></script>
 <script src="{{ asset('web/js/glightbox.min.js') }}"></script>
