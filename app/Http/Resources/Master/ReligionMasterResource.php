@@ -15,8 +15,8 @@ class ReligionMasterResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "religion_name"=>$this->religion_name,
+            "id"=>$this->id ?? '',
+            "religion_name"=>$this->religion_name ?? '',
         ];
     }
 }

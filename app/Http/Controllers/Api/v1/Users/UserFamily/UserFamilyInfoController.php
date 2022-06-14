@@ -48,7 +48,7 @@ class UserFamilyInfoController extends Controller
             return Cache::rememberForever('user_famil_info'.$id,function()use($id)
             {
                 $user_family_info=UserFamilyInfoMaster::where('user_id',$id)
-                ->with(['FamilyStatusSubMaster'])->first();
+                ->first()->load('FamilyStatusSubMaster');
                 return UserFamilyInfoResource::make($user_family_info);
             });
         }

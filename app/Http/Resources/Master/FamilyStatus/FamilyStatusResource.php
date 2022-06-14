@@ -15,8 +15,8 @@ class FamilyStatusResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "family_type"=>$this->family_type_name,
+            "id"=>$this->id ?? '',
+            "family_type"=>$this->family_type_name ?? '',
         ];
     }
 }

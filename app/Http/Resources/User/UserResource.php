@@ -21,6 +21,7 @@ class UserResource extends JsonResource
             "email" => $this->email,
             "phone_no" => $this->phonenumber,
             "profile_id" => $this->user_profile_id,
+            "match"=>$this->match,
             "status_info"=>StatusResource::make($this->whenLoaded('status')),
             "user_basic_info"=>UserBasicInfoResource::make($this->whenLoaded('userBasicInfo')),
             "user_family_info"=>UserFamilyInfoResource::make($this->whenLoaded('UserFamilyInfo')),

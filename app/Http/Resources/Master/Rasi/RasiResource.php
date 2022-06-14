@@ -15,8 +15,8 @@ class RasiResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "rasi"=>$this->rasi_name
+            "id"=>$this->id ?? '',
+            "rasi"=>$this->rasi_name ?? ''
         ];
     }
 }

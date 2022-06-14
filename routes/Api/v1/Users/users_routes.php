@@ -8,7 +8,11 @@ use App\Http\Controllers\Api\v1\Users\UserPrefference\UserPrefferenceController;
 use App\Http\Controllers\Api\v1\Users\UserPrefference\UserProfessinalPrefferenceController;
 use App\Http\Controllers\Api\v1\Users\UserPrefference\UserReligiousPrefferenceController;
 use App\Http\Controllers\Api\v1\Users\UserProfession\UserProfessionController;
+use App\Http\Controllers\Api\v1\Users\UserProfiles\UserMatchsController;
+use App\Http\Controllers\Api\v1\Users\UserProfiles\UserProfileController;
 use App\Http\Controllers\Api\v1\Users\UserReligion\UserReligionInfoController;
+use App\Http\Controllers\Api\v1\Users\UserShortList\UserShotListController;
+use App\Http\Controllers\Website\ShortList\ShortListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,5 +44,17 @@ Route::group(['prefix'=>'user-profile','middleware'=>'auth:sanctum'],function()
 
     Route::put('profile/profile-family-information/information-update/{id}',[UserMasterController::class,'updateUserFamilyInformation'])->name('profile.updateUserFamilyInformation');
 
+    //user multiple image upload & delete
 
+    Route::post('user-multiple-image-upload',[UserMasterController::class,'uploadMultipleImage']);
+    Route::get('user-multiple-image-get/{id}',[UserMasterController::class,'getUserPhotos']);
+    Route::delete('user-multiple-image-delete/{id}',[UserMasterController::class,'deletePhoto']);
+
+
+     //user short list routes for api
+     Route::apiResource('my-short-list', UserShotListController::class);
+
+     //user matchs & profiles
+    Route::get('profiles-list',UserProfileController::class);
+    Route::get('profiles-match-list',UserMatchsController::class);
 });

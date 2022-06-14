@@ -15,8 +15,8 @@ class GenderMasterResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "gender"=>$this->gender_name
+            "id"=>$this->id ?? '',
+            "gender"=>$this->gender_name ?? ''
         ];
     }
 }

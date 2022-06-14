@@ -23,12 +23,12 @@ class UserProfessionalBasicInfoResource extends JsonResource
             "user_id"=>$this->user_id,
             "partner_age_from"=>$this->partner_age_from,
             "partner_age_to"=>$this->partner_age_to,
-            "partner_height_from"=>HeightMasterResource::make($this->whenLoaded('HeightTo')),
-            "partner_height_to"=>HeightMasterResource::make($this->whenLoaded('HeightTo')),
-            "partner_martial_status_prefer"=>MartialStatusResource::make($this->whenLoaded('MartialStatus')),
-            "partner_complexion"=>ComplexionResource::collection($this->partner_complexion),
-            "partner_mother_tongue"=>LangaugeMasterResource::collection($this->partner_mother_tongue),
-            "partner_country"=>CountryResource::collection($this->partner_country),
+            "partner_height_from"=>$this->partner_height_from==null ? HeightMasterResource::make([]): HeightMasterResource::make($this->whenLoaded('HeightFrom')) ,
+            "partner_height_to"=>$this->partner_height_to==null ? HeightMasterResource::make([]): HeightMasterResource::make($this->whenLoaded('HeightTo')) ,
+            "partner_martial_status_prefer"=> $this->partner_martial_status==null ? MartialStatusResource::make([]) :  MartialStatusResource::make($this->whenLoaded('MartialStatus')),
+            "partner_complexion"=> $this->partner_complexion,
+            "partner_mother_tongue"=> $this->partner_mother_tongue,
+            "partner_country"=>$this->partner_country,
         ];
     }
 }

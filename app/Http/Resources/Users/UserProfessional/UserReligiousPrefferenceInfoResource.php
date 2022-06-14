@@ -19,9 +19,9 @@ class UserReligiousPrefferenceInfoResource extends JsonResource
     {
         return [
         "user_id"=> $this->user_id,
-        "partner_religion"=> ReligionMasterResource::make($this->whenLoaded('Religion')),
-        "partner_caste"=>CasteMasterResource::make($this->whenLoaded('Caste')),
-        "partner_rasi"=>RasiResource::collection($this->partner_rasi)
+        "partner_religion"=>$this->partner_religion==null ? ReligionMasterResource::make([]) : ReligionMasterResource::make($this->whenLoaded('Religion')),
+        "partner_caste"=>$this->partner_caste ? CasteMasterResource::make([]) : CasteMasterResource::make($this->whenLoaded('Caste')),
+        "partner_rasi"=>$this->partner_rasi
         ];
     }
 }
