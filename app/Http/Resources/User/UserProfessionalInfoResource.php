@@ -21,16 +21,16 @@ class UserProfessionalInfoResource extends JsonResource
     {
         return [
 
-            "id"=>$this->user_id,
+            "id" => $this->user_id,
             // "education"=>$this->user_education_id->pluck('education_name'),
-            "education"=>$this->user_education_id,
-            "education_details"=> $this->user_education_details ,
-            "job"=> $this->user_job_id==null ? JobResource::make([]): JobResource::make($this->whenLoaded('Job')),
-            "job_details"=>$this->user_job_details,
-            "job_country"=> $this->user_job_country==null ? CountryResource::make([]) : CountryResource::make($this->whenLoaded('JobCountry')) ,
-            "job_state"=>$this->user_job_state==null ?  StateResource::make([]) : StateResource::make($this->whenLoaded('JobState')),
-            "job_city"=>$this->user_job_city==null ? CityResource::make([]) : CityResource::make($this->whenLoaded('JobCity')),
-            "annual_income"=>$this->user_annual_income
+            "education" => $this->user_education_id,
+            "education_details" => $this->user_education_details,
+            "job" => $this->user_job_id == null ? JobResource::make([]) : JobResource::make($this->whenLoaded('Job')),
+            "job_details" => $this->user_job_details,
+            "job_country" => $this->user_job_country == null ? CountryResource::make([]) : CountryResource::make($this->whenLoaded('JobCountry')),
+            "job_state" => $this->user_job_state == null ?  StateResource::make([]) : StateResource::make($this->whenLoaded('JobState')),
+            "job_city" => $this->user_job_city == null ? CityResource::make([]) : CityResource::make($this->whenLoaded('JobCity')),
+            "annual_income" => $this->user_annual_income
 
         ];
     }

@@ -18,10 +18,11 @@ class UserReligiousPrefferenceInfoResource extends JsonResource
     public function toArray($request)
     {
         return [
-        "user_id"=> $this->user_id,
-        "partner_religion"=>$this->partner_religion==null ? ReligionMasterResource::make([]) : ReligionMasterResource::make($this->whenLoaded('Religion')),
-        "partner_caste"=>$this->partner_caste ? CasteMasterResource::make([]) : CasteMasterResource::make($this->whenLoaded('Caste')),
-        "partner_rasi"=>$this->partner_rasi
+            "user_id" => $this->user_id,
+            "partner_religion" => $this->partner_religion == null ? ReligionMasterResource::make([]) : ReligionMasterResource::make($this->whenLoaded('Religion')),
+            "partner_caste" => $this->partner_caste ? CasteMasterResource::make([]) : CasteMasterResource::make($this->whenLoaded('Caste')),
+            "partner_rasi" => $this->partner_rasi,
+            "caste_no_bar" => $this->caste_no_bar
         ];
     }
 }
