@@ -15,8 +15,8 @@ class EatingHabitResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "habit"=>$this->habit_type_name
+            "id"=>$this->id ?? '',
+            "habit"=>$this->habit_type_name ?? ''
         ];
     }
 }

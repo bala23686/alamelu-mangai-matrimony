@@ -14,9 +14,10 @@ class HeightMasterResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
-            "id"=>$this->id,
-            "height"=>$this->height_feet_cm
+            "id"=>$this->id ?? '',
+            "height"=>$this->height_feet_cm ?? ''
         ];
     }
 }

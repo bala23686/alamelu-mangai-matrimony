@@ -16,9 +16,8 @@ class StarResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "star"=>$this->star_name,
-            "rasi"=>RasiResource::make($this->whenLoaded('Rasi'))
+            "id"=>$this->id ?? '',
+            "star"=>$this->star_name ?? '',
         ];
     }
 }

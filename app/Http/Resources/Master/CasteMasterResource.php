@@ -15,10 +15,10 @@ class CasteMasterResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
-            'caste_name'=>$this->caste_name,
-            'caste_religion'=>$this->caste_religion,
-            'religion_info'=>ReligionMasterResource::make($this->whenLoaded('Religion')),
+            'id'=>$this->id ?? '',
+            'caste_name'=>$this->caste_name ?? '',
+            'caste_religion'=>$this->caste_religion ?? '',
+
         ];
     }
 }

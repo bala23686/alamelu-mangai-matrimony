@@ -18,11 +18,11 @@ class UserProfessionalPrefferenceInfoResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "partner_education"=>EducationResource::collection($this->partner_education),
+            "partner_education"=>$this->partner_education,
             "partner_education_details"=>$this->partner_education_details,
-            "partner_job"=>JobResource::collection($this->partner_job),
+            "partner_job"=>$this->partner_job,
             "partner_job_details"=>$this->partner_job_details,
-            "partner_job_country"=>CountryResource::collection($this->partner_job_country),
+            "partner_job_country"=>$this->partner_job_country,
             "partner_salary"=>$this->partner_salary
         ];
     }

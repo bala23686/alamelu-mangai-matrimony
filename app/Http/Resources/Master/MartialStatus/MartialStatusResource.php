@@ -15,8 +15,8 @@ class MartialStatusResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "martial_status"=>$this->martial_status_name,
+            "id"=>$this->id ?? '',
+            "martial_status"=>$this->martial_status_name ?? '',
         ];
     }
 }

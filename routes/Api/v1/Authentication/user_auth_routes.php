@@ -14,17 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix'=>'users'],function()
-{
+Route::group(['prefix' => 'users'], function () {
 
-    Route::post('resgiter-user',[AuthenticationController::class,'registerUser']);
-    Route::post('user-login',[AuthenticationController::class,'userLogin']);
-
+    Route::post('register-user', [AuthenticationController::class, 'registerUser']);
+    Route::post('user-login', [AuthenticationController::class, 'userLogin']);
 });
 
-Route::group(['prefix'=>'users','middleware'=>'auth:sanctum'],function()
-{
+Route::group(['prefix' => 'users', 'middleware' => 'auth:sanctum'], function () {
 
-    Route::post('logout-user',[AuthenticationController::class,'logoutUser']);
-
+    Route::post('logout-user', [AuthenticationController::class, 'logoutUser']);
 });

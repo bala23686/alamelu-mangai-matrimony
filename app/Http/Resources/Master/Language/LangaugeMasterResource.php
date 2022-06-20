@@ -15,8 +15,8 @@ class LangaugeMasterResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "language"=>$this->language_name
+            "id"=>$this->id ?? '',
+            "language"=>$this->language_name ?? ''
         ];
     }
 }

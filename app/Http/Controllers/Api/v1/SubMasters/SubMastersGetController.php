@@ -23,7 +23,6 @@ use App\Http\Resources\Master\Salary\SalaryResource;
 use App\Http\Resources\Master\Star\StarResource;
 use App\Http\Resources\Master\State\StateResource;
 use App\Lut\Model\AgeMaster;
-use App\Lut\Model\BloodGroup;
 use App\Models\Master\CasteMaster\CasteMaster;
 use App\Models\Master\CityMaster\CityMaster;
 use App\Models\Master\CountryMaster\CountryMaster;
@@ -375,16 +374,6 @@ class SubMastersGetController extends Controller
         $ageList=AgeMaster::all();
 
         return response(json_encode($ageList, 200));
-
-     }
-
-
-     public function getBlood()
-     {
-
-        $bloodList=BloodGroup::all();
-
-        return response(json_encode($bloodList, 200));
 
      }
 }

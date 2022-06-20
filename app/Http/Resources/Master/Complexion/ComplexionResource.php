@@ -15,8 +15,8 @@ class ComplexionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=>$this->id,
-            "complexion"=>$this->complexion_name
+            "id"=>$this->id ?? '',
+            "complexion"=>$this->complexion_name ?? ''
         ];
     }
 }
