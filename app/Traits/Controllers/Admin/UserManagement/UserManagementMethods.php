@@ -5,6 +5,10 @@ namespace App\Traits\Controllers\Admin\UserManagement;
 use App\Helpers\File\ImageUploadHelper\ImageUploadHelper;
 use App\Http\Requests\UsersRequest\UserHoroscopeJathakamImageRequest;
 use App\Http\Requests\UsersRequest\UserRegistrationRequest;
+use App\Http\Requests\Website\Dashboard\DocumentUpload\AadharUploadRequest;
+use App\Http\Requests\Website\Dashboard\DocumentUpload\CollegeTcUploadRequest;
+use App\Http\Requests\Website\Dashboard\DocumentUpload\TenthUploadRequest;
+use App\Http\Requests\Website\Dashboard\DocumentUpload\TwefthUploadRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\BasicPreferenceDetailsRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\ProfessionalPreferenceDetailsRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\ReligiousPreferenceDetailsRequest;
@@ -13,6 +17,7 @@ use App\Http\Requests\Website\Dashboard\ProfilesRequests\FamilyDetailsRequest;
 use App\Http\Requests\Website\Dashboard\ProfilesRequests\NativeInfoRequest;
 use App\Http\Requests\Website\Dashboard\ProfilesRequests\ProfessionalDetailsRequest;
 use App\Http\Requests\Website\Dashboard\ProfilesRequests\ReligiousDetailsRequest;
+use App\Http\Requests\Website\ProfilesRequest\ProfileImageRequest;
 use App\Models\Master\UserBasicInfoMaster\UserBasicInfoMaster;
 use App\Models\Master\UserPackageInfoMaster\UserPackageInfoMaster;
 use App\Models\Master\UserPhotoMaster\UserPhotoMaster;
@@ -246,11 +251,11 @@ trait UserManagementMethods
         return $user->save() ? response()->json(['message' => 'User Profile Image Deleted'], 201) : response()->json(['message' => 'something went wrong'], 500);
     }
 
-    public function userProfileImageUpload(Request $request)
+    public function userProfileImageUpload(ProfileImageRequest $request)
     {
-        $this->validate($request, [
-            "profileImage" => 'required|mimes:png,jpg,jpeg'
-        ]);
+        // $this->validate($request, [
+        //     "profileImage" => 'required|file|mimes:png,jpg,jpeg|max:2048'
+        // ]);
 
         $file = $request->profileImage;
 
@@ -275,75 +280,67 @@ trait UserManagementMethods
             : response()->json(['message' => ''], 500);
     }
 
-    public function uploadMedicalCertificate(Request $request,BasicDetailsUpdateServices $service,$id)
+    public function uploadMedicalCertificate(Request $request, BasicDetailsUpdateServices $service, $id)
     {
-         $this->validate($request,[
-             'medical_certificate'=>['required']
-         ]);
+        $this->validate($request, [
+            'medical_certificate' => ['required']
+        ]);
 
 
 
-         $medical_certificate = ImageUploadHelper::storeImage($request->medical_certificate, UserBasicInfoMaster::USER_MEDICAL_CERIFICATE_IMAGE_PATH);
+        $medical_certificate = ImageUploadHelper::storeImage($request->medical_certificate, UserBasicInfoMaster::USER_MEDICAL_CERIFICATE_IMAGE_PATH);
 
-         return $service->handleMedicalCertificateUpload($medical_certificate,$id)
-         ? response()->json(['message' => 'User Medical Certificate Uploaded'], 201)
-         : response()->json(['message' => ''], 500);
+        return $service->handleMedicalCertificateUpload($medical_certificate, $id)
+            ? response()->json(['message' => 'User Medical Certificate Uploaded'], 201)
+            : response()->json(['message' => ''], 500);
     }
 
 
-    public function uploadTenthCertificate(Request $request,BasicDetailsUpdateServices $service,$id)
+    public function uploadTenthCertificate(TenthUploadRequest $request, BasicDetailsUpdateServices $service, $id)
     {
-        $this->validate($request,[
-            'tenth_certificate'=>['required']
-        ]);
 
         $tenth_certificate = ImageUploadHelper::storeImage($request->tenth_certificate, UserBasicInfoMaster::USER_TENTH_CERIFICATE_IMAGE_PATH);
 
-        return $service->handleTenthCertificateUpload($tenth_certificate,$id)
-        ? response()->json(['message' => 'User Tenth Certificate Uploaded'], 201)
-        : response()->json(['message' => ''], 500);
+        return $service->handleTenthCertificateUpload($tenth_certificate, $id)
+            ? response()->json(['message' => 'User Tenth Certificate Uploaded'], 201)
+            : response()->json(['message' => ''], 500);
     }
 
 
-    public function uploadTwelthCertificate(Request $request,BasicDetailsUpdateServices $service,$id)
+    public function uploadTwelthCertificate(TwefthUploadRequest $request, BasicDetailsUpdateServices $service, $id)
     {
-        $this->validate($request,[
-            'twelth_certificate'=>['required']
-        ]);
+
 
         $twelth_certificate = ImageUploadHelper::storeImage($request->twelth_certificate, UserBasicInfoMaster::USER_TWELTH_CERIFICATE_IMAGE_PATH);
 
-        return $service->handleTwelthCertificateUpload($twelth_certificate,$id)
-        ? response()->json(['message' => 'User Twelth Certificate Uploaded'], 201)
-        : response()->json(['message' => ''], 500);
+        return $service->handleTwelthCertificateUpload($twelth_certificate, $id)
+            ? response()->json(['message' => 'User Twelth Certificate Uploaded'], 201)
+            : response()->json(['message' => ''], 500);
     }
 
 
-    public function uploadCollegeTc(Request $request,BasicDetailsUpdateServices $service,$id)
+    public function uploadCollegeTc(CollegeTcUploadRequest $request, BasicDetailsUpdateServices $service, $id)
     {
-        $this->validate($request,[
-            'clg_tc'=>['required']
+        $this->validate($request, [
+            'clg_tc' => ['required']
         ]);
 
         $clg_tc = ImageUploadHelper::storeImage($request->clg_tc, UserBasicInfoMaster::USER_CLG_TC_IMAGE_PATH);
 
-        return $service->handleClgTcUpload($clg_tc,$id)
-        ? response()->json(['message' => 'User College Tc Uploaded'], 201)
-        : response()->json(['message' => ''], 500);
+        return $service->handleClgTcUpload($clg_tc, $id)
+            ? response()->json(['message' => 'User College Tc Uploaded'], 201)
+            : response()->json(['message' => ''], 500);
     }
 
-    public function adharCardUpload(Request $request,BasicDetailsUpdateServices $service,$id)
+    public function adharCardUpload(AadharUploadRequest $request, BasicDetailsUpdateServices $service, $id)
     {
-        $this->validate($request,[
-            'userAdharCard'=>['required'],
-            'userAdharCardNo'=>['required'],
-        ]);
+
 
         $user_adhar_card = ImageUploadHelper::storeImage($request->userAdharCard, UserBasicInfoMaster::USER_ADHAR_IMAGE_PATH);
 
-        return $service->handleAdharCardUpload($user_adhar_card,$request->userAdharCardNo,$id)
-        ? response()->json(['message' => 'User Adhar Card Uploaded'], 201)
-        : response()->json(['message' => ''], 500);
+        return $service->handleAdharCardUpload($user_adhar_card, $request->userAdharCardNo, $id)
+            ? response()->json(['message' => 'User Adhar Card Uploaded'], 201)
+            : response()->json(['message' => ''], 500);
     }
 
 
