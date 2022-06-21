@@ -97,7 +97,7 @@ class UserBasicInfoMaster extends Model
 
     public function getTwelthCertificateWithPathAttribute()
     {
-        return ($this->twelth_mark_sheet_uploaded) ? Url('/') . "/uploads" . self::USER_TENTH_CERIFICATE_IMAGE_PATH . "{$this->twelth_marksheet}" : null;
+        return ($this->twelth_mark_sheet_uploaded) ? Url('/') . "/uploads" . self::USER_TWELTH_CERIFICATE_IMAGE_PATH . "{$this->twelth_marksheet}" : null;
     }
 
     public function getCollegeTcWithPathAttribute()
