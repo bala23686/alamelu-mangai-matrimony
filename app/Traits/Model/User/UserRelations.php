@@ -10,6 +10,7 @@ use App\Models\Master\UserHoroscopeInfoMaster\UserHoroscopeInfoMaster;
 use App\Models\Master\UserLog\UserLog;
 use App\Models\Master\UserNativeInfoMaster\UserNativeInfoMaster;
 use App\Models\Master\UserPackageInfoMaster\UserPackageInfoMaster;
+use App\Models\Master\UserPhotoMaster\UserPhotoMaster;
 use App\Models\Master\UserPreferenceInfoMaster\UserPreferenceInfo;
 use App\Models\Master\UserProfessionalMaster\UserProfessionalMaster;
 use App\Models\Master\UserReligiousInfoMaster\UserReligiousInfoMaster;
@@ -153,5 +154,9 @@ trait UserRelations
     public function TransactionInfo(): HasMany
     {
         return $this->hasMany(UserTransaction::class, 'user_id', 'id');
+    }
+    public function GalleryInfo(): HasMany
+    {
+        return $this->hasMany(UserPhotoMaster::class, 'user_id', 'id');
     }
 }

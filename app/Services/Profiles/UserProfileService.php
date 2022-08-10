@@ -31,7 +31,8 @@ class UserProfileService
             'userNativeInfo.City',
             'status',
             'UserProfessionInfo',
-            'BasicPartnerInfo'
+            'BasicPartnerInfo',
+            'GalleryInfo'
         ]);
 
         //gender should be opposite
