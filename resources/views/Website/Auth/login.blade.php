@@ -1,62 +1,27 @@
-{{-- @include(asset('web/css/custom.css')) --}}
-<link rel="stylesheet" href="{{ asset('web/css/custom.css') }}">
+@extends('Website.layouts.auth')
 
-<!------ Include the above in your HEAD tag ---------->
 
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            <div class="login100-pic js-tilt" data-tilt>
-                <img src="https://colorlib.com/etc/lf/Login_v1/images/img-01.png" alt="IMG">
-            </div>
+@section('content')
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-6 fw-bold">Login</h1>
+        <div class="col-lg-6 mx-auto">
             @if ($errors->any())
                 <ul>
-                    {!! implode('', $errors->all('<li>:message</li>')) !!}
+                    {!! implode('', $errors->all('<li class="text-danger">:message</li>')) !!}
                 </ul>
             @endif
-            <form class="login100-form " action="{{ route('sign.in') }}" method="POST">
+            <form class="p-4 p-md-5 border rounded-3 bg-light" action="{{ route('sign.in') }}" method="post">
                 @csrf
-                <span class="login100-form-title">
-                    Member Login
-                </span>
-
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email" placeholder="Email">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                    </span>
+                <div class="mb-3 mt-2">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <input class="form-control" type="text" placeholder="Email" aria-label="default input example">
                 </div>
-
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" name="password" placeholder="Password">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                    </span>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Password</label>
+                    <input class="form-control" type="text" placeholder="Password" aria-label="default input example">
                 </div>
-
-                <div class="container-login100-form-btn">
-                    <button type="submit" class="login100-form-btn">
-                        Login
-                    </button>
-                </div>
-
-                <div class="text-center p-t-12">
-                    <span class="txt1">
-                        Forgot
-                    </span>
-                    <a class="txt2" href="{{ route('userpassword.reset') }}">
-                        Username / Password?
-                    </a>
-                </div>
-                {{-- <div class="text-center p-t-136">
-                    <a class="txt2" href="#">
-                        Create your Account
-                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                    </a>
-                </div> --}}
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
             </form>
         </div>
     </div>
-</div>
+@endsection
