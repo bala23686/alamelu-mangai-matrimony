@@ -28,6 +28,18 @@ class AuthController extends Controller
      */
     public function index()
     {
+        if(request()->has('authId'))
+        {
+
+            $user = User::find(request()->authId);
+                if($user)
+                {
+                    Auth::login($user);
+
+                    return redirect()->route('user.payments.pay-Now', auth()->id());
+                }
+        }
+
         return  view('Website.Auth.login');
     }
 
@@ -54,6 +66,7 @@ class AuthController extends Controller
         $service = new  UserRegistrationService;
 
         $service->HandleUserRegistration($request);
+
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             toastr()->success('Account Created Successfully');
             return redirect()->route('user.payments.pay-Now', auth()->id());

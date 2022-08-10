@@ -95,20 +95,18 @@
                     <div class="check"><i class="lni lni-rupee" aria-hidden="true"></i></div>
                 </div>
                 <div class="content">
-
                     <h1>Hi,{{ Auth::user()->username }}</h1>
                     <h4>Registration Fee :&nbsp; &#8377; 1020</h4>
                     <h6>Note : All rates inclusive of 18% GST.
                     </h6>
                     @csrf
                     <div class="row" style="margin-top: 25px">
-                        <div class="col">
+                        <div class="col-sm-12 col-md-6 ">
                             <a href="{{ route('Home') }}">Go Back
                                 To Home</a>
                         </div>
-                        <div class="col justify-end">
-                            <a href="{{ route('user.payments.payU-Checkout', $user->id) }}?amount=1020&&packageId=1">Complete
-                                Your Payment</a>
+                        <div class="col-sm-12 col-md-6 ">
+                            <a href="{{ route('user.payments.payU-Checkout', $user->id) }}?amount=1020&&packageId=1">Payment</a>
                         </div>
                     </div>
                 </div>
