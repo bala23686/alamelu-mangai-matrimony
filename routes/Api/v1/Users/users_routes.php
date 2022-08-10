@@ -45,7 +45,7 @@ Route::group(['prefix' => 'user-profile', 'middleware' => 'auth:sanctum'], funct
 
     //user multiple image upload & delete
 
-    Route::post('user-multiple-image-upload', [UserMasterController::class, 'uploadMultipleImage']);
+    Route::post('user-multiple-image-upload', [UserMasterController::class, 'uploadMultipleImageApi']);
     Route::get('user-multiple-image-get/{id}', [UserMasterController::class, 'getUserPhotos']);
     Route::delete('user-multiple-image-delete/{id}', [UserMasterController::class, 'deletePhoto']);
 

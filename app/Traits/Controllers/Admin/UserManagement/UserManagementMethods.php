@@ -457,6 +457,24 @@ trait UserManagementMethods
         }
     }
 
+    public function uploadMultipleImageApi(Request $request, UserPhotoUploadService $service)
+    {
+
+        if ($request->hasfile('file')) {
+
+            foreach ($request->file('file') as $key => $file) {
+
+                $file_name = ImageUploadHelper::storeImage($file, UserPhotoMaster::IMAGE_UPLOAD_PATH);
+
+                if (!$service->handleUserPhotos($file_name, $request->user_id)) {
+
+                    return response(json_encode(["message" => "You Need a Active Plan & photo count to upload more image"]), 402);
+                }
+            }
+
+            return response(json_encode(["messsage" => "image uploaded succesfully"]), 200);
+        }
+    }
 
     public function getUserPhotos($id)
     {

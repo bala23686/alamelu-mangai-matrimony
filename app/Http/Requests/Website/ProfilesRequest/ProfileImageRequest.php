@@ -30,7 +30,6 @@ class ProfileImageRequest extends FormRequest
     public function messages()
     {
         return [
-            'profileImage.max' => 'Maximum file size to upload is 1MB.',
             'profileImage.mimes' => 'Only files with following extensions are allowed:png,jpg,jpeg'
         ];
     }

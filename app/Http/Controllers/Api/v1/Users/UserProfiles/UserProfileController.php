@@ -15,11 +15,10 @@ class UserProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request,UserProfileService $service)
+    public function __invoke(Request $request, UserProfileService $service)
     {
         $profiles = $service->execute();
 
-        return response()->json(UserResource::collection($profiles),200);
-
+        return response()->json(['data' => $profiles], 200);
     }
 }
