@@ -43,16 +43,14 @@ class UserFamilyInfoController extends Controller
      */
     public function show(Request $request,$id)
     {
-        if($id==$request->user()->id)
-        {
+
             return Cache::rememberForever('user_famil_info'.$id,function()use($id)
             {
                 $user_family_info=UserFamilyInfoMaster::where('user_id',$id)
                 ->first()->load('FamilyStatusSubMaster');
                 return UserFamilyInfoResource::make($user_family_info);
             });
-        }
-        return response()->json(["message"=>"Action Denied"],403);
+
     }
 
     /**

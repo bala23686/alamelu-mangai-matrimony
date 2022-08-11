@@ -42,15 +42,14 @@ class UserReligiousPrefferenceController extends Controller
      */
     public function show(Request $request,$id)
     {
-        if ($request->user()->id == $id) {
+
 
             $user_religious_info=UserPreferenceInfo::find($id)
             ->load('Religion')
             ->load('Caste');
 
             return UserReligiousPrefferenceInfoResource::make($user_religious_info);
-        }
-        return response()->json(["message" => "Action Denied"], 401);
+
 
     }
 

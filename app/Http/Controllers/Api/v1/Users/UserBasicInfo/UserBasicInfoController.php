@@ -47,8 +47,7 @@ class UserBasicInfoController extends Controller
     public function show(Request $request, $id)
     {
 
-        if($id==$request->user()->id)
-        {
+
             return Cache::rememberForever('user_basic_info' . $id, function () use ($id) {
 
                 $user_basic_info =  UserBasicInfoMaster::with([
@@ -63,9 +62,7 @@ class UserBasicInfoController extends Controller
                     ->first();
                 return UserBasicInfoResource::make($user_basic_info);
             });
-        }
 
-        return response()->json(["message"=>"Trying to fetch information which does not belongs to user token"],403);
     }
 
     /**
