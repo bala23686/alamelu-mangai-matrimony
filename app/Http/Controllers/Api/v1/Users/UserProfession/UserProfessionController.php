@@ -42,8 +42,7 @@ class UserProfessionController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if($request->user()->id==$id)
-        {
+
 
             $professional_info=UserProfessionalMaster::find($id)
             ->load('Education')
@@ -52,8 +51,7 @@ class UserProfessionController extends Controller
             ->load('JobState')
             ->load('JobCity');
             return UserProfessionalInfoResource::make($professional_info);
-        }
-        return response()->json(["message"=>"Action Denied"],403);
+
     }
 
     /**

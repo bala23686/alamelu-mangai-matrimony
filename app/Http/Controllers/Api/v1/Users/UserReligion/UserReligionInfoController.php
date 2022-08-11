@@ -44,8 +44,7 @@ class UserReligionInfoController extends Controller
      */
     public function show(Request $request,$id)
     {
-        if($request->user()->id==$id)
-        {
+
             $user_religious_info=UserReligiousInfoMaster::where('user_id',$id)
                         ->with([
                         'BelognsToReligion',
@@ -54,9 +53,9 @@ class UserReligionInfoController extends Controller
                         'BelongsToStar'
                         ])
                         ->first();
-            // return $user_religious_info;
+
             return UserReligiousInfoResource::make($user_religious_info);
-        }
+
     }
 
     /**

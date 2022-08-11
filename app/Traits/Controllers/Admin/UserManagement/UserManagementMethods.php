@@ -236,13 +236,7 @@ trait UserManagementMethods
     public function deleteUserProfileImage(Request $request, $id)
     {
 
-        if ($request->is('api/*')) {
 
-            if ($request->user()->id != $id) {
-
-                return response()->json(["message" => "UnAutherized Action"], 403);
-            }
-        }
 
         $user = UserBasicInfoMaster::where('user_id', $id)->first();
 
