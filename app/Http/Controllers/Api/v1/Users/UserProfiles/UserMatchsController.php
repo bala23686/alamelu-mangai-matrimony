@@ -62,7 +62,7 @@ class UserMatchsController extends Controller
                 $profile->setMatch($match_count);
             });
 
-            return response()->json(['data' => $profiles], 200);;
+            return response()->json(['data' => $profiles], 200);
         }
 
         return response()->json(["message" => "User Does Not Have Preference"], 200);
