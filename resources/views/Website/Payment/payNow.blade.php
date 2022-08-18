@@ -101,10 +101,10 @@
                     </h6>
                     @csrf
                     <div class="row" style="margin-top: 25px">
-                        <div class="col-sm-12 col-md-6 ">
+                        {{-- <div class="col-sm-12 col-md-6 ">
                             <a href="{{ route('Home') }}">Go Back
                                 To Home</a>
-                        </div>
+                        </div> --}}
                         <div class="col-sm-12 col-md-6 ">
                             <a href="{{ route('user.payments.payU-Checkout', $user->id) }}?amount=1020&&packageId=1">Payment</a>
                         </div>

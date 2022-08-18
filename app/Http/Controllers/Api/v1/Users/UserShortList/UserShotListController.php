@@ -80,7 +80,8 @@ class UserShotListController extends Controller
      */
     public function destroy($id)
     {
-        $is_deleted = UserShortListInfoMaster::destroy($id);
+        $is_deleted = UserShortListInfoMaster::where('user_id', '=', $id)->delete();
+        // $is_deleted = UserShortListInfoMaster::destroy($id);
 
         return $is_deleted
             ? response()->json(["message" => "Removed From ShortList"], 204)

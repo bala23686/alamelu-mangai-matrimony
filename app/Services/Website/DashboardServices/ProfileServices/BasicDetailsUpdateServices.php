@@ -48,6 +48,7 @@ class BasicDetailsUpdateServices
         $data = [
             "medical_certificate" => $medical_certificate,
             "medical_certificate_uploaded_on" => Carbon::now(),
+            "medical_certificate_uploaded" => 1
         ];
 
 
@@ -111,7 +112,7 @@ class BasicDetailsUpdateServices
     }
 
 
-    public function handleAdharCardUpload($adharCard, $adharNo,$id)
+    public function handleAdharCardUpload($adharCard, $adharNo, $id)
     {
 
         $data = [
