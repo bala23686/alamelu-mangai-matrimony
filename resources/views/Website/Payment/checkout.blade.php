@@ -1,4 +1,4 @@
-@extends('Website.layouts.default')
+@extends('Website.layouts.checkout_main')
 {{-- @include(assets('web/css/bootstrap.min.css')) --}}
 
 
@@ -19,7 +19,7 @@
 </style>
 {{-- @section('content') --}}
 
-<div class="breadcrumbs">
+{{-- <div class="breadcrumbs">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-12">
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <section class="dashboard pt-3">
     <div class="container">
         <div class="row">
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col-md-7 col-lg-8">
                                         <form class="" action="{{ $payment_infomation->checkoutUrl }}"
-                                            target="_blank" method="POST">
+                                            method="POST">
                                             @csrf
                                             <div class="row g-3">
                                                 <div class="col-6">
@@ -114,15 +114,16 @@
 
                                                 <div class="col-sm-6">
                                                     <label for="">Package Amount</label>
-                                                    <input type="text" class="form-control" id="amount" name="amount"
-                                                        value="{{ $payment_infomation->amount }}" readonly required>
+                                                    <input type="text" class="form-control" id="amount"
+                                                        name="amount" value="{{ $payment_infomation->amount }}"
+                                                        readonly required>
                                                 </div>
 
 
                                                 <div class="col-12">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email"
-                                                        value="{{ $payment_infomation->email }}">
+                                                    <input type="email" class="form-control" id="email"
+                                                        name="email" value="{{ $payment_infomation->email }}">
 
                                                 </div>
                                                 <hr class="my-4">
