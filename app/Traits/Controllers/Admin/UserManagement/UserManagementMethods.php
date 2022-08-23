@@ -9,6 +9,7 @@ use App\Http\Requests\Website\Dashboard\DocumentUpload\AadharUploadRequest;
 use App\Http\Requests\Website\Dashboard\DocumentUpload\CollegeTcUploadRequest;
 use App\Http\Requests\Website\Dashboard\DocumentUpload\TenthUploadRequest;
 use App\Http\Requests\Website\Dashboard\DocumentUpload\TwefthUploadRequest;
+use App\Http\Requests\Website\Dashboard\DocumentUpload\MedicalUploadRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\BasicPreferenceDetailsRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\ProfessionalPreferenceDetailsRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\ReligiousPreferenceDetailsRequest;
@@ -274,13 +275,11 @@ trait UserManagementMethods
             : response()->json(['message' => ''], 500);
     }
 
-    public function uploadMedicalCertificate(Request $request, BasicDetailsUpdateServices $service, $id)
+    public function uploadMedicalCertificate(MedicalUploadRequest $request, BasicDetailsUpdateServices $service, $id)
     {
-        $this->validate($request, [
-            'medical_certificate' => ['required']
-        ]);
-
-
+        // $this->validate($request, [
+        //     'medical_certificate' => ['required']
+        // ]);
 
         $medical_certificate = ImageUploadHelper::storeImage($request->medical_certificate, UserBasicInfoMaster::USER_MEDICAL_CERIFICATE_IMAGE_PATH);
 

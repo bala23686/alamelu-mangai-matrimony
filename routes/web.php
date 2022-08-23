@@ -1,46 +1,48 @@
 <?php
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
-use App\Models\Master\StarMaster\StarMaster;
-use App\Models\Master\CasteMaster\CasteMaster;
+namespace App\Http\Controllers\Website\Mobile;
+
+
 use App\Http\Controllers\Website\Auth\AuthController;
-use App\Http\Controllers\Website\Home\HomeController;
-use App\Http\Controllers\Website\About\AboutController;
-use App\Http\Controllers\Website\Search\SearchController;
-use App\Http\Controllers\Website\Contact\ContactController;
-use App\Http\Controllers\Website\Enquiry\EnquiryController;
-use App\Http\Controllers\Website\Package\PackageController;
-use App\Http\Controllers\Website\PDF\UserInfoPdfController;
 use App\Http\Controllers\Website\Auth\ForgetPasswordController;
-use App\Http\Controllers\Website\ShortList\ShortListController;
-use App\Http\Controllers\Website\UserDashboard\ProfileController;
-use App\Http\Controllers\Website\PaymentController\PayUController;
-use App\Http\Controllers\Admin\UserManagement\UserMasterController;
-use App\Http\Controllers\Website\PackageInfo\PackageInfoController;
-use App\Http\Controllers\Website\ViewProfile\ViewProfileController;
-use App\Http\Controllers\Website\MatchProfile\MatchProfileController;
-use App\Http\Controllers\Website\Transaction\UserTransactionController;
-use App\Http\Controllers\Website\UserDashboard\Gallery\GalleryController;
-use App\Http\Controllers\Admin\Payments\PayUPayments\PayUPaymentController;
-use App\Http\Controllers\Website\UserDashboard\PartnerPreferenceController;
+use App\Http\Controllers\Website\Contact\ContactController;
 use App\Http\Controllers\Website\DynamicDropDown\CountryStateCityController;
+use App\Http\Controllers\Website\Enquiry\EnquiryController;
+use App\Http\Controllers\Website\Home\HomeController;
+use App\Http\Controllers\Website\MatchProfile\MatchProfileController;
 use App\Http\Controllers\Website\Members\MemberController;
+use App\Http\Controllers\Website\Mobile\MobileAboutController;
+use App\Http\Controllers\Website\Mobile\MobilePrivacyPolicyController;
+use App\Http\Controllers\Website\Mobile\MobileRefundPolicyController;
+use App\Http\Controllers\Website\Mobile\MobileTermsController;
+use App\Http\Controllers\Website\Package\PackageController;
+use App\Http\Controllers\Website\PackageInfo\PackageInfoController;
+use App\Http\Controllers\Website\PartnerPreference\BasicPreference\BasicPreferenceController;
+use App\Http\Controllers\Website\PartnerPreference\ProfessionalPreference\ProfessionalPreferenceController;
+use App\Http\Controllers\Website\PartnerPreference\ReligiousPreference\ReligiousPreferenceController;
+use App\Http\Controllers\Website\PaymentController\PayUController;
+use App\Http\Controllers\Website\PDF\UserInfoPdfController;
+use App\Http\Controllers\Website\PrivacyPolicy\PrivacyPolicyController;
 use App\Http\Controllers\Website\Profile\Basicdetails\BasicDetailController;
 use App\Http\Controllers\Website\Profile\FamilyDetails\FamilyDetailsController;
-use App\Http\Controllers\Website\Profile\NativeDetails\NativeDetailsController;
 use App\Http\Controllers\Website\Profile\HoroscopeDetails\HoroscopeDetailsController;
-use App\Http\Controllers\Website\Profile\ReligiousDetails\ReligiousDetailsController;
+use App\Http\Controllers\Website\Profile\NativeDetails\NativeDetailsController;
 use App\Http\Controllers\Website\Profile\ProfessionalDetails\ProfessionalDetailsController;
-use App\Http\Controllers\Website\PartnerPreference\BasicPreference\BasicPreferenceController;
-use App\Http\Controllers\Website\PartnerPreference\ReligiousPreference\ReligiousPreferenceController;
-use App\Http\Controllers\Website\PartnerPreference\ProfessionalPreference\ProfessionalPreferenceController;
-use App\Http\Controllers\Website\PrivacyPolicy\PrivacyPolicyController;
+use App\Http\Controllers\Website\Profile\ReligiousDetails\ReligiousDetailsController;
 use App\Http\Controllers\Website\RefundPolicy\RefundPolicyController;
+use App\Http\Controllers\Website\Search\SearchController;
+use App\Http\Controllers\Website\ShortList\ShortListController;
 use App\Http\Controllers\Website\TermsAndConditions\TermsController;
+use App\Http\Controllers\Website\Transaction\UserTransactionController;
 use App\Http\Controllers\Website\UserDashboard\DocumentUploadController;
+use App\Http\Controllers\Website\UserDashboard\Gallery\GalleryController;
 use App\Http\Controllers\Website\UserDashboard\ManageAccoutController;
+use App\Http\Controllers\Website\UserDashboard\PartnerPreferenceController;
+use App\Http\Controllers\Website\UserDashboard\ProfileController;
+use App\Http\Controllers\Website\ViewProfile\ViewProfileController;
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Website\About\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -216,7 +218,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.payments.'], function () {
         ->name('payU.paymentSuccess')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
     //url for success failed response
-    Route::post('/payU-money/failed', [PayUController::class, 'failed'])
+    Route::get('/payU-money/failed', [PayUController::class, 'failed'])
         ->name('payU.paymentFailure')
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
     //routes end section of pay-u money
@@ -227,3 +229,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.payments.'], function () {
 Route::get('/loginPage', function () {
     return view('Website.Auth.login');
 });
+/* ===================== Mobile Views ========================== */
+
+Route::get('/mobile/about', [MobileAboutController::class, 'index']);
+Route::get('/mobile/privacy-policy', [MobilePrivacyPolicyController::class, 'index']);
+Route::get('/mobile/terms-and-conditions', [MobileTermsController::class, 'index']);
+Route::get('/mobile/refund-policy', [MobileRefundPolicyController::class, 'index']);
+/* ===================== End Mobile Views ========================== */

@@ -87,7 +87,7 @@ class UserBasicInfoMaster extends Model
 
     public function getMedicalCertificateWithPathAttribute()
     {
-        return ($this->medical_certificate_uploaded_on) ? Url('/') . "/uploads" . self::USER_MEDICAL_CERIFICATE_IMAGE_PATH . "{$this->medical_certificate}" : null;
+        return ($this->medical_certificate_uploaded) ? Url('/') . "/uploads" . self::USER_MEDICAL_CERIFICATE_IMAGE_PATH . "{$this->medical_certificate}" : null;
     }
 
     public function getTenthCertificateWithPathAttribute()

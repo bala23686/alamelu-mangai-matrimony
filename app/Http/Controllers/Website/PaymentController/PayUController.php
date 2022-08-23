@@ -117,7 +117,7 @@ class PayUController extends Controller
     public function failed(Request $request)
     {
 
-        return redirect()->route('Home');
+        return view('Website.Payment.paymentFailed');
     }
     public function payNow()
     {
