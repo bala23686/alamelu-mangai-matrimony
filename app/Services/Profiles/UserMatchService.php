@@ -41,7 +41,8 @@ class UserMatchService
                 'userNativeInfo.City',
                 'status',
                 'UserProfessionInfo',
-                'BasicPartnerInfo'
+                'BasicPartnerInfo',
+                'userHoroScopeInfo'
             ])->whereRelation('userBasicInfo', 'profile_basic_status', '=', 1)
                 ->whereRelation('userBasicInfo', 'profile_location_status', '=', 1)
                 ->whereRelation('userBasicInfo', 'profile_pro_info_status', '=', 1)

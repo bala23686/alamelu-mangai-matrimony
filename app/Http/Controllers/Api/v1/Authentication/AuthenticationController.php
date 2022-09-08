@@ -69,7 +69,7 @@ class AuthenticationController extends Controller
 
             return UserResource::make($user)->additional(['token' => $token]);
         } else {
-            $response = ["message" => "Invalid Phone & Password"];
+            $response = ["message" => "Invalid Email & Password"];
             return response(json_encode($response), 401)->header('Content-Type', 'application/json');
         }
     }

@@ -61,6 +61,14 @@ Route::group(['prefix' => 'user-profile', 'middleware' => 'auth:sanctum'], funct
     //Aadhar Card
     Route::post('user-aadhar-card-certificate-upload/{id}', [UserMasterController::class, 'adharCardUpload']);
 
+
+
+    //Horoscope
+    Route::post('user-horoscope-image/{id}', [UserMasterController::class, 'updateUserHoroscopeImageUpload']);
+    Route::get('user-horoscope-image-get/{id}', [UserMasterController::class, 'getHoroScopeImage']);
+    Route::delete('user-horoscope-image-delete/{id}', [UserMasterController::class, 'deleteHoroScopeImage']);
+
+
     //user short list routes for api
     Route::apiResource('my-short-list', UserShotListController::class);
 

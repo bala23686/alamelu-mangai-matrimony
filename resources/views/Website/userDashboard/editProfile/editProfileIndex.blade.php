@@ -22,10 +22,10 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12">
                     @php
-                    $user=App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
-                    [$performance,$bgColor]=App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
-                @endphp
-                <x-user-dashboard.side-bar  :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
+                        $user = App\Models\User::find(auth()->user()->id)->load('userBasicInfo');
+                        [$performance, $bgColor] = App\Helpers\UserSideBar\UserSideBarHelper::make($user)->logic();
+                    @endphp
+                    <x-user-dashboard.side-bar :user="$user" :status="0" :performance="$performance" :bgColor="$bgColor" />
                 </div>
 
                 <div class="col-lg-9 col-md-8 col-12">
@@ -66,8 +66,9 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                             </button>
 
                                         </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse show" x-data="{useraddress:'{{ $user_data['user_info']->user_address }}'}"
-                                            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            x-data="{ useraddress: '{{ $user_data['user_info']->user_address }}' }" aria-labelledby="headingOne"
+                                            data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <div class="profile-setting-form">
                                                     <form id="basicDetailsForm" name="basicDetailsForm">
@@ -86,8 +87,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                             </div>
                                                             <div class="col-lg-4 ">
                                                                 <div class="form-group">
-                                                                    <label>Date of Birth<span
-                                                                            class="text-danger">*</label>
+                                                                    <label>Date of Birth<span class="text-danger">*</label>
                                                                     <input name="dob" type="date" class="bg-muted"
                                                                         onclick="this.max=`${(new Date().getFullYear()) - 18}-12-31`"
                                                                         value="{{ $user_data['user_info']->dob }}">
@@ -103,8 +103,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
 
                                                             <div class="col-lg-4">
                                                                 <div class="">
-                                                                    <label>Gender<span
-                                                                            class="text-danger">*</span></label>
+                                                                    <label>Gender<span class="text-danger">*</span></label>
                                                                     <select class="form-control form-select" name="gender"
                                                                         aria-label="Default select example">
                                                                         <option hidden selected value>Select Gender
@@ -131,9 +130,9 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
 
                                                             <div class="col-lg-4 col-12">
                                                                 <div class="form-group">
-                                                                    <label>Height<span
-                                                                            class="text-danger">*</span></label>
-                                                                    <select class="form-control form-select" name="height"
+                                                                    <label>Height<span class="text-danger">*</span></label>
+                                                                    <select class="form-control form-select"
+                                                                        name="height"
                                                                         aria-label="Default select example">
                                                                         <option hidden selected value>Select Height
                                                                         </option>
@@ -153,7 +152,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     <select class="form-select"
                                                                         aria-label="Default select example"
                                                                         id="martialStatus" name="martial_status">
-                                                                        <option hidden selected value="">Select Martial
+                                                                        <option hidden selected value="">Select
+                                                                            Martial
                                                                             Status
                                                                         </option>
                                                                         @foreach ($user_data['martial_status'] as $row)
@@ -171,7 +171,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     <select class="form-select"
                                                                         aria-label="Default select example"
                                                                         id="motherTongue" name="mother_tongue">
-                                                                        <option hidden selected value="">Select Your Mother
+                                                                        <option hidden selected value="">Select Your
+                                                                            Mother
                                                                             Tongue
                                                                         </option>
                                                                         @foreach ($user_data['language'] as $row)
@@ -189,7 +190,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     <select class="form-select"
                                                                         aria-label="Default select example"
                                                                         id="complexion_select" name="user_complexion">
-                                                                        <option hidden selected>Select Your
+                                                                        <option hidden selected value="">Select Your
                                                                             Complexion
                                                                         </option>
                                                                         @foreach ($user_data['complexion'] as $row)
@@ -205,8 +206,10 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     <label>Eating Habit<span
                                                                             class="text-danger">*</span></label>
                                                                     <select class="form-control form-select"
+                                                                        aria-label="Default select example"
                                                                         name="eating_habit" id="eatingHabit">
-                                                                        <option hidden selected value="">Select</option>
+                                                                        <option hidden selected value="">Select
+                                                                        </option>
                                                                         @foreach ($user_data['habit'] as $row)
                                                                             <option value="{{ $row->id }}"
                                                                                 {{ $user_data['user_info']->user_eating_habit_id == $row->id ? 'selected' : '' }}>
@@ -259,13 +262,15 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                             <div class="col-6">
                                                                 <div class="">
                                                                     <label for="user_address" class="text-dark">Address
-                                                                        <template x-if="/(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/.test(useraddress)">
-                                                                         <span class="text-danger">Type Address Only</span>
+                                                                        <template
+                                                                            x-if="/(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/.test(useraddress)">
+                                                                            <span class="text-danger">Type Address
+                                                                                Only</span>
                                                                         </template>
                                                                         <span class="small text-danger">*
                                                                         </span></label>
-                                                                    <textarea x-model="useraddress" style="text-align: left" class="form-control text-justify" name='user_address' id="userAddress" rows="1"
-                                                                        value="{{ $user_data['user_info']->user_address }}">{{ $user_data['user_info']->user_address }}</textarea>
+                                                                    <textarea x-model="useraddress" style="text-align: left" class="form-control text-justify" name='user_address'
+                                                                        id="userAddress" rows="1" value="{{ $user_data['user_info']->user_address }}">{{ $user_data['user_info']->user_address }}</textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-6">
@@ -279,7 +284,10 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mt-3 mb-3">
-                                                                <button id="updateBasicDetails" x-bind:disabled="/(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/.test(useraddress)" type="button"
+                                                                <button id="updateBasicDetails"
+                                                                    x-bind:disabled="/(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})/
+                                                                    .test(useraddress)"
+                                                                    type="button"
                                                                     class="btn btn-primary btn-sm float-end">Update
                                                                     Basic
                                                                     Details</button>
@@ -368,7 +376,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                             class="text-danger">*</span></label>
                                                                     <select class="form-control form-select"
                                                                         name="no_of_sibling" id="no_of_sibling">
-                                                                        <option selected disabled value="">Select No. Of
+                                                                        <option selected disabled value="">Select No.
+                                                                            Of
                                                                             Sibling
                                                                         </option>
                                                                         @for ($i = 0; $i < 7; $i++)
@@ -461,8 +470,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                             3.Native Info Details <i class="lni lni-chevron-down"></i>
                                         </button>
                                     </h2>
-                                    <div id="native" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                                        data-bs-parent="#accordionExample">
+                                    <div id="native" class="accordion-collapse collapse"
+                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             <div class="profile-setting-form">
                                                 <form id="nativeInfoForm" name="nativeInfoForm">
@@ -481,7 +490,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                             {{-- value="{{ $row->id }} {{ $user_native_info->user_country_id == $row->id ? 'selected' : '' }}"> --}}
                                                                         {{-- {{ $row->country_name }}</option> --}}
                                                                         <option value="{{ $row->id }}"
-                                                                            @if ($user_data['user_native_info']->user_country_id === $row->id || old('user_country_id') === $row->id) selected @endif>
+                                                                            {{ $user_data['user_native_info']->user_country_id == $row->id ? 'selected' : '' }}>
                                                                             {{ $row->country_name }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -506,7 +515,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                         <div class="col-lg-4 col-12">
                                                             <div class="form-group">
                                                                 <label>City<span class="text-danger">*</span></label>
-                                                                <select class="form-select" name="user_city" id="city">
+                                                                <select class="form-select" name="user_city"
+                                                                    id="city">
                                                                     <option hidden selected value="">Select city
                                                                     </option>
                                                                     @foreach ($user_data['city'] as $row)
@@ -532,8 +542,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingThree">
                                         <button class="accordion-button collapsed fw-normal" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">
+                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                            aria-expanded="false" aria-controls="collapseThree">
                                             4.Professional Details <i class="lni lni-chevron-down"></i>
                                         </button>
                                     </h2>
@@ -548,8 +558,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
 
                                                         <div class="col-lg-4 col-12">
                                                             <div class="form-group">
-                                                                <label>Education<span
-                                                                        class="text-danger">*</span></label>
+                                                                <label>Education<span class="text-danger">*</span></label>
                                                                 <select id="user_education" name="user_education[]"
                                                                     multiple>
 
@@ -618,8 +627,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                         </div>
                                                         <div class="col-lg-4 col-12">
                                                             <div class="form-group">
-                                                                <label>Job In State<span
-                                                                        class="text-danger">*</span><span
+                                                                <label>Job In State<span class="text-danger">*</span><span
                                                                         class="small text-primary">(Select
                                                                         country)</span></span></label>
                                                                 <select class="form-select" name="user_working_state"
@@ -635,8 +643,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                         </div>
                                                         <div class="col-lg-4 col-12">
                                                             <div class="form-group">
-                                                                <label>Job In City<span
-                                                                        class="text-danger">*</span><span
+                                                                <label>Job In City<span class="text-danger">*</span><span
                                                                         class="small text-primary">(Select
                                                                         State)</span></label>
                                                                 <select class="form-select" name="user_working_city"
@@ -704,8 +711,8 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                             5.Religious Details <i class="lni lni-chevron-down"></i>
                                         </button>
                                     </h2>
-                                    <div id="religious" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                                        data-bs-parent="#accordionExample">
+                                    <div id="religious" class="accordion-collapse collapse"
+                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             <div class="profile-setting-form">
                                                 <form id="ReligiousInfoForm" name="ReligiousInfoForm">
@@ -714,8 +721,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                     <div class="row">
                                                         <div class="col-lg-4 col-12">
                                                             <div class="form-group">
-                                                                <label>Religion<span
-                                                                        class="text-danger">*</span></label>
+                                                                <label>Religion<span class="text-danger">*</span></label>
                                                                 <select class="form-control form-select"
                                                                     name="user_religion" id="user_religion"
                                                                     aria-label="Default select example">
@@ -723,8 +729,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     </option>
                                                                     @foreach ($user_data['religion'] as $row)
                                                                         <option value="{{ $row->id }}"
-                                                                            @if ($user_data['user_religious_info']->user_religion_id === $row->id || old('user_religion_id') === $row->id) selected @endif>
-
+                                                                            {{ $user_data['user_religious_info']->user_religion_id == $row->id ? 'selected' : '' }}>
                                                                             {{ $row->religion_name }}</option>
                                                                     @endforeach
 
@@ -735,7 +740,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                             <div class="form-group">
                                                                 <label>Caste<span class="text-danger">*</span><span
                                                                         class="small text-primary">(Select
-                                                                        Religion)</span></label>
+                                                                        religion before edit)</span></label>
                                                                 <select class="form-control form-select" name="user_caste"
                                                                     id="user_caste" aria-label="Default select example">
                                                                     <option hidden selected value>Select Caste</option>
@@ -750,8 +755,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                         </div>
                                                         <div class="col-lg-4 col-12">
                                                             <div class="form-group">
-                                                                <label>Sub-Caste<span
-                                                                        class="text-danger">*</span></label>
+                                                                <label>Sub-Caste<span class="text-danger">*</span></label>
                                                                 <input name="user_subcaste" type="text"
                                                                     placeholder="Enter Your Sub Caste"
                                                                     value="{{ $user_data['user_religious_info']->sub_caste }}">
@@ -765,7 +769,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                     <option hidden selected value>Select Rasi</option>
                                                                     @foreach ($user_data['rasi'] as $row)
                                                                         <option value="{{ $row->id }}"
-                                                                            @if ($user_data['user_religious_info']->user_rasi_id === $row->id || old('user_rasi_id') === $row->id) selected @endif>
+                                                                            {{ $user_data['user_religious_info']->user_rasi_id == $row->id ? 'selected' : '' }}>
                                                                             {{ $row->rasi_name }}</option>
                                                                     @endforeach
 
@@ -781,11 +785,12 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                                 <select class="form-control form-select" name="user_star"
                                                                     aria-label="Default select example" id="user_star">
                                                                     <option hidden selected value>Select Star</option>
-                                                                    {{-- @foreach ($user_data['star'] as $row)
-                                                                            <option value="{{ $row->id }} "
-                                                                                {{ $user_data['user_religious_info']->user_star_id == $row->id ? 'selected' : '' }}>
-                                                                                {{ $row->star_name }}</option>
-                                                                        @endforeach --}}
+                                                                    @foreach ($user_data['star'] as $row)
+                                                                        <option value="{{ $row->id }} "
+                                                                            {{ $user_data['user_religious_info']->user_star_id == $row->id ? 'selected' : '' }}>
+                                                                            {{ $row->star_name }}</option>
+                                                                    @endforeach
+
 
                                                                 </select>
                                                             </div>
@@ -812,13 +817,12 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                                         <div class="col-12">
                                                             <div class="">
                                                                 <textarea class="form-control" placeholder="Enter Details About Your Dhosam" name="dhosam_details"
-                                                                    id="dhosam_details" rows="2"></textarea>
+                                                                    id="dhosam_details" rows="2">{{ $user_data['user_religious_info']->dhosam ?? '' }}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4 col-12">
                                                             <div class="form-group">
-                                                                <label>Birth Time<span
-                                                                        class="text-danger">*</span></label>
+                                                                <label>Birth Time<span class="text-danger">*</span></label>
                                                                 <input name="user_btime" type="time"
                                                                     value="{{ $user_data['user_religious_info']->user_birth_time }}">
                                                             </div>
@@ -853,9 +857,7 @@ $image_src = $user_data['user_info']->gender_id == 1 ? asset('assets/Website/mal
                                         </button>
                                     </h2>
 
-                                    @include(
-                                        'Website.userDashboard.editProfile.horoScopeSection.horoScopeSection'
-                                    )
+                                    @include('Website.userDashboard.editProfile.horoScopeSection.horoScopeSection')
                                 </div>
                             </div>
                         </div>

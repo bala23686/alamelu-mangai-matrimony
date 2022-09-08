@@ -32,7 +32,8 @@ class UserProfileService
             'status',
             'UserProfessionInfo',
             'BasicPartnerInfo',
-            'GalleryInfo'
+            'GalleryInfo',
+            'userHoroScopeInfo',
         ]);
 
         //gender should be opposite

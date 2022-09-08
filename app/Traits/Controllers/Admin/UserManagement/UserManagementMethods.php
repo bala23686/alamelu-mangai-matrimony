@@ -20,6 +20,7 @@ use App\Http\Requests\Website\Dashboard\ProfilesRequests\ProfessionalDetailsRequ
 use App\Http\Requests\Website\Dashboard\ProfilesRequests\ReligiousDetailsRequest;
 use App\Http\Requests\Website\ProfilesRequest\ProfileImageRequest;
 use App\Models\Master\UserBasicInfoMaster\UserBasicInfoMaster;
+use App\Models\Master\UserHoroscopeInfoMaster\UserHoroscopeInfoMaster;
 use App\Models\Master\UserPackageInfoMaster\UserPackageInfoMaster;
 use App\Models\Master\UserPhotoMaster\UserPhotoMaster;
 use App\Models\User;
@@ -474,6 +475,11 @@ trait UserManagementMethods
 
         return  response(json_encode(UserPhotoMaster::where('user_id', $id)->where('user_photo_status', 1)->get()));
     }
+    public function getHoroScopeImage($id)
+    {
+
+        return  response(json_encode(UserHoroscopeInfoMaster::where('user_id', $id)->get()));
+    }
 
     public function deletePhoto($id)
     {
@@ -481,5 +487,18 @@ trait UserManagementMethods
         return UserPhotoMaster::destroy($id)
             ? response()->json(['message' => 'User Image Deleted Refresh to Update Screen'], 200)
             : response(json_encode(["message" => "something went wrong"]), 500);
+    }
+    public function deleteHoroScopeImage($id)
+    {
+
+        // return UserHoroscopeInfoMaster::destroy($id)
+        //     ? response()->json(['message' => 'User Horoscope Image Deleted Refresh to Update Screen'], 200)
+        //     : response(json_encode(["message" => "something went wrong"]), 500);
+
+        $user = UserHoroscopeInfoMaster::where('user_id', $id)->first();
+
+        $user->user_jathakam_image = null;
+
+        return $user->save() ? response()->json(['message' => 'User Horoscope Image Deleted'], 201) : response()->json(['message' => 'something went wrong'], 500);
     }
 }

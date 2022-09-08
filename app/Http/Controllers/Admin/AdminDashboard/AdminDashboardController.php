@@ -18,29 +18,29 @@ class AdminDashboardController extends Controller
         $verifiedUsers = User::where('is_verified', 1)->count();
 
         //to calculate Total Disk Space
-        $total_disk = disk_total_space('/');
-        $total_disk_size = $total_disk / 1073741824;
+        // $total_disk = disk_total_space('/');
+        // $total_disk_size = $total_disk / 1073741824;
 
-        $free_disk = disk_free_space('/');
-        $used_disk = $total_disk - $free_disk;
+        // $free_disk = disk_free_space('/');
+        // $used_disk = $total_disk - $free_disk;
 
-        $disk_used_size = $used_disk / 1073741824;
-        $use_disk = round(100 - (($disk_used_size / $total_disk_size) * 100));
+        // $disk_used_size = $used_disk / 1073741824;
+        // $use_disk = round(100 - (($disk_used_size / $total_disk_size) * 100));
 
-        $diskuse = round(100 - ($use_disk));
+        // $diskuse = round(100 - ($use_disk));
 
         //to calculate Total Cpu Usage
-        $cpu_loaded = sys_getloadavg();
-        $load_width = $cpu_loaded[0];
-        $load = $cpu_loaded[0];
+        // $cpu_loaded = sys_getloadavg();
+        // $load_width = $cpu_loaded[0];
+        // $load = $cpu_loaded[0];
 
         return view('Admin.Dashboard.index', compact(
             'totalUsers',
             'newUsers',
             'activeUsers',
             'verifiedUsers',
-            'diskuse',
-            'load'
+            // 'diskuse',
+            // 'load'
         ));
     }
 }

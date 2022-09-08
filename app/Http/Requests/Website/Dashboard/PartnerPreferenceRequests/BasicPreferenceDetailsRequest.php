@@ -24,14 +24,14 @@ class BasicPreferenceDetailsRequest extends FormRequest
     public function rules()
     {
         return [
-            'partner_age_from' => ['numeric'],
-            'partner_age_to' => ['numeric'],
-            'partner_height_to' => ['numeric'],
-            'partner_height_from' => ['numeric'],
-            'partner_martial_status' => ['numeric'],
-            'partner_complexion' => ['array'],
-            'partner_mother_tongue' => ['array'],
-            'partner_country' => ['array'],
+            'partner_age_from' => 'numeric',
+            'partner_age_to' => 'numeric',
+            'partner_height_to' => 'numeric',
+            'partner_height_from' => 'numeric',
+            'partner_martial_status' => 'numeric',
+            'partner_complexion' => 'array',
+            'partner_mother_tongue' => 'array',
+            'partner_country' => 'array',
         ];
     }
 }

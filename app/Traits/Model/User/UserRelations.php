@@ -141,7 +141,7 @@ trait UserRelations
      */
     public function ShortListInfo(): HasMany
     {
-        return $this->hasMany(UserShortListInfoMaster::class, 'user_id', 'id');
+        return $this->hasMany(UserShortListInfoMaster::class, 'shortlisted_by', 'id');
     }
     public function UserLogInfo(): HasMany
     {

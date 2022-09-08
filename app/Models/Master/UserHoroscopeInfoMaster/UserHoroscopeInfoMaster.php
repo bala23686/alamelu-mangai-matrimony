@@ -11,7 +11,8 @@ class UserHoroscopeInfoMaster extends Model
     use HasFactory;
 
 
-    public const JATHAKAM_IMAGE_PATH='Users/jathakamImage/';
+    public const JATHAKAM_IMAGE_PATH = '/Users/jathakamImage/';
+    protected $appends = ['image_full_path'];
 
     protected $fillable = [
         'user_jathakam_katam_info',
@@ -46,9 +47,6 @@ class UserHoroscopeInfoMaster extends Model
 
     ];
 
-
-
-
     protected $casts = [
         "rasi_katam_row_1_col_1" => HeroScopeCasts::class,
         "rasi_katam_row_1_col_2" => HeroScopeCasts::class,
@@ -79,14 +77,12 @@ class UserHoroscopeInfoMaster extends Model
 
 
     /**
- * Get the user's jathakam full image path.
- *
- * @return string
- */
-public function getJathakamFullImagePathAttribute()
-{
-    return url('/').'/'.UserHoroscopeInfoMaster::JATHAKAM_IMAGE_PATH.$this->user_jathakam_image;
-}
-
-
+     * Get the user's jathakam full image path.
+     *
+     * @return string
+     */
+    public function getImageFullPathAttribute()
+    {
+        return url('/') . '/uploads' . UserHoroscopeInfoMaster::JATHAKAM_IMAGE_PATH . $this->user_jathakam_image;
+    }
 }
