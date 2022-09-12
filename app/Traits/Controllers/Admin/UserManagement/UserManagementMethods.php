@@ -9,6 +9,7 @@ use App\Http\Requests\Website\Dashboard\DocumentUpload\AadharUploadRequest;
 use App\Http\Requests\Website\Dashboard\DocumentUpload\CollegeTcUploadRequest;
 use App\Http\Requests\Website\Dashboard\DocumentUpload\TenthUploadRequest;
 use App\Http\Requests\Website\Dashboard\DocumentUpload\TwefthUploadRequest;
+use App\Http\Requests\Website\Dashboard\DocumentUpload\MedicalUploadRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\BasicPreferenceDetailsRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\ProfessionalPreferenceDetailsRequest;
 use App\Http\Requests\Website\Dashboard\PartnerPreferenceRequests\ReligiousPreferenceDetailsRequest;
@@ -19,6 +20,7 @@ use App\Http\Requests\Website\Dashboard\ProfilesRequests\ProfessionalDetailsRequ
 use App\Http\Requests\Website\Dashboard\ProfilesRequests\ReligiousDetailsRequest;
 use App\Http\Requests\Website\ProfilesRequest\ProfileImageRequest;
 use App\Models\Master\UserBasicInfoMaster\UserBasicInfoMaster;
+use App\Models\Master\UserHoroscopeInfoMaster\UserHoroscopeInfoMaster;
 use App\Models\Master\UserPackageInfoMaster\UserPackageInfoMaster;
 use App\Models\Master\UserPhotoMaster\UserPhotoMaster;
 use App\Models\User;
@@ -236,13 +238,7 @@ trait UserManagementMethods
     public function deleteUserProfileImage(Request $request, $id)
     {
 
-        if ($request->is('api/*')) {
 
-            if ($request->user()->id != $id) {
-
-                return response()->json(["message" => "UnAutherized Action"], 403);
-            }
-        }
 
         $user = UserBasicInfoMaster::where('user_id', $id)->first();
 
@@ -280,13 +276,11 @@ trait UserManagementMethods
             : response()->json(['message' => ''], 500);
     }
 
-    public function uploadMedicalCertificate(Request $request, BasicDetailsUpdateServices $service, $id)
+    public function uploadMedicalCertificate(MedicalUploadRequest $request, BasicDetailsUpdateServices $service, $id)
     {
-        $this->validate($request, [
-            'medical_certificate' => ['required']
-        ]);
-
-
+        // $this->validate($request, [
+        //     'medical_certificate' => ['required']
+        // ]);
 
         $medical_certificate = ImageUploadHelper::storeImage($request->medical_certificate, UserBasicInfoMaster::USER_MEDICAL_CERIFICATE_IMAGE_PATH);
 
@@ -457,11 +451,34 @@ trait UserManagementMethods
         }
     }
 
+    public function uploadMultipleImageApi(Request $request, UserPhotoUploadService $service)
+    {
+
+        if ($request->hasfile('file')) {
+
+            foreach ($request->file('file') as $key => $file) {
+
+                $file_name = ImageUploadHelper::storeImage($file, UserPhotoMaster::IMAGE_UPLOAD_PATH);
+
+                if (!$service->handleUserPhotos($file_name, $request->user_id)) {
+
+                    return response(json_encode(["message" => "You Need a Active Plan & photo count to upload more image"]), 402);
+                }
+            }
+
+            return response(json_encode(["messsage" => "image uploaded succesfully"]), 200);
+        }
+    }
 
     public function getUserPhotos($id)
     {
 
         return  response(json_encode(UserPhotoMaster::where('user_id', $id)->where('user_photo_status', 1)->get()));
+    }
+    public function getHoroScopeImage($id)
+    {
+
+        return  response(json_encode(UserHoroscopeInfoMaster::where('user_id', $id)->get()));
     }
 
     public function deletePhoto($id)
@@ -470,5 +487,18 @@ trait UserManagementMethods
         return UserPhotoMaster::destroy($id)
             ? response()->json(['message' => 'User Image Deleted Refresh to Update Screen'], 200)
             : response(json_encode(["message" => "something went wrong"]), 500);
+    }
+    public function deleteHoroScopeImage($id)
+    {
+
+        // return UserHoroscopeInfoMaster::destroy($id)
+        //     ? response()->json(['message' => 'User Horoscope Image Deleted Refresh to Update Screen'], 200)
+        //     : response(json_encode(["message" => "something went wrong"]), 500);
+
+        $user = UserHoroscopeInfoMaster::where('user_id', $id)->first();
+
+        $user->user_jathakam_image = null;
+
+        return $user->save() ? response()->json(['message' => 'User Horoscope Image Deleted'], 201) : response()->json(['message' => 'something went wrong'], 500);
     }
 }

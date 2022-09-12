@@ -1,7 +1,10 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 <style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,500&display=swap');
+
     :root {
         --primary-color: #6a46e3;
         --primary-color-dark: #421dc0;
@@ -12,103 +15,141 @@
   --primary-color: ""; */
     }
 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+    }
+
     body {
-        position: relative;
-        margin-top: 60px;
-        background: #f2f2f2;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: azure;
+        padding: 10px 20px;
     }
 
-    .payment {
-
-        border: 1px solid #f2f2f2;
-        height: 280px;
-        border-radius: 20px;
-        background: #fff;
-    }
-
-    .payment_header {
-        background: var(--primary-color);
-        padding: 20px;
-        border-radius: 20px 20px 0px 0px;
+    .wrapper {
+        max-width: 460px;
+        box-shadow: 3px 3px 5px #1b1b1ba2;
 
     }
 
-    .check {
-        margin: 0px auto;
+    .card {
+        background-color: ;
+    }
+
+    p {
+        margin: 0px;
+    }
+
+    .h8 {
+        background-color: var(--primary-color);
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+        font-size: 25px;
+        font-weight: 600;
+        color: white;
+    }
+
+    .card .atm {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+    }
+
+    .card .visa {
         width: 50px;
+        height: 20px;
+        object-fit: fill;
+    }
+
+
+
+    .debit-card {
+        width: 100%;
+        height: 180px;
+        padding: 20px;
+        background-color: #ffffff;
+        /* background-image: linear-gradient(160deg, var(--primary-color) 0%, #80D0C7 100%); */
+        position: relative;
+        border-radius: 5px;
+        box-shadow: 3px 3px 5px #0000001a;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+    }
+
+    .debit-card:hover {
+        box-shadow: 5px 3px 5px #000000a2;
+    }
+
+
+
+    .text-muted {
+        font-size: 0.8rem;
+    }
+
+    .text-white {
+        font-size: 14px;
+    }
+
+
+    .btn {
+        width: 100%;
         height: 50px;
-        border-radius: 100%;
-        background: #fff;
-        text-align: center;
+        border: 1px solid var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--primary-color);
+        transition: all 0.5s ease;
+        font-weight: 500;
     }
 
-    .check i {
-        vertical-align: middle;
-        line-height: 50px;
-        font-size: 30px;
-    }
-
-    .content {
-        text-align: center;
-    }
-
-    .content h1 {
-        font-size: 25px;
-        padding-top: 25px;
-    }
-
-    .content h4 {
-        font-size: 25px;
-    }
-
-    .content a {
-        width: 200px;
-        height: 35px;
+    .btn:hover {
         color: #fff;
-        border-radius: 30px;
-        padding: 5px 10px;
-        background: var(--primary-color);
-        transition: all ease-in-out 0.3s;
+        background-color: var(--primary-color);
     }
 
-    .content button {
-        width: 200px;
-        height: 35px;
-        color: #fff;
-        border-radius: 30px;
-        padding: 5px 10px;
-        background: var(--primary-color);
-        transition: all ease-in-out 0.3s;
+    @media screen and (min-width: 480px) {
+        .wrapper {
+            width: 720px;
+        }
 
-    }
-
-    .content a:hover {
-        text-decoration: none;
-        background: #000;
     }
 </style>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 mx-auto mt-5">
-            <div class="payment">
-                <div class="payment_header">
-                    <div class="check"><i class="lni lni-rupee" aria-hidden="true"></i></div>
-                </div>
-                <div class="content">
+<div class="wrapper">
+    <div class="card px-4">
+        <div class=" my-3">
+            <p class="h8">Attention</p>
+            <p></p>
+        </div>
 
-                    <h1>Hi,{{ Auth::user()->username }}</h1>
-                    <h4>Registration Fee :&nbsp; &#8377; 1020</h4>
-                    <h6>Note : All rates inclusive of 18% GST.
-                    </h6>
-                    @csrf
-                    <div class="row" style="margin-top: 25px">
-                        <div class="col">
-                            <a href="{{ route('Home') }}">Go Back
-                                To Home</a>
+        <div class="debit-card mb-3">
+            <div class="d-flex flex-column h-100">
+                <label class="d-block">
+                    <div class="d-flex position-relative">
+                        <div>
+                            <h1>Welcome,{{ Auth::user()->username }}</h1>
+
+                            <h4>Registration Fee :&nbsp; &#8377; 1020</h4>
                         </div>
-                        <div class="col justify-end">
-                            <a href="{{ route('user.payments.payU-Checkout', $user->id) }}?amount=1020&&packageId=1">Complete
-                                Your Payment</a>
-                        </div>
+
                     </div>
+                </label>
+                <div class="mt-auto fw-bold d-flex align-items-center justify-content-between">
+                    <p>Note : All rates inclusive of 18% GST.</p>
+                    <p></p>
                 </div>
+            </div>
+        </div>
+
+        <div class="btn mb-4"
+            onclick="location.href='{{ route('user.payments.payU-Checkout', $user->id) }}?amount=1020&&packageId=1';">
+            Proceed
+        </div>
+    </div>
+</div>

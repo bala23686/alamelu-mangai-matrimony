@@ -36,6 +36,7 @@ class RouteServiceProvider extends ServiceProvider
         ['folder' => 'Masters', 'file' => 'masters_routes'],
         ['folder' => 'UserTransaction', 'file' => 'user_transaction_routes'],
         ['folder' => 'Users', 'file' => 'users_routes'],
+        ['folder' => 'Search', 'file' => 'search_routes'],
     ];
     /**
      * The controller namespace for the application.
@@ -62,22 +63,21 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
 
-             //Route for api controlls
-             foreach ($this->api_routes_path as $route) {
+            //Route for api controlls
+            foreach ($this->api_routes_path as $route) {
 
                 Route::prefix('api/v1/')
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path("routes/Api/v1/{$route['folder']}/{$route['file']}.php"));
-
+                    ->middleware('api')
+                    ->namespace($this->namespace)
+                    ->group(base_path("routes/Api/v1/{$route['folder']}/{$route['file']}.php"));
             }
 
 
-             //Route for Admin side web controlls
-             foreach ($this->web_Admin_routes_path as $route) {
+            //Route for Admin side web controlls
+            foreach ($this->web_Admin_routes_path as $route) {
                 Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path("routes/web/admin/{$route['folder']}/{$route['file']}.php"));
+                    ->namespace($this->namespace)
+                    ->group(base_path("routes/web/admin/{$route['folder']}/{$route['file']}.php"));
             }
 
             Route::middleware('web')

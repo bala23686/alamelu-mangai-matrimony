@@ -42,14 +42,13 @@ class UserNativeInfoController extends Controller
      */
     public function show(Request $request,$id)
     {
-        if($request->user()->id==$id)
-        {
+
             $user_native_info=UserNativeInfoMaster::where('user_id',$id)
                         ->with(['Country','State','City'])
                         ->first();
 
             return UserNativeInfoResource::make($user_native_info);
-        }
+
     }
 
     /**

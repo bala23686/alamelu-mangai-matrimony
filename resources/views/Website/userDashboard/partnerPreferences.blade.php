@@ -1,98 +1,5 @@
 @extends('Website.layouts.default')
-{{-- <style>
-    .range-slider {
-        width: 100%;
-        margin: 0 auto;
-        position: relative;
-        margin-top: 2.5rem;
-        margin-bottom: 2rem;
-    }
 
-    #range {
-        -webkit-appearance: none;
-        width: 100%;
-    }
-
-    #range:focus {
-        outline: none;
-    }
-
-    #range::before,
-    #range::after {
-        position: absolute;
-        top: 2rem;
-        color: #333;
-        font-size: 14px;
-        line-height: 1;
-        padding: 3px 5px;
-        background-color: rgba(0, 0, 0, .1);
-        border-radius: 4px;
-    }
-
-    #range::before {
-        left: 0;
-        content: attr(data-min);
-    }
-
-    #range::after {
-        right: 0;
-        content: attr(data-max);
-    }
-
-    #range::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 1rem;
-        cursor: pointer;
-        animate: 0.2s;
-        background: linear-gradient(90deg, #6A46E3 var(--range-progress), #dee4ec var(--range-progress));
-        border-radius: 1rem;
-    }
-
-    #range::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        border: 0.25rem solid #6A46E3;
-        box-shadow: 0 1px 3px rgba(0, 0, 255, .3);
-        border-radius: 50%;
-        background: #fff;
-        cursor: pointer;
-        height: 32px;
-        width: 32px;
-        transform: translateY(calc(-50% + 8px));
-    }
-
-    #tooltip {
-        position: absolute;
-        top: -2.25rem;
-    }
-
-    #tooltip span {
-        position: absolute;
-        text-align: center;
-        display: block;
-        line-height: 1;
-        padding: 0.125rem 0.25rem;
-        color: #fff;
-        border-radius: 1rem;
-        background: var(--primary-color);
-        font-size: 1.2rem;
-        left: 50%;
-        transform: translate(-50%, 0);
-        z-index: 100;
-    }
-
-    #tooltip span:before {
-        position: absolute;
-        content: "";
-        left: 50%;
-        bottom: -8px;
-        transform: translateX(-50%);
-        width: 0;
-        height: 0;
-        border: 4px solid transparent;
-        border-top-color: var(--primary-color);
-    }
-
-</style> --}}
 @section('content')
 
     <div class="breadcrumbs">
@@ -147,10 +54,14 @@
                                                             </div>
                                                             <div class="range-container pt-2">
                                                                 <div class="slider-track"></div>
-                                                                <input type="range" name="partner_age_from" min="0" max="60"
-                                                                    value="18" id="slider-1" oninput="slideOne()">
-                                                                <input type="range" name="partner_age_to" min="0" max="60"
-                                                                    value="30" id="slider-2" oninput="slideTwo()">
+                                                                <input type="range" name="partner_age_from" min="0"
+                                                                    max="60"
+                                                                    value="{{ $data['partner']->partner_age_from ?? '18' }}"
+                                                                    id="slider-1" oninput="slideOne()">
+                                                                <input type="range" name="partner_age_to" min="0"
+                                                                    max="60"
+                                                                    value="{{ $data['partner']->partner_age_to ?? '30' }}"
+                                                                    id="slider-2" oninput="slideTwo()">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -205,10 +116,10 @@
                                                     <div class="col-lg-4">
                                                         <div class="form-group">
                                                             <label>Martial Status</label>
-                                                            <select class="form-select"
-                                                                aria-label="Default select example" id="mstatus"
-                                                                name="partner_martial_status">
-                                                                <option hidden selected value>Select Martial Status</option>
+                                                            <select class="form-select" aria-label="Default select example"
+                                                                id="mstatus" name="partner_martial_status">
+                                                                <option hidden selected value="">Select Martial Status
+                                                                </option>
                                                                 @foreach ($data['martial_status'] as $row)
                                                                     <option value="{{ $row->id }}"
                                                                         {{ $data['partner']->partner_martial_status == $row->id ? 'selected' : '' }}>
@@ -222,7 +133,7 @@
                                                             <label>Complexion</label>
                                                             <select id="complexion_select" name="partner_complexion[]"
                                                                 multiple>
-                                                                {{-- <option hidden selected value>Select Complexion</option> --}}
+
                                                                 @foreach ($data['complexion'] as $row)
                                                                     <option value="{{ $row->id }}"
                                                                         @if (in_array($row->id, $complexionId)) selected="in_array( $complexionId == $row->id)">
@@ -238,6 +149,7 @@
                                                             <label>Prefer Language</label>
                                                             <select id="language_select" name="partner_mother_tongue[]"
                                                                 multiple>
+
                                                                 @foreach ($data['language'] as $row)
                                                                     <option value="{{ $row->id }}"
                                                                         @if (in_array($row->id, $LanguageId)) selected="in_array( $LanguageId == $row->id)">
@@ -253,7 +165,6 @@
                                                         <div class="form-group">
                                                             <label>Country</label>
                                                             <select name="partner_country[]" id="partner_country" multiple>
-                                                                {{-- <option hidden selected value>Select Country</option> --}}
                                                                 @foreach ($data['country'] as $row)
                                                                     <option value="{{ $row->id }}"
                                                                         @if (in_array($row->id, $countryId)) selected="in_array( $countryId == $row->id)">
@@ -447,8 +358,8 @@
                                                     <div class="col-lg-4 col-12">
                                                         <div class="form-group">
                                                             <label>Religion</label>
-                                                            <select class="form-control form-select" name="partner_religion"
-                                                                id="partner_religion">
+                                                            <select class="form-control form-select"
+                                                                name="partner_religion" id="partner_religion">
                                                                 <option hidden selected value>Select Religion</option>
                                                                 @foreach ($data['religion'] as $row)
                                                                     <option value="{{ $row->id }}"

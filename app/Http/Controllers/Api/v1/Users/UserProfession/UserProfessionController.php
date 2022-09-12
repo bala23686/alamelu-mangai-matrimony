@@ -30,8 +30,8 @@ class UserProfessionController extends Controller
     public function store(ProfessionalDetailsRequest $request, ProfessionalDetailsUpdateServices $service)
     {
         return  $service->HandleProfessionalDetailsUpdate($request, $request->user()->id)
-        ? response()->json(['message' => 'User Professional information updated'], 201)
-        : response()->json(['message' => ''], 500);
+            ? response()->json(['message' => 'User Professional information updated'], 201)
+            : response()->json(['message' => 'Something Went Wrong'], 500);
     }
 
     /**
@@ -42,18 +42,15 @@ class UserProfessionController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if($request->user()->id==$id)
-        {
 
-            $professional_info=UserProfessionalMaster::find($id)
+
+        $professional_info = UserProfessionalMaster::find($id)
             ->load('Education')
             ->load('Job')
             ->load('JobCountry')
             ->load('JobState')
             ->load('JobCity');
-            return UserProfessionalInfoResource::make($professional_info);
-        }
-        return response()->json(["message"=>"Action Denied"],403);
+        return UserProfessionalInfoResource::make($professional_info);
     }
 
     /**
@@ -65,13 +62,12 @@ class UserProfessionController extends Controller
      */
     public function update(ProfessionalDetailsRequest $request, ProfessionalDetailsUpdateServices $service, $id)
     {
-        if($request->user()->id==$id)
-        {
+        if ($request->user()->id == $id) {
             return  $service->HandleProfessionalDetailsUpdate($request, $request->user()->id)
-            ? response()->json(['message' => 'User Professional information updated'], 201)
-            : response()->json(['message' => ''], 500);
+                ? response()->json(['message' => 'User Professional information updated'], 201)
+                : response()->json(['message' => 'Something Went Wrong'], 500);
         }
-        return response()->json(["message"=>"Action Denied"],403);
+        return response()->json(["message" => "Action Denied"], 403);
     }
 
     /**

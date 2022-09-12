@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\User\UserResource;
 use App\Services\Profiles\UserProfileService;
 use Illuminate\Http\Request;
+use App\Models\Master\UserShortListInfoMaster\UserShortListInfoMaster;
 
 class UserProfileController extends Controller
 {
@@ -15,11 +16,11 @@ class UserProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request,UserProfileService $service)
+    public function __invoke(Request $request, UserProfileService $service)
     {
         $profiles = $service->execute();
+        $shortlist_profiles = UserShortListInfoMaster::where('shortlisted_by', '=', auth()->id())->get();
 
-        return response()->json(UserResource::collection($profiles),200);
-
+        return response()->json(['shortlisted_id' => $shortlist_profiles, 'data' => $profiles,], 200);
     }
 }

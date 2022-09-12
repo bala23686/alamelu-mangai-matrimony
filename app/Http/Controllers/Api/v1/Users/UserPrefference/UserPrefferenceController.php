@@ -43,8 +43,7 @@ class UserPrefferenceController extends Controller
      */
     public function show(Request $request,$id)
     {
-        if($request->user()->id==$id)
-        {
+
 
             $user_basic_prefference=UserPreferenceInfo::find($id)
             ->load('HeightTo')
@@ -54,9 +53,6 @@ class UserPrefferenceController extends Controller
             return UserProfessionalBasicInfoResource::make($user_basic_prefference);
 
 
-        }
-
-        return response()->json(["message"=>'Action Denied'],401);
     }
 
     /**

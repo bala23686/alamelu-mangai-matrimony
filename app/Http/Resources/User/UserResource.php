@@ -3,6 +3,7 @@
 namespace App\Http\Resources\User;
 
 use App\Http\Resources\Status\StatusResource;
+use App\Models\Master\UserPhotoMaster\UserPhotoMaster;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -30,6 +31,7 @@ class UserResource extends JsonResource
             "user_native_info" => UserNativeInfoResource::make($this->whenLoaded('userNativeInfo')),
             "user_package_info" => UserPackageInfoResource::make($this->whenLoaded('userPackageInfo')),
             "user_package_info" => UserPackageInfoResource::make($this->whenLoaded('userPackageInfo')),
+            // "gallery_images" => UserPhotoMaster::make($this->whenLoaded('GalleryInfo')),
             "created_at" => $this->created_at->format('d-m-y'),
         ];
     }

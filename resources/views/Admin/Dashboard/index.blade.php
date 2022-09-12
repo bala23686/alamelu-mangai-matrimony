@@ -34,9 +34,9 @@
         </x-widgets.info-card>
         <x-widgets.info-card :count="$newUsers" tittle="New Users" subTittle="Users Registred Today" colour="blue">
             {{-- icon slot --}}
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
                 <desc>Download more icon variants from https://tabler-icons.io/i/user-plus</desc>
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -47,9 +47,9 @@
         </x-widgets.info-card>
         <x-widgets.info-card :count="$activeUsers" tittle="Active Users" subTittle="Users On Active" colour="yellow">
             {{-- icon slot --}}
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
                 <desc>Download more icon variants from https://tabler-icons.io/i/user-circle</desc>
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <circle cx="12" cy="12" r="9"></circle>
@@ -60,9 +60,9 @@
         </x-widgets.info-card>
         <x-widgets.info-card :count="$verifiedUsers" tittle="Verfied Users" subTittle="Total Verified Users" colour="dark">
             {{-- icon slot --}}
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
                 <desc>Download more icon variants from https://tabler-icons.io/i/user-check</desc>
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -159,8 +159,8 @@
                 fill: {
                     opacity: 1,
                 },
-                series: [{{ $diskuse }}, {{ $load }}],
-                labels: ["Disk {{$diskuse}}% / 100%", "Cpu {{$load}} hz",],
+                series: [{{ $diskuse ?? (' ' ?? ' ') }}, {{ $load ?? ' ' }}],
+                labels: ["Disk {{ $diskuse ?? ' ' }}% / 100%", "Cpu {{ $load ?? ' ' }} hz", ],
                 grid: {
                     strokeDashArray: 4,
                 },
@@ -185,5 +185,4 @@
             })).render();
         });
     </script>
-
 @endsection

@@ -43,14 +43,12 @@ class UserProfessinalPrefferenceController extends Controller
      */
     public function show(Request $request,$id)
     {
-        if($request->user()->id==$id)
-        {
+
 
             $user_professional_prefference=UserPreferenceInfo::find($id);
 
             return UserProfessionalPrefferenceInfoResource::make($user_professional_prefference);
-        }
-        return response()->json(["message"=>"Action Denied"],401);
+
     }
 
     /**

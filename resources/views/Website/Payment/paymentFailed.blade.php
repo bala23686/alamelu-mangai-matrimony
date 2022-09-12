@@ -1,5 +1,4 @@
-<link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <style type="text/css">
@@ -61,7 +60,6 @@
         text-decoration: none;
         background: #000;
     }
-
 </style>
 <div class="container">
     <div class="row">
@@ -73,7 +71,7 @@
                 <div class="content">
                     <h1>Payment Failed !</h1>
                     <p>Log in again & Completed your Payment </p>
-                    <a href="{{ route('Home') }}">Go to Home</a>
+                    {{-- <a href="{{ route('Home') }}">Go to Home</a> --}}
                 </div>
 
             </div>

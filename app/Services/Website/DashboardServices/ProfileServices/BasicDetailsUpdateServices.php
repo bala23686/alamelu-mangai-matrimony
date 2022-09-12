@@ -21,7 +21,7 @@ class BasicDetailsUpdateServices
             "user_address" => $request->user_address,
             "blood_group" => $request->blood_group,
             "gender_id" => $request->gender,
-            "is_tenth_passed" => $request->is_tenth_passed ?? 0,
+            "is_tenth_passed" => $request->is_tenth_passed ?? 1,
             "user_height_id" => $request->height,
             "user_complexion_id" => $request->user_complexion,
             "user_mother_tongue" => $request->mother_tongue,
@@ -47,7 +47,7 @@ class BasicDetailsUpdateServices
 
         $data = [
             "medical_certificate" => $medical_certificate,
-            "medical_certificate_uploaded_on" => Carbon::now(),
+            "medical_certificate_uploaded" => 1
         ];
 
 
@@ -111,7 +111,7 @@ class BasicDetailsUpdateServices
     }
 
 
-    public function handleAdharCardUpload($adharCard, $adharNo,$id)
+    public function handleAdharCardUpload($adharCard, $adharNo, $id)
     {
 
         $data = [

@@ -45,7 +45,7 @@ Route::group(['prefix' => 'user-profile', 'middleware' => 'auth:sanctum'], funct
 
     //user multiple image upload & delete
 
-    Route::post('user-multiple-image-upload', [UserMasterController::class, 'uploadMultipleImage']);
+    Route::post('user-multiple-image-upload', [UserMasterController::class, 'uploadMultipleImageApi']);
     Route::get('user-multiple-image-get/{id}', [UserMasterController::class, 'getUserPhotos']);
     Route::delete('user-multiple-image-delete/{id}', [UserMasterController::class, 'deletePhoto']);
 
@@ -60,6 +60,14 @@ Route::group(['prefix' => 'user-profile', 'middleware' => 'auth:sanctum'], funct
     Route::post('user-medical-certificate-upload/{id}', [UserMasterController::class, 'uploadMedicalCertificate']);
     //Aadhar Card
     Route::post('user-aadhar-card-certificate-upload/{id}', [UserMasterController::class, 'adharCardUpload']);
+
+
+
+    //Horoscope
+    Route::post('user-horoscope-image/{id}', [UserMasterController::class, 'updateUserHoroscopeImageUpload']);
+    Route::get('user-horoscope-image-get/{id}', [UserMasterController::class, 'getHoroScopeImage']);
+    Route::delete('user-horoscope-image-delete/{id}', [UserMasterController::class, 'deleteHoroScopeImage']);
+
 
     //user short list routes for api
     Route::apiResource('my-short-list', UserShotListController::class);

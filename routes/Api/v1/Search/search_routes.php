@@ -23,18 +23,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix'=>'search','middleware'=>'auth:sanctum'],function()
-{
-
-
+Route::group(['prefix' => 'search', 'middleware' => 'auth:sanctum'], function () {
 
     //profile image upload & delete
-    Route::post('search-by-id',[SearchController::class,'searchById']);
-    Route::post('basic-search',[SearchController::class,'basicSearch']);
-    Route::post('advance-search',[SearchController::class,'advanceSearch']);
-
-
-
-
-
+    Route::post('search-by-id', [SearchController::class, 'searchById']);
+    Route::post('basic-search', [SearchController::class, 'basicSearch']);
+    Route::post('advance-search', [SearchController::class, 'advanceSearch']);
 });
